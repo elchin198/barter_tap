@@ -1,0 +1,111 @@
+Bu xətalar TypeScript tip sisteminin möhkəm yoxlaması nəticəsində yaranır. İndi hər bir problemi qısa və tam həll ilə izah edirəm:
+
+✅ 1. TS2322 – ConversationWithParticipants tipinə uyğun olmayan obyekt
+Səhv:
+
+ts
+Copy
+Edit
+Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is not assignable to type 'ConversationWithParticipants'
+Səbəb: ConversationWithParticipants tipində aşağıdakı mütləq sahələr var:
+
+participants: User[]
+
+otherParticipant: User
+
+unreadCount: number
+
+(və message?: string optional)
+
+Həll: Əgər createConversation funksiyası bu tipdə cavab qaytarırsa, sən də bu sahələri doldurmalısan və ya ConversationWithParticipants əvəzinə sadə Conversation tipi istifadə etməlisən.
+
+✳ Mümkün workaround:
+ts
+Copy
+Edit
+conversation = {
+  id: ..., createdAt: ..., itemId: ..., lastMessageAt: ...,
+  participants: [], // və ya real user array
+  otherParticipant: dummyUser,
+  unreadCount: 0
+} as ConversationWithParticipants;
+✅ 2. TS2353 – lastMessageAt tipi daxilində yoxdur
+Səhv:
+
+ts
+Copy
+Edit
+Object literal may only specify known properties, and 'lastMessageAt' does not exist in type '{ itemId?: number | null | undefined; }'.
+Həll: Ya lastMessageAt-i bu objektdən sil, ya da tipi genişləndir.
+
+✅ Mümkün həll:
+ts
+Copy
+Edit
+const data = {
+  itemId: 123,
+  // lastMessageAt əlavə etmə, əgər type-də yoxdursa
+};
+Əgər mütləq lastMessageAt istifadə etməlisənsə, tipi genişləndir:
+
+ts
+Copy
+Edit
+type InsertConversation = {
+  itemId?: number | null;
+  lastMessageAt?: Date;
+};
+✅ 3. TS18048 – 'conversation' is possibly 'undefined'
+Səhv:
+
+ts
+Copy
+Edit
+conversationId: conversation.id,
+Həll: TypeScript deyir ki, conversation ola bilər undefined. Ya əvvəl if ilə yoxla, ya da optional chaining (?.) istifadə et.
+
+✅ Həll yolları:
+ts
+Copy
+Edit
+if (conversation) {
+  const conversationId = conversation.id;
+}
+və ya:
+
+ts
+Copy
+Edit
+conversationId: conversation?.id,
+✅ 4. TS2353 – id unknown property in user object
+Səhv:
+
+ts
+Copy
+Edit
+id: userId,
+Səbəb: id adətən DB tərəfindən avtomatik verilir və CreateUserInput tipində yoxdur.
+
+Həll: id sahəsini göndərmə. Əgər mütləq lazımdırsa, tipi belə genişləndir:
+
+ts
+Copy
+Edit
+type CreateUserInput = {
+  id?: number;
+  ...
+}
+və ya sadəcə onu sil:
+
+ts
+Copy
+Edit
+const user = {
+  username: ..., password: ..., email: ... // id əlavə etmə
+}
+✅ Ümumi Tövsiyə
+🔎 Əgər mümkündürsə:
+ConversationWithParticipants, InsertConversation, CreateUserInput tiplərini göndər mənə. Onların əsasında sənə 100% düzgün kod nümunəsi verim.
+
+Əgər bu tiplər zod və ya drizzle-orm istifadə edirsə, bu məlumatı da yaz.
+

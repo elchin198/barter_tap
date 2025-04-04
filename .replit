@@ -1,0 +1,3894 @@
+
+run = "npm run dev"
+entrypoint = "server/index.ts"
+
+hidden = [".config", "package-lock.json", "tsconfig.json", "node_modules"]
+
+[nix]
+channel = "stable-22_11"
+
+[env]
+PORT = "3000"
+XDG_CONFIG_HOME = "/home/runner/.config"
+PATH = "/home/runner/$REPL_SLUG/.config/npm/node_global/bin:/home/runner/$REPL_SLUG/node_modules/.bin"
+npm_config_prefix = "/home/runner/$REPL_SLUG/.config/npm/node_global"
+
+[packager]
+language = "nodejs"
+
+[packager.features]
+packageSearch = true
+guessImports = true
+enabledForHosting = false
+
+[interpreter]
+command = ["prybar-nodejs", "-q", "--ps1", "\u0001\u001B[33m\u0002\u0001\u001B[00m\u0002 ", "-i"]
+
+[unitTest]
+language = "nodejs"
+
+[languages]
+
+[languages.javascript]
+pattern = "**/{*.js,*.jsx,*.ts,*.tsx,*.json}"
+
+[languages.javascript.languageServer]
+start = "typescript-language-server --stdio"
+
+[debugger]
+support = true
+
+[debugger.interactive]
+transport = "localhost:0"
+startCommand = ["dap-node"]
+
+[debugger.interactive.initializeMessage]
+command = "initialize"
+type = "request"
+
+[debugger.interactive.initializeMessage.arguments]
+clientID = "replit"
+clientName = "replit.com"
+columnsStartAt1 = true
+linesStartAt1 = true
+locale = "en-us"
+pathFormat = "path"
+supportsInvalidatedEvent = true
+supportsProgressReporting = true
+supportsRunInTerminalRequest = true
+supportsVariablePaging = true
+supportsVariableType = true
+
+[debugger.interactive.launchMessage]
+command = "launch"
+type = "request"
+
+[debugger.interactive.launchMessage.arguments]
+console = "externalTerminal"
+cwd = "."
+pauseForSourceMap = false
+program = "./index.js"
+request = "launch"
+sourceMaps = true
+stopOnEntry = false
+type = "pwa-node"
+
+[deployment]
+build = ["sh", "-c", "npm install && npm run build"]
+run = ["sh", "-c", "node dist/server/index.js"]
+
+[deployment.static]
+directory = "dist/public"
+
+[[ports]]
+localPort = 3000
+externalPort = 80
+
+[[ports]]
+localPort = 5000
+
+[workflows]
+runButton = "BarterTap Full Stack"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "bash"
+
+[[workflows.workflow]]
+name = "bash"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "curl -s \"https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/api/items/1\" | head -c 300"
+
+[[workflows.workflow]]
+name = "Start Server"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node --trace-warnings dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Run Server"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+
+[[workflows.workflow]]
+name = "Start App"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+
+[[workflows.workflow]]
+name = "Start BarterTap Server"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Killing any existing Node.js processes...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Cleaning temporary files...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "rm -rf .cache || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Creating upload directories if they don't exist...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Starting BarterTap server on port 5000...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 npm run dev"
+
+[[workflows.workflow]]
+name = "Build Project"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Installing dependencies...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Building client...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx vite build"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Building server...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Build process completed!\""
+
+[[workflows.workflow]]
+name = "Build And Check"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Installing dependencies if needed...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Building the application...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"If successful, application has been built!\""
+
+[[workflows.workflow]]
+name = "Build and Run"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Tətbiqi build edirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"JavaScript serverini başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Complete Build"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Installing dependencies...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install drizzle-orm pg pg-pool"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Building client...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx vite build"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Building server...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Build process completed! Starting server...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Build After Fixes"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Asılılıqları yoxlayıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Yükləmə qovluqlarını yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Serveri işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Build After Fixes"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Installing dependencies if needed...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Building the application...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Build server completed!\""
+
+[[workflows.workflow]]
+name = "Run BarterTap"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Creating necessary directories if they don't exist...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Starting BarterTap server on port 5000...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node server/index.js"
+
+[[workflows.workflow]]
+name = "Start Server with TS"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Starting server with ts-node...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 npx ts-node server/index.ts"
+
+[[workflows.workflow]]
+name = "Build and View"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Asılılıqları quraşdırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Tətbiqi builedirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Serveri başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Build and View"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Asılılıqları quraşdırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Tətbiqi builedirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Serveri başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Run Preview"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Creating necessary directories if they don't exist...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Starting BarterTap server with TypeScript...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx ts-node server/index.ts"
+
+[[workflows.workflow]]
+name = "Start BarterTap"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Asılılıqları yoxlayıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"BarterTap serverini başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Build və İşlət"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Asılılıqları quraşdırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Tətbiqi build edirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Upload qovluqlarını yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"JavaScript serverini işlədirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "JS ilə İşlət"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Upload qovluqlarını yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Serveri birbaşa işlədirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "NODE_OPTIONS=\"--experimental-specifier-resolution=node --loader ts-node/esm\" node server/index.ts"
+
+[[workflows.workflow]]
+name = "Build və İşlət TypeScript"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Asılılıqları quraşdırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"JavaScript serverini işlədirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Build və Start"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Asılılıqları yoxlayıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Yükləmə qovluqlarını yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Serveri işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Build və Start"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Asılılıqları yoxlayıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Yükləmə qovluqlarını yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Serveri işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "TypeScript Fix və Build"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi TypeScript modullarını quraşdırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install drizzle-orm postgres postgres-js @types/pg @types/fs-extra @types/path"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Kod formatını yoxlayıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx eslint --fix server/*.ts"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"JavaScript serverini başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "TypeScript Fix and Build"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Installing necessary TypeScript and ESLint dependencies...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install --save-dev @typescript-eslint/parser @typescript-eslint/eslint-plugin"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Running ESLint with TypeScript support...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx eslint \"client/src/**/*.{ts,tsx}\" \"server/**/*.ts\" --fix"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Compiling TypeScript server code...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Creating upload directories if they don't exist...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Starting server...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Fix TypeScript Errors"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Installing necessary dependencies...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Creating upload directories if needed...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Compiling TypeScript to check for errors...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript compilation completed!\""
+
+[[workflows.workflow]]
+name = "TS Errors Fix"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi asılılıqları quraşdırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu yoxlayıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --noEmit"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Uploads qovluqlarını yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Serveri başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "TypeScript Compile Check"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Checking TypeScript compilation...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --noEmit"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript compilation check completed!\""
+
+[[workflows.workflow]]
+name = "Setup Database"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Setting up PostgreSQL database...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install -g drizzle-kit"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install drizzle-orm postgres postgres-js dotenv"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Creating database directories...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Database is ready to use\""
+
+[[workflows.workflow]]
+name = "BarterTap Development"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Asılılıqları quraşdırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Frontend və server üçün TypeScript-i eyni anda işlədirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+
+[[workflows.workflow]]
+name = "BarterTap Production Build"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars dist/server"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Asılılıqları quraşdırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Frontend və backend-i build edirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript server kodunu build edirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Serveri işlədirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Fix Database Integration"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi asılılıqları quraşdırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install pg pg-pool drizzle-orm dotenv @types/pg"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"PostgreSQL adapter faylını yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Yoxlama skriptini işlədirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node dist/server/db_test.js"
+
+[[workflows.workflow]]
+name = "BarterTap Full Development"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Asılılıqları quraşdırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Frontend və serveri başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 npm run dev"
+
+[[workflows.workflow]]
+name = "BarterTap Build and Deploy"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Killing any existing Node.js processes...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Creating necessary directories...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Installing dependencies...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Building client and server...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Starting BarterTap server on port 5000...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Deploy to Production"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Starting deployment process...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Running tests and quality checks...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run lint || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Building frontend and backend...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Creating upload directories...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Starting the production server...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Production Build"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Setting NODE_ENV to production...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "export NODE_ENV=production"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Installing dependencies...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Building client and server...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Creating necessary directories...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Production build completed successfully!\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"You can now test the production build with 'node dist/server/index.js'\""
+
+[[workflows.workflow]]
+name = "Build and Deploy Production"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Killing any existing Node.js processes...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Creating necessary directories for uploads...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Installing dependencies...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Building the frontend (Vite)...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build:client"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Building the server...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build:server"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Starting production server on port 5000...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Build and Deploy (Optimized)"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Cleaning up large unnecessary files before build...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash cleanup.sh"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Installing dependencies...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Building client and server...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Creating necessary directories...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p dist/public/uploads/items dist/public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 dist/public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Starting BarterTap server on port 5000...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Fix Build Issues"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Creating images directory if it doesn't exist...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/images"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Copying Leaflet images to public/images...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cp -f node_modules/leaflet/dist/images/* public/images/"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Building the client...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build:client"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Building the server...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build:server"
+
+[[workflows.workflow]]
+name = "Build and Run Fixed Project"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Killing any existing Node.js processes...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Creating necessary directories...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/images"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Copying Leaflet images to public/images...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cp -f node_modules/leaflet/dist/images/* public/images/"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Building the client...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build:client"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Building the server...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build:server"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Starting the server on port 5000...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Fix Build and Run"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Leaflet şəkillərini public/images qovluğuna köçürürəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/images"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cp -f node_modules/leaflet/dist/images/* public/images/"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Yükləmə qovluqlarını yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Client-i build edirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build:client"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Server-i build edirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build:server"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"5000 portunda server-i başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Düzəlişlərdən Sonra Build Et"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə prosesləri təmizləyirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/images"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Leaflet şəkillərini köçürürəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cp -f node_modules/leaflet/dist/images/* public/images/"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Client-i build edirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build:client"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Server-i build edirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build:server"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Serveri başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Fix və Build"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə prosesləri təmizləyirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/images"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Leaflet şəkillərini köçürürəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cp -f node_modules/leaflet/dist/images/* public/images/ || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Client-i build edirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build:client"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Server-i build edirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build:server"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Serveri başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "BarterTap Build və İşlət"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə prosesləri təmizləyirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/images"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Leaflet şəkillərini köçürürəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cp -f node_modules/leaflet/dist/images/* public/images/ || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Client-i build edirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build:client"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Server-i build edirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build:server"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Serveri başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "BarterTap Optimized Build"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə prosesləri təmizləyirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/images"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Leaflet şəkillərini köçürürəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cp -f node_modules/leaflet/dist/images/* public/images/ || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Client-i build edirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build:client"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Server-i build edirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build:server"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Serveri başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Fix TypeScript Build"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Installing necessary @types packages...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install --save-dev @types/ws @types/http-server"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Compiling TypeScript with --skipLibCheck option...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript compilation completed!\""
+
+[[workflows.workflow]]
+name = "Build and Start Server"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə prosesləri təmizləyirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p dist/server dist/public/uploads/items dist/public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 dist/public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Serveri başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node --es-module-specifier-resolution=node dist/server/server/index.js"
+
+[[workflows.workflow]]
+name = "Build and Run Server"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Run BarterTap Server"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini 0.0.0.0:5000 adresində işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "HOST=0.0.0.0 PORT=5000 NODE_ENV=development node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Run WebSocket Server"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Stopping any existing Node.js processes...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Creating necessary directories...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Starting WebSocket server...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Run WebSocket Server Debug"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Node prosesləri təmizləndi. Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini başladıram (debug rejimində)...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "NODE_ENV=development NODE_DEBUG=net,http,stream PORT=5000 node --trace-warnings --es-module-specifier-resolution=node dist/server/server/index.js"
+
+[[workflows.workflow]]
+name = "Run WebSocket Server Simple"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini sadə rejimdə başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node --trace-warnings --es-module-specifier-resolution=node dist/server/server/index.js"
+
+[[workflows.workflow]]
+name = "Run WebSocket Server Fixed"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Stopping any existing Node.js processes...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Creating necessary directories...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Starting WebSocket server...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Run WebSocket Server Fixed Optimized"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini debug rejimində başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 NODE_OPTIONS=\"--trace-warnings\" node --inspect dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Build and Run WebSocket Server"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Start WebSocket Server"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Serverin işləməsini yoxlayıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Öncə var olan dist strukturu:\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "ls -la dist/server || echo \"Dist qovluğu hələ mövcud deyil\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Qovluq strukturunu düzəldirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p dist/server dist/public"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini 0.0.0.0:5000 adresində işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 HOST=0.0.0.0 NODE_ENV=development node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "WebSocket Server"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "WebSocket Server Fixed"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodlarını kompilyasiya edirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Yükləmə qovluqlarını yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 NODE_ENV=development node --trace-warnings dist/server/index.js"
+
+[[workflows.workflow]]
+name = "WebSocket Server Direct"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars dist/public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini 5000 portunda işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 NODE_ENV=development DEBUG=express:* node --trace-warnings dist/server/index.js"
+
+[[workflows.workflow]]
+name = "WebSocket Server Launch"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Yükləmə qovluqlarını yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini 5000 portunda işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 NODE_ENV=development node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "WebSocket Server Simple"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Fayl strukturunu yoxlayıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "ls -la dist"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu yenidən kompilyasiya edirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini başladıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 NODE_ENV=development node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Deploy BarterTap"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini 5000 portunda işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 NODE_ENV=development node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "WebSocket Server Access"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Fayl strukturunu yoxlayıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "ls -la dist/server"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini 0.0.0.0:5000 adresində işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 HOST=0.0.0.0 NODE_ENV=development node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Build and Run BarterTap"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Dist qovluğunu yoxlayıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "ls -la dist/server || echo \"Dist qovluğu yaradılmalıdır\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini 5000 portunda işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 HOST=0.0.0.0 NODE_ENV=development node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "BarterTap Production"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 HOST=0.0.0.0 NODE_ENV=development node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Fix and Start WebSocket Server"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Yükləmə qovluqlarını yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini 0.0.0.0:5000 adresində işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "NODE_ENV=development HOST=0.0.0.0 PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Start BarterTap WebSocket"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Yükləmə qovluqlarını yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini 0.0.0.0:5000 adresində işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "NODE_ENV=development HOST=0.0.0.0 PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Restart WebSocket Server"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Yükləmə qovluqlarını yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini 0.0.0.0:5000 adresində işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "NODE_ENV=development HOST=0.0.0.0 PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "BarterTap WebSocket"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Yükləmə qovluqlarını yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "HOST=0.0.0.0 PORT=5000 NODE_ENV=development node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "BarterTap WebSocket Simple"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Yükləmə qovluqlarını yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini 0.0.0.0:5000 adresində işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "PORT=5000 HOST=0.0.0.0 NODE_ENV=development node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "BarterTap Start"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazım olan qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars public/images"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Server statusunu yoxlayıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "curl -s http://localhost:5000/api/healthcheck || echo \"Server işləmir veya əlçatan deyil\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Serveri işə salıram (port: 5000)...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "HOST=0.0.0.0 PORT=5000 NODE_ENV=development node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "BarterTap WebSocket Test"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazım olan qovluqları yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars public/images"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Serveri işə salıram (port: 5000)...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "HOST=0.0.0.0 PORT=5000 NODE_ENV=development node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "BarterTap Simple Server"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Yükləmə qovluqlarını yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocketServer vəziyyətini yoxlayıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cat server/websocket.ts"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini 0.0.0.0:5000 adresində işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "NODE_ENV=development HOST=0.0.0.0 PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "BarterTap WebSocket Server"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Yükləmə qovluqlarını yaradıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public/uploads"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Server vəziyyətini yoxlayıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "ls -la dist/server || echo \"Dist qovluğu yaradılmalıdır\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini 0.0.0.0:5000 adresində işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "HOST=0.0.0.0 PORT=5000 NODE_ENV=development node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "BarterTap Full Stack"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Köhnə Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f \"node\" || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 2"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"Lazımi qovluqları yaradıram və icazə verirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p public/uploads/items public/uploads/avatars"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "chmod -R 755 public"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"TypeScript kodunu JavaScript-ə çevirirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"WebSocket serverini 0.0.0.0:5000 adresində işə salıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "NODE_ENV=development HOST=0.0.0.0 PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Fix WebView Visibility"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"📦 Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f 'node' || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"📂 public qovluğunu dist-ə kopyalayıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p dist/public && cp -r public/* dist/public/"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"🔧 TypeScript kodunu kompilyasiya edirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npx tsc -p tsconfig.server.json --skipLibCheck"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"🚀 Serveri başladırıq...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "HOST=0.0.0.0 PORT=5000 node dist/server/index.js"
+
+[[workflows.workflow]]
+name = "Start TS Server"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"📦 Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f 'node' || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"🔧 TS modullarını quraşdırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install --save-dev tsx @types/ws"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"🚀 TypeScript serveri birbaşa işlədirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "HOST=0.0.0.0 PORT=5000 npx tsx server/index.ts"
+
+[[workflows.workflow]]
+name = "Start TS Server"
+author = 40721347
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"📦 Node proseslərini dayandırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f 'node' || true"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "sleep 1"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"🔧 TS modullarını quraşdırıram...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install --save-dev tsx @types/ws"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"🚀 TypeScript serveri birbaşa işlədirəm...\""
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "HOST=0.0.0.0 PORT=5000 npx tsx server/index.ts"

@@ -1,0 +1,223 @@
+
+"> rest-express@1.0.0 build:client 
+> vite build
+
+vite v5.4.15 building for production...
+
+/assets/index-CNPE6kDc.css doesn't exist at build time, it will remain unchanged to be resolved at runtime
+✓ 2 modules transformed.
+x Build failed in 163ms
+error during build:
+[vite]: Rollup failed to resolve import "/assets/index-LmAl6rp7.js" from "/home/runner/workspace/index.html".
+This is most likely unintended because it can break your application at runtime.
+If you do want to externalize this module explicitly add it to
+`build.rollupOptions.external`
+    at viteWarn (file:///home/runner/workspace/node_modules/vite/dist/node/chunks/dep-CevzF2vT.js:65757:17)
+    at onwarn (file:///home/runner/workspace/node_modules/@vitejs/plugin-react/dist/index.mjs:282:9)
+    at onRollupWarning (file:///home/runner/workspace/node_modules/vite/dist/node/chunks/dep-CevzF2vT.js:65787:5)
+    at onwarn (file:///home/runner/workspace/node_modules/vite/dist/node/chunks/dep-CevzF2vT.js:65452:7)
+    at file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:19452:13
+    at Object.logger [as onLog] (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:21178:9)
+    at ModuleLoader.handleInvalidResolvedId (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:20067:26)
+    at file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:20025:26"Bu dəfəki problem vite build zamanı HTML faylında göstərilən assetlərə (JS/CSS) uyğun faylların build zamanı tapılmaması ilə bağlıdır:
+
+❌ Səhv Xəbər:
+pgsql
+Copy
+Edit
+Rollup failed to resolve import "/assets/index-LmAl6rp7.js" from "/index.html"
+Bu deməkdir ki, index.html faylının içində aşağıdakı kimi bir sətir var:
+
+html
+Copy
+Edit
+<script type="module" src="/assets/index-LmAl6rp7.js"></script>
+Amma vite build nəticəsində həmin index-LmAl6rp7.js faylı yaradılmayıb və ya ad uyğun gəlmir.
+
+🎯 Səbəblər və Həllər
+🟡 1. Əl ilə düzəldilmiş və ya köhnə index.html faylı
+Əgər sən dist/index.html faylında köhnə assets/index-*.js faylını əl ilə yazmısansa, Vite bu faylı yarada bilməyəcək.
+
+✅ Həll:
+Əgər index.html statikdirsə, bütün asset-ləri əl ilə yazma:
+
+html
+Copy
+Edit
+<script type="module" src="/src/main.tsx"></script>
+Vite avtomatik olaraq main.tsx → index-xxxxx.js faylını generasiya edəcək.
+
+🔴 2. Əl ilə yazılmış, lakin uyğun input göstərilməyib
+Əgər build input olaraq index.html istifadə etmirsə və ya səhv göstərilibsə, assetlər build-ə daxil edilmir.
+
+✅ Həll:
+vite.config.ts içində build.rollupOptions.input ayarını dəqiqləşdir:
+
+ts
+Copy
+Edit
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      input: 'index.html'
+    }
+  }
+});
+🔵 3. Köhnə və ya silinmiş fayla istinad
+index.html faylında index-CNPE6kDc.css və index-LmAl6rp7.js varsa, Vite bu faylları artıq silib və ya fərqli adla yaradır.
+
+✅ Həll:
+public/ qovluğunda əvvəlcədən build edilmiş asset-lər varsa – silin.
+
+dist/ qovluğunu tam təmizləyin:
+
+bash
+Copy
+Edit
+rm -rf dist
+Sonra təmiz build edin:
+
+bash
+Copy
+Edit
+npm run build
+🧼 Bonus: Avtomatik düzəldilmiş index.html şablonu
+html
+Copy
+Edit
+<!DOCTYPE html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <title>BarterTap</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+Bu şəkildə vite asset-ləri özü yaradır və resolve edir.
+Xətanın açıqlaması:
+pgsql Xətanın açıqlaması:
+pgsql
+Copy
+Edit
+[vite]: Rollup failed to resolve import "/assets/index-LmAl6rp7.js" from "/home/runner/workspace/index.html".
+Bu xəta onu göstərir ki, sənin index.html faylında belə bir sətir var:
+
+html
+Copy
+Edit
+<script type="module" src="/assets/index-LmAl6rp7.js"></script>
+amma Vite həmin faylı build zamanı yarada bilməyib, nəticədə tapılmır.
+
+📌 Mümkün səbəblər:
+Səbəb	İzah
+❌ Əvvəlki build cache qalıb	/dist və ya /assets-də köhnə fayl linkləri qalıb
+❌ index.html statikdir	Bu fayl bəlkə də hard-coded fayl adları ilə yazılıb
+❌ input entry point düzgün deyil	Vite-ə əsas .ts/.js/.tsx/.jsx fayl göstərilməyib
+❌ assets folder build zamanı yaranmır	vite.config.ts düzgün ayarlanmamış ola bilər
+✅ Həll yolları
+✅ 1. index.html-də fayl linkləri avtomatik olmalıdır
+index.html faylında bu cür yazılış yanlışdır:
+
+html
+Copy
+Edit
+<script type="module" src="/assets/index-XYZ.js"></script> <!-- Manual hashed name -->
+Doğru yazılış:
+
+html
+Copy
+Edit
+<script type="module" src="/src/main.tsx"></script> <!-- Real entry point -->
+✅ 2. Əgər SSR və ya React istifadə edirsənsə, Vite-ə entry point göstər:
+ts
+Copy
+Edit
+// vite.config.ts
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      input: './index.html'
+    }
+  }
+})
+✅ 3. dist, .vite, node_modules-i təmizlə:
+bash
+Copy
+Edit
+rm -rf dist .vite node_modules
+npm install
+npm run build
+✅ 4. Fayl adlarını hard-coded istifadə etmə:
+Əgər index.html faylında /assets/index-*.js kimi versiyalı adlar varsa, onları çıxart və Vite-ə real source fayl ver.
+
+Vite özü index-[hash].js kimi faylları build zamanı generasiya edir.
+
+🧪 Əgər istəsən:
+Mən index.html və vite.config.ts faylını yoxlaya bilərəm — sən göndər, mən sənə konkret düzəlişləri edim.
+
+Hazırsansa, bu faylları paylaş və ya sadəcə aşağıdakı sualı cavabla:
+
+index.html faylında src="/assets/..." kimi script tagı hard-coded varmı?Copy
+Edit
+[vite]: Rollup failed to resolve import "/assets/index-LmAl6rp7.js" from "/home/runner/workspace/index.html".
+Bu xəta onu göstərir ki, sənin index.html faylında belə bir sətir var:
+
+html
+Copy
+Edit
+<script type="module" src="/assets/index-LmAl6rp7.js"></script>
+amma Vite həmin faylı build zamanı yarada bilməyib, nəticədə tapılmır.
+
+📌 Mümkün səbəblər:
+Səbəb	İzah
+❌ Əvvəlki build cache qalıb	/dist və ya /assets-də köhnə fayl linkləri qalıb
+❌ index.html statikdir	Bu fayl bəlkə də hard-coded fayl adları ilə yazılıb
+❌ input entry point düzgün deyil	Vite-ə əsas .ts/.js/.tsx/.jsx fayl göstərilməyib
+❌ assets folder build zamanı yaranmır	vite.config.ts düzgün ayarlanmamış ola bilər
+✅ Həll yolları
+✅ 1. index.html-də fayl linkləri avtomatik olmalıdır
+index.html faylında bu cür yazılış yanlışdır:
+
+html
+Copy
+Edit
+<script type="module" src="/assets/index-XYZ.js"></script> <!-- Manual hashed name -->
+Doğru yazılış:
+
+html
+Copy
+Edit
+<script type="module" src="/src/main.tsx"></script> <!-- Real entry point -->
+✅ 2. Əgər SSR və ya React istifadə edirsənsə, Vite-ə entry point göstər:
+ts
+Copy
+Edit
+// vite.config.ts
+export default defineConfig({
+  build: {
+    rollupOptions: {
+      input: './index.html'
+    }
+  }
+})
+✅ 3. dist, .vite, node_modules-i təmizlə:
+bash
+Copy
+Edit
+rm -rf dist .vite node_modules
+npm install
+npm run build
+✅ 4. Fayl adlarını hard-coded istifadə etmə:
+Əgər index.html faylında /assets/index-*.js kimi versiyalı adlar varsa, onları çıxart və Vite-ə real source fayl ver.
+
+Vite özü index-[hash].js kimi faylları build zamanı generasiya edir.
+
+🧪 Əgər istəsən:
+Mən index.html və vite.config.ts faylını yoxlaya bilərəm — sən göndər, mən sənə konkret düzəlişləri edim.
+
+Hazırsansa, bu faylları paylaş və ya sadəcə aşağıdakı sualı cavabla:
+
+index.html faylında src="/assets/..." kimi script tagı hard-coded varmı?

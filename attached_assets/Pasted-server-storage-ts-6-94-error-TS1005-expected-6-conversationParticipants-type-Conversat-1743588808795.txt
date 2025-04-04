@@ -1,0 +1,97 @@
+server/storage.ts:6:94 - error TS1005: ',' expected.
+
+6   conversationParticipants, type ConversationParticipant, type InsertConversationParticipant & { role?: string },
+                                                                                               ~
+
+server/storage.ts:7:18 - error TS1005: ';' expected.
+
+7   messages, type Message, type InsertMessage,
+                   ~~~~~~~
+
+server/storage.ts:7:32 - error TS1005: ';' expected.
+
+7   messages, type Message, type InsertMessage,
+                                 ~~~~~~~~~~~~~
+
+server/storage.ts:8:16 - error TS1005: ';' expected.
+
+8   offers, type Offer, type InsertOffer,
+                 ~~~~~
+
+server/storage.ts:8:28 - error TS1005: ';' expected.
+
+8   offers, type Offer, type InsertOffer,
+                             ~~~~~~~~~~~
+
+server/storage.ts:9:23 - error TS1005: ';' expected.
+
+9   notifications, type Notification, type InsertNotification,
+                        ~~~~~~~~~~~~
+
+server/storage.ts:9:42 - error TS1005: ';' expected.
+
+9   notifications, type Notification, type InsertNotification,
+                                           ~~~~~~~~~~~~~~~~~~
+
+server/storage.ts:10:19 - error TS1005: ';' expected.
+
+10   favorites, type Favorite, type InsertFavorite,
+                     ~~~~~~~~
+
+server/storage.ts:10:34 - error TS1005: ';' expected.
+
+10   favorites, type Favorite, type InsertFavorite,
+                                    ~~~~~~~~~~~~~~
+
+server/storage.ts:11:27 - error TS1005: ';' expected.
+
+11   pushSubscriptions, type PushSubscription, type InsertPushSubscription,
+                             ~~~~~~~~~~~~~~~~
+
+server/storage.ts:11:50 - error TS1005: ';' expected.
+
+11   pushSubscriptions, type PushSubscription, type InsertPushSubscription,
+                                                    ~~~~~~~~~~~~~~~~~~~~~~
+
+server/storage.ts:12:17 - error TS1005: ';' expected.
+
+12   reviews, type Review, type InsertReview,
+                   ~~~~~~
+
+server/storage.ts:12:30 - error TS1005: ';' expected.
+
+12   reviews, type Review, type InsertReview,
+                                ~~~~~~~~~~~~
+
+server/storage.ts:13:8 - error TS1005: ';' expected.
+
+13   type ConversationWithParticipants, type MessageWithSender, type UserWithRating, type ReviewWithDetails
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+server/storage.ts:13:43 - error TS1005: ';' expected.
+
+13   type ConversationWithParticipants, type MessageWithSender, type UserWithRating, type ReviewWithDetails
+                                             ~~~~~~~~~~~~~~~~~
+
+server/storage.ts:13:67 - error TS1005: ';' expected.
+
+13   type ConversationWithParticipants, type MessageWithSender, type UserWithRating, type ReviewWithDetails
+                                                                     ~~~~~~~~~~~~~~
+
+server/storage.ts:13:88 - error TS1005: ';' expected.
+
+13   type ConversationWithParticipants, type MessageWithSender, type UserWithRating, type ReviewWithDetails
+                                                                                          ~~~~~~~~~~~~~~~~~
+
+server/storage.ts:14:1 - error TS1128: Declaration or statement expected.
+
+14 } from "../shared/schema.js";
+   ~
+
+server/storage.ts:14:3 - error TS1434: Unexpected keyword or identifier.
+
+14 } from "../shared/schema.js";
+     ~~~~
+
+
+Found 19 errors in the same file, starting at: server/storage.ts:6

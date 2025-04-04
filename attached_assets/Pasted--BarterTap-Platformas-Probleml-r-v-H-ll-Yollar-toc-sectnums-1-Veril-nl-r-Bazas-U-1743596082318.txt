@@ -1,0 +1,105 @@
+= BarterTap Platforması – Problemlər və Həll Yolları
+:toc:
+:sectnums:
+
+== 1. Verilənlər Bazası Uyğunsuzluğu
+
+*Problem:* Layihədə eyni anda MySQL (PHP) və PostgreSQL (Python) istifadə edilir.
+
+*Həll:* 
+- Yalnız PostgreSQL istifadə edilməli;
+- Bütün backend kodlar PostgreSQL-uyğun yazılmalı;
+- Python skriptləri avtomat testdə istifadə olunmalı.
+
+== 2. Şifrələr Açıq Saxlanılır
+
+*Problem:* `api.php` faylında fallback kimi şifrə düz mətndə verilib.
+
+*Həll:*
+- Şifrələr `.env` faylında saxlanılmalı;
+- `.gitignore` faylına `.env` daxil edilməlidir;
+- Mühit dəyişənləri Hostinger/Đeploy konfiqurasiya fayllarında saxlanılmalı.
+
+== 3. Frontend-Backend Əlaqəsi
+
+*Problem:* Lokal frontend API-yə qoşula bilmir, çünki `.env.development` faylı boşdur.
+
+*Həll:*
+```
+VITE_API_URL=http://localhost:5000/api
+```
+- Bu dəyər frontend API çağırışlarında istifadə edilməlidir.
+
+== 4. Deploy Zəifliyi
+
+*Problem:* `npm run build` başlamazdan əvvəl `npm install` edilmir.
+
+*Həll:*
+```
+echo "NPM bağımlılıqları quraşdırılır..."
+npm install
+```
+
+== 5. Login və Formlar Backendə Qoşulmur
+
+*Problem:* `ItemForm.tsx` və `AuthContext.tsx` real API çağırışları etməyib.
+
+*Həll:*
+```tsx
+const login = async ({ email, password }) => {
+  const res = await api.post('/login', { email, password });
+  setUser(res.data.user);
+  localStorage.setItem('user', JSON.stringify(res.data.user));
+  return res.data.user;
+};
+```
+- `ItemForm.tsx`-də `onSubmit` funksiyası yaradılmalı.
+
+== 6. `create_tables.sql` Faylı Çatmır
+
+*Problem:* `db_setup.sh` faylı `create_tables.sql`-a istinad edir, amma o fayl yoxdur.
+
+*Həll:*
+```sql
+CREATE TABLE items (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(100),
+  description TEXT,
+  category VARCHAR(50),
+  condition VARCHAR(50),
+  image_url TEXT,
+  user_id INT
+);
+```
+
+== 7. Monolit `api.php`
+
+*Problem:* Hamısı bir yerdədir, modul şəklində deyil.
+
+*Həll:*
+- Slim PHP Framework və ya Node.js Express istifadə olunmalı;
+- `/api/items`, `/api/login` kimi REST API marşrutlar yaradılmalı.
+
+== 8. `Leaflet` funksiyası istifadə olunmur
+
+*Problem:* `leaflet.css` faylı var, amma komponent istifadə olunmayıb.
+
+*Həll:*
+- `react-leaflet` quraşdırılmalı;
+- `ItemCard`-da coğrafi məlumatları göstərən interaktiv komponent qurulmalı.
+
+== 9. Beynəlxalq Dəstək Yarımçıq
+
+*Problem:* `i18n.ts` faylı var, amma komponentlərdə istifadə olunmayıb.
+
+*Həll:*
+- `react-i18next` tam konfiqurasiya edilməlidir;
+- Bütün mətn dəyərləri `t('key')` şəklində yazılmalı.
+
+== BONUS: Plan
+
+1. Backend PostgreSQL əsaslı olsun
+2. API-lər REST prinsipi əsaslı qurulsun
+3. Frontend komponentlər API əlaqəli etsin
+4. Deployment build + config testlərini daxil etsin
+5. `.env` faylları tam doldurulsun və gizli saxlanılsın

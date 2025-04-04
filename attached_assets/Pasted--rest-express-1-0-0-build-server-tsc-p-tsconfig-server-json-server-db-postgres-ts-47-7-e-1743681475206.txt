@@ -1,0 +1,116 @@
+
+> rest-express@1.0.0 build:server
+> tsc -p tsconfig.server.json
+
+server/db_postgres.ts:47:7 - error TS7023: 'db' implicitly has return type 'any' because it does not have a return type annotation and is referenced directly or indirectly in one of its return expressions.
+
+47   get db() {
+         ~~
+
+server/db_postgres.ts:48:17 - error TS2339: Property 'dbClient' does not exist on type '{ readonly db: any; getUser(userId: number): Promise<any>; getUserByUsername(username: string): Promise<any>; getUserByEmail(email: string): Promise<any>; ... 46 more ...; getActiveAdvertisement(position: string): Promise<...>; }'.
+
+48     return this.dbClient;
+                   ~~~~~~~~
+
+server/db_postgres.ts:494:28 - error TS2551: Property 'getActiveAdvertisementByPosition' does not exist on type '{ getDb(): any; getUser(userId: number): Promise<any>; getUserByUsername(username: string): Promise<any>; getUserByEmail(email: string): Promise<any>; ... 46 more ...; deletePushSubscription(userId: number): Promise<...>; }'. Did you mean 'getActiveAdvertisement'?
+
+494       return await storage.getActiveAdvertisementByPosition(position);
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  server/storage.ts:158:9
+    158   async getActiveAdvertisement(position: string): Promise<any | null> {
+                ~~~~~~~~~~~~~~~~~~~~~~
+    'getActiveAdvertisement' is declared here.
+
+server/routes.ts:737:24 - error TS18047: 'userRating' is possibly 'null'.
+
+737         averageRating: userRating.averageRating,
+                           ~~~~~~~~~~
+
+server/routes.ts:737:35 - error TS2339: Property 'averageRating' does not exist on type '{ user: any; rating: number; reviewCount: number; }'.
+
+737         averageRating: userRating.averageRating,
+                                      ~~~~~~~~~~~~~
+
+server/routes.ts:738:22 - error TS18047: 'userRating' is possibly 'null'.
+
+738         reviewCount: userRating.reviewCount
+                         ~~~~~~~~~~
+
+server/routes.ts:1436:11 - error TS2554: Expected 1 arguments, but got 2.
+
+1436           {
+               ~
+1437             participants: [
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ... 
+1440             ]
+     ~~~~~~~~~~~~~
+1441           }
+     ~~~~~~~~~~~
+
+server/routes.ts:1665:11 - error TS2554: Expected 1 arguments, but got 2.
+
+1665           {
+               ~
+1666             participants: [
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ... 
+1669             ]
+     ~~~~~~~~~~~~~
+1670           }
+     ~~~~~~~~~~~
+
+server/routes/advertisements.ts:43:41 - error TS2551: Property 'getActiveAdvertisementByPosition' does not exist on type '{ getDb(): any; getUser(userId: number): Promise<any>; getUserByUsername(username: string): Promise<any>; getUserByEmail(email: string): Promise<any>; ... 46 more ...; deletePushSubscription(userId: number): Promise<...>; }'. Did you mean 'getActiveAdvertisement'?
+
+43     const advertisement = await storage.getActiveAdvertisementByPosition(position);
+                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  server/storage.ts:158:9
+    158   async getActiveAdvertisement(position: string): Promise<any | null> {
+                ~~~~~~~~~~~~~~~~~~~~~~
+    'getActiveAdvertisement' is declared here.
+
+server/storage.ts:14:10 - error TS2305: Module '"./db_postgres.js"' has no exported member 'PostgreSQLAdapter'.
+
+14 import { PostgreSQLAdapter } from './db_postgres.js';
+            ~~~~~~~~~~~~~~~~~
+
+server/storage.ts:205:18 - error TS2304: Cannot find name 'participants'.
+
+205       .innerJoin(participants, eq(conversations.id, participants.conversationId))
+                     ~~~~~~~~~~~~
+
+server/storage.ts:205:53 - error TS2304: Cannot find name 'participants'.
+
+205       .innerJoin(participants, eq(conversations.id, participants.conversationId))
+                                                        ~~~~~~~~~~~~
+
+server/storage.ts:206:17 - error TS2304: Cannot find name 'participants'.
+
+206       .where(eq(participants.userId, userId))
+                    ~~~~~~~~~~~~
+
+server/storage.ts:217:18 - error TS2304: Cannot find name 'participants'.
+
+217       .innerJoin(participants, eq(conversations.id, participants.conversationId))
+                     ~~~~~~~~~~~~
+
+server/storage.ts:217:53 - error TS2304: Cannot find name 'participants'.
+
+217       .innerJoin(participants, eq(conversations.id, participants.conversationId))
+                                                        ~~~~~~~~~~~~
+
+server/storage.ts:218:17 - error TS2304: Cannot find name 'participants'.
+
+218       .where(eq(participants.userId, userId1));
+                    ~~~~~~~~~~~~
+
+
+Found 16 errors in 4 files.
+
+Errors  Files
+     3  server/db_postgres.ts:47
+     5  server/routes.ts:737
+     1  server/routes/advertisements.ts:43
+     7  server/storage.ts:14

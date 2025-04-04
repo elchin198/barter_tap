@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="138px" height="24px" viewBox="0 0 138 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>nextbarter logo</title>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-131.000000, -28.000000)">
+            <g transform="translate(131.000000, 28.000000)">
+                <path d="M23.6,0 L23.6,0 C19.828,0 16.8,3.028 16.8,6.8 L16.8,17.2 C16.8,20.972 19.828,24 23.6,24 L23.6,24 C27.372,24 30.4,20.972 30.4,17.2 L30.4,6.8 C30.4,3.028 27.372,0 23.6,0 Z" fill="#3B82F6"></path>
+                <path d="M10,6.8 C10,3.028 7.172,0 3.6,0 L0,0 L0,24 L3.6,24 C7.172,24 10,20.972 10,17.2 L10,6.8 Z" fill="#3B82F6"></path>
+                <path d="M30.4,6.8 L30.4,17.2 L16.8,6.8 L16.8,17.2 L30.4,6.8 Z" fill="#ffffff"></path>
+                <rect x="128" y="0" width="10" height="10" fill-opacity="0" fill="#000000"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

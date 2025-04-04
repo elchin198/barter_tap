@@ -1,0 +1,49 @@
+"
+> rest-express@1.0.0 build:client
+failed to load config from /home/runner/workspace/vite.config.ts
+error during build:
+file:///home/runner/workspace/vite.config.ts.timestamp-1743597674454-21651d5d8c6a.mjs:6
+import { themeShadcnJson } from "file:///home/runner/workspace/node_modules/@replit/vite-plugin-shadcn-theme-json/dist/index.mjs";
+         ^^^^^^^^^^^^^^^
+SyntaxError: The requested module 'file:///home/runner/workspace/node_modules/@replit/vite-plugin-shadcn-theme-json/dist/index.mjs' does not provide an export named 'themeShadcnJson'
+    at ModuleJob._instantiate (node:internal/modules/esm/module_job:123:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:189:5)
+    at async Promise.all (index 0)
+    at async ESMLoader.import (node:internal/modules/esm/loader:530:24)
+    at async loadConfigFromBundledFile (file:///home/runner/workspace/node_modules/vite/dist/node/chunks/dep-CevzF2vT.js:66876:15)
+    at async loadConfigFromFile (file:///home/runner/workspace/node_modules/vite/dist/node/chunks/dep-CevzF2vT.js:66717:24)
+    at async resolveConfig (file:///home/runner/workspace/node_modules/vite/dist/node/chunks/dep-CevzF2vT.js:66317:24)
+    at async build (file:///home/runner/workspace/node_modules/vite/dist/node/chunks/dep-CevzF2vT.js:65405:18)
+    at async CAC.<anonymous> (file:///home/runner/workspace/node_modules/vite/dist/node/cli.js:829:5)" Bu yeni xəta da əvvəlki ilə eyni kateqoriyadandır: named import (məs: { themeShadcnJson }) düzgün deyil, çünki modul onu default export kimi təqdim edir.
+
+❌ Səhv:
+ts
+Copy
+Edit
+import { themeShadcnJson } from "@replit/vite-plugin-shadcn-theme-json";
+Bu, aşağıdakı xəta ilə nəticələnir:
+
+SyntaxError: ... does not provide an export named 'themeShadcnJson'
+
+✅ Düzgün Həll:
+Plugin-i default olaraq import etməlisən:
+
+ts
+Copy
+Edit
+import themeShadcnJson from "@replit/vite-plugin-shadcn-theme-json";
+Sonra onu plugins listində bu şəkildə istifadə edə bilərsən:
+
+ts
+Copy
+Edit
+plugins: [
+  react(),
+  themeShadcnJson(),
+]
+🔁 Ümumi Qayda:
+Əgər node_modules/.../index.mjs içində export default varsa → default import istifadə et:
+import xyz from '...'
+
+Əgər export const something = ... varsa → named import et:
+import { something } from '...'

@@ -1,0 +1,159 @@
+
+# Rewrite Engine əsas konfiqurasiyası
+RewriteEngine On
+RewriteBase /
+
+# HTTP/2 Server Push dəstəyi
+<IfModule mod_http2.c>
+  H2Push on
+  H2PushPriority * after
+  H2PushPriority text/css before
+  H2PushPriority text/javascript before
+  H2PushPriority application/javascript before
+  H2PushPriority image/svg+xml after
+</IfModule>
+
+# Brotli sıxılmış CSS/JS fayllarının servis edilməsi
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json application/xml
+</IfModule>
+
+# Gzip sıxılması (mod_deflate ilə)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json application/xml
+</IfModule>
+
+# MIME Type konfiqurasiyası
+AddType application/javascript .js .mjs
+AddType text/css .css
+AddType image/svg+xml .svg
+
+# SPA sorğuları
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.html [L,QSA]
+
+# Barter Platform - Hostinger üçün Apache konfiqurasiyası
+
+# Rewrite mexanizmini aktiv et
+RewriteEngine On
+RewriteBase /
+
+# Sıxılmış faylların təqdimi
+<IfModule mod_headers.c>
+  <IfModule mod_rewrite.c>
+      # Brotli sıxılmış fayl varsa, istifadə et
+      RewriteCond %{HTTP:Accept-Encoding} br
+      RewriteCond %{REQUEST_FILENAME}.br -f
+      RewriteRule ^(.*)$ $1.br [QSA,L]
+      <FilesMatch "\.br$">
+          Header append Content-Encoding br
+          Header append Vary Accept-Encoding
+      </FilesMatch>
+      
+      # Gzip sıxılmış fayl varsa, istifadə et
+      RewriteCond %{HTTP:Accept-Encoding} gzip
+      RewriteCond %{REQUEST_FILENAME}.gz -f
+      RewriteRule ^(.*)$ $1.gz [QSA,L]
+      <FilesMatch "\.gz$">
+          Header append Content-Encoding gzip
+          Header append Vary Accept-Encoding
+      </FilesMatch>
+  </IfModule>
+</IfModule>
+
+# JavaScript modullarının düzgün MIME tipləri təyin edilir
+<IfModule mod_mime.c>
+  # JavaScript və JavaScript module faylları
+  AddType application/javascript .js
+  AddType application/javascript .mjs
+  
+  # CSS faylları
+  AddType text/css .css
+  
+  # JSON faylları
+  AddType application/json .json
+  
+  # Şəkillər
+  AddType image/svg+xml .svg
+  AddType image/webp .webp
+</IfModule>
+
+# JavaScript fayllarını mütləq düzgün MIME tipi ilə təqdim et
+<FilesMatch "\.(js|mjs)$">
+  ForceType application/javascript
+</FilesMatch>
+
+# CSS fayllarını mütləq düzgün MIME tipi ilə təqdim et
+<FilesMatch "\.css$">
+  ForceType text/css
+</FilesMatch>
+
+# SPA routing - bütün istəkləri index.html-ə yönləndir
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  # Həqiqi fayllar və qovluqlar üçün rewrite etmə
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  # Bütün digər istəkləri index.html-ə yönləndir
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Təhlükəsizlik başlıqları
+<IfModule mod_headers.c>
+  # XSS qorunması
+  Header set X-XSS-Protection "1; mode=block"
+  # MIME tipi keçidinin qarşısının alınması
+  Header set X-Content-Type-Options "nosniff"
+  # Clickjacking qorunması
+  Header set X-Frame-Options "SAMEORIGIN"
+  # Referrer siyasəti
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  
+  # Keşləmə siyasəti - HTML faylları üçün
+  <FilesMatch "\.(html|htm|php)$">
+    # HTML fayllarını keşləmə
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+  
+  # Keşləmə siyasəti - Dəyişməz resurslar üçün
+  <FilesMatch "\.(js|css|mjs|woff|woff2|svg|jpg|jpeg|png|gif|ico)$">
+    # Asset faylları ömürlük keşlənəcək (1 il)
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  
+  # İşlənmiş fayllar üçün - hash ilə adlandırılmış
+  <FilesMatch ".*\.[0-9a-f]{8,}\..*$">
+    # Hash ilə işarələnən fayllar əbədi keşlənəcək
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+# PHP Təhlükəsizlik tənzimləmələri
+<IfModule mod_php.c>
+  # İcra oluna bilməyən PHP fayllarını qoru
+  <FilesMatch "^(?!index\.php).*\.php$">
+      Order Deny,Allow
+      Deny from all
+  </FilesMatch>
+  
+  # PHP sərt xəta hesabatı
+  php_flag display_errors off
+  php_value error_reporting E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED
+  
+  # PHP maximal yüklənmə ölçüsü
+  php_value upload_max_filesize 10M
+  php_value post_max_size 12M
+</IfModule>
+
+# Qovluq indeksləmənin qarşısının alınması
+Options -Indexes
+
+# 404 xəta səhifəsi
+ErrorDocument 404 /index.html
+
+# Serverinfo və digər həssas məlumatları qoru
+ServerSignature Off

@@ -1,0 +1,156 @@
+Çox gözəl, artıq build prosesi son mərhələyə gəlib, amma bəzi TypeScript səhvləri səbəbindən server hissəsinin tam transpile olunmasına əngəl yaranıb.
+
+🛠️ Gəlin addım-addım bu səhvləri düzəldək:
+✅ 1. isRead və message kimi tanınmayan object propertylər
+Bu səhv budur:
+
+typescript
+Copy
+Edit
+Object literal may only specify known properties, and 'isRead' does not exist in type ...
+Həll:
+Sən insertMessageSchema, insertNotificationSchema və s. kimi Zod və ya tip skemalarla işləyirsən.
+
+Əgər sən aşağıdakı kimi istifadə edirsənsə:
+
+ts
+Copy
+Edit
+insertMessageSchema.parse({
+  conversationId,
+  senderId,
+  content,
+  isRead: false, // ERROR BURADA!
+});
+Amma insertMessageSchema-da isRead yoxdur. Əlavə et:
+
+ts
+Copy
+Edit
+// shared/schema.ts
+export const insertMessageSchema = z.object({
+  conversationId: z.number(),
+  senderId: z.number(),
+  content: z.string(),
+  status: z.string().optional(),
+  isRead: z.boolean().optional(), // BURANI ƏLAVƏ ET
+});
+👉 Eyni qayda ilə insertNotificationSchema və digər schema fayllarında da isRead, message, lastMessageAt varsa, onları əlavə et.
+
+✅ 2. Path-lar üçün .js əlavə et
+Səhv:
+
+cpp
+Copy
+Edit
+Relative import paths need explicit file extensions in ECMAScript imports
+Həll:
+ts
+Copy
+Edit
+// server/routes.ts
+import { storage } from './storage.js';
+Əgər bu fayl .ts-dir, TypeScript onu .js-ə çevirəcəyindən .js yazmalısan.
+
+Eyni şeyi bütün bu tip importlara tətbiq et.
+
+✅ 3. @shared/schema tapılmır
+Səhv:
+
+lua
+Copy
+Edit
+Cannot find module '@shared/schema'
+Həll:
+Ya:
+
+ts
+Copy
+Edit
+import { insertUserSchema } from '../../shared/schema.js'; // real path
+Və ya tsconfig.server.json-da paths əlavə et:
+
+json
+Copy
+Edit
+{
+  "compilerOptions": {
+    ...
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["shared/*"]
+    }
+  }
+}
+✅ 4. WebSocket.Server problemi
+Səhv:
+
+nginx
+Copy
+Edit
+Property 'Server' does not exist on type 'typeof WebSocket'
+Həll:
+Əgər sən ws paketi istifadə edirsənsə:
+
+ts
+Copy
+Edit
+import WebSocket, { WebSocketServer } from 'ws';
+və:
+
+ts
+Copy
+Edit
+const wss = new WebSocketServer({ server });
+✅ 5. TypeScript: userId və username tip konfliktləri
+Bu da çox rast gəlinən bir səhvdir:
+
+ts
+Copy
+Edit
+// server/session.ts
+declare module "express-session" {
+  interface SessionData {
+    userId: number | null; // həm burda...
+    username: string | null;
+    role: string | null;
+  }
+}
+Və digər fayllarda da eyni tiplər olmalıdır. Əgər birində userId?: number yazmısansa, digərində userId: number | null, TypeScript narazı qalır.
+
+Həll:
+BÜTÜN modullarda EYNİ TİPİ saxla:
+
+ts
+Copy
+Edit
+userId: number | null;
+username: string | null;
+role: string | null;
+✅ 6. Vite server konfiqurasiyası – allowedHosts
+Səhv:
+
+pgsql
+Copy
+Edit
+Type 'boolean' is not assignable to type 'true | string[] | undefined'
+Həll:
+ts
+Copy
+Edit
+allowedHosts: true // ❌ səhvdir
+
+// düz:
+allowedHosts: ['yourdomain.com', 'localhost']
+✅ Nə etməli:
+shared/schema.ts daxil ol və isRead, message və s. üçün uyğun tipləri əlavə et.
+
+Bütün import path-larına .js əlavə et (server fayllarında).
+
+@shared/schema üçün ya tsconfig yollarını düzəlt, ya da real path göstər.
+
+ws paketi üçün WebSocketServer istifadə et.
+
+session.ts və routes.ts daxilində userId, username, role tiplərini eyni et.
+
+vite.ts daxilində allowedHosts dəyərini true yox, array kimi ver

@@ -1,0 +1,117 @@
+sənə bu TypeScript error-larının əsas səbəbini və necə həll ediləcəyini addım-addım izah edirəm. Bu tip səhvlər əsasən tip uyğunsuzluğu, parametr çatışmazlığı və ya zəruri sahələrin verilməməsi ilə bağlıdır.
+
+✅ Əsas Problemlər və Həlləri
+1. Type '{ id: number; ... }' is not assignable to type 'ConversationWithParticipants'
+Bu səhv deyir ki, conversation dəyişəni ConversationWithParticipants tipində olmalıdır, amma sən ona yalnız id, createdAt, itemId, lastMessageAt kimi sahələr verirsən. Halbuki, ConversationWithParticipants tipində aşağıdakı sahələr mütləqdir:
+
+ts
+Copy
+Edit
+{
+  participants: User[],           // ✅ tələb olunur
+  otherParticipant: User,         // ✅ tələb olunur
+  unreadCount: number,            // ✅ tələb olunur
+  message?: string                // optional
+}
+Həll: conversation-a bu sahələri də əlavə et:
+
+ts
+Copy
+Edit
+const conversation: ConversationWithParticipants = {
+  id: ..., createdAt: ..., itemId: ..., lastMessageAt: ...,
+  participants: [], // ya real user-ləri doldur, ya boş array qoy test üçün
+  otherParticipant: dummyUser, // ən azından test üçün dummy user
+  unreadCount: 0
+}
+2. Expected 2 arguments, but got 1
+Bu, createConversation funksiyasına yalnız bir obyekt verdiyin üçün çıxır, amma o 2 parametr gözləyir:
+
+ts
+Copy
+Edit
+createConversation(insertConversation, participants)
+Həll: Əgər createConversation belə görünürsə:
+
+ts
+Copy
+Edit
+async createConversation(insertConversation: InsertConversation, participants: InsertConversationParticipant[])
+onda belə çağır:
+
+ts
+Copy
+Edit
+conversation = await storage.createConversation(conversationData, participantArray);
+3. 'conversation' is possibly 'undefined'
+TypeScript deyir ki, conversation ola bilər undefined, ona görə .id kimi sahələrə birbaşa daxil ola bilməzsən.
+
+Həll: Ya if ilə yoxla:
+
+ts
+Copy
+Edit
+if (conversation) {
+  const id = conversation.id;
+}
+və ya ? operatoru ilə:
+
+ts
+Copy
+Edit
+const id = conversation?.id;
+4. 'id' does not exist in type ...
+Bu problem istifadəçi yaradarkən id sahəsini ötürməyindən qaynaqlanır, amma həmin obyektin tipi id-ə icazə vermir.
+
+Həll: Əgər id verilə bilmirsə (çünki DB özü yaradır), onu göndərmə:
+
+ts
+Copy
+Edit
+const userData = {
+  username: ..., password: ..., email: ...
+}; // id əlavə etmə
+5. 'lastMessageAt' does not exist in type ...
+Yenə eyni məsələdir – lastMessageAt sahəsi bu tipə uyğun deyil.
+
+Həll: Ya bu sahəni tipi dəyiş, ya da göndərmə:
+
+ts
+Copy
+Edit
+const data = {
+  itemId: 123 // lastMessageAt yox
+};
+6. 'isRead' is missing in type ...
+Tipdə isRead sahəsi mütləqdir, amma sən onu verməmisən.
+
+Həll: Tipə uyğun olaraq əlavə et:
+
+ts
+Copy
+Edit
+const message: Message = {
+  id: ..., conversationId: ..., senderId: ..., content: ..., status: ..., createdAt: ..., isRead: false
+};
+7. 'message' is missing in type Offer
+Bu Offer tipində message sahəsi zəruridir, amma sən onu verməmisən.
+
+Həll: Sadəcə əlavə et:
+
+ts
+Copy
+Edit
+const offer: Offer = {
+  id: ..., conversationId: ..., fromUserId: ..., toUserId: ...,
+  fromItemId: ..., toItemId: ..., status: ..., createdAt: ..., updatedAt: ...,
+  message: null // və ya istədiyin mətn
+};
+Nəticə
+Əsas məsələ odur ki, sənin istifadə etdiyin tiplər çox sərtdir (strict TypeScript) və sən ona uyğun bütün sahələri verməlisən. Bu cür error-ları aradan qaldırmaq üçün:
+
+Tipə bax və zəruri sahələri daxil et
+
+Funksiya çağırışlarında tələb olunan bütün arqumentləri ötür
+
+undefined ola bilən dəyişkənləri əvvəl yoxla və ya ?. ilə istifadə et
+

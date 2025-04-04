@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Sadə Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .connected {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .disconnected {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .log {
+            background-color: #eee;
+            padding: 10px;
+            height: 150px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #0069d9;
+        }
+        input {
+            padding: 8px;
+            width: 80%;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>WebSocket Sadə Test</h1>
+        
+        <div id="status" class="status disconnected">Bağlantı yoxdur</div>
+        
+        <div class="log" id="log"></div>
+        
+        <div>
+            <input type="text" id="messageInput" placeholder="Mesajınızı daxil edin...">
+            <button id="sendButton" disabled>Göndər</button>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <button id="connectButton">Bağlan</button>
+            <button id="disconnectButton" disabled>Bağlantını kəs</button>
+        </div>
+    </div>
+
+    <script>
+        let socket;
+        const log = document.getElementById('log');
+        const status = document.getElementById('status');
+        const connectButton = document.getElementById('connectButton');
+        const disconnectButton = document.getElementById('disconnectButton');
+        const sendButton = document.getElementById('sendButton');
+        const messageInput = document.getElementById('messageInput');
+        
+        function addLogMessage(message, isError = false) {
+            const div = document.createElement('div');
+            div.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+            if (isError) {
+                div.style.color = 'red';
+            }
+            log.appendChild(div);
+            log.scrollTop = log.scrollHeight;
+        }
+        
+        function connect() {
+            // WebSocket URL-ni dinamik olaraq yaradırıq (current hostname əsasında)
+            const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsUrl = `${protocol}//${location.host}/api/ws`;
+            
+            addLogMessage(`${wsUrl} ünvanına qoşulmağa çalışılır...`);
+            
+            try {
+                socket = new WebSocket(wsUrl);
+                
+                socket.onopen = function() {
+                    status.className = 'status connected';
+                    status.textContent = 'Bağlantı quruldu!';
+                    connectButton.disabled = true;
+                    disconnectButton.disabled = false;
+                    sendButton.disabled = false;
+                    addLogMessage('WebSocket bağlantısı quruldu!');
+                };
+                
+                socket.onmessage = function(event) {
+                    addLogMessage(`Alındı: ${event.data}`);
+                };
+                
+                socket.onclose = function(event) {
+                    status.className = 'status disconnected';
+                    status.textContent = 'Bağlantı kəsildi';
+                    connectButton.disabled = false;
+                    disconnectButton.disabled = true;
+                    sendButton.disabled = true;
+                    addLogMessage(`Bağlantı kəsildi: Kod=${event.code}, Səbəb=${event.reason || 'Heç bir səbəb verilmədi'}`, true);
+                };
+                
+                socket.onerror = function(error) {
+                    addLogMessage('WebSocket xətası baş verdi!', true);
+                    console.error('WebSocket xətası:', error);
+                };
+            } catch (error) {
+                addLogMessage(`Bağlantı xətası: ${error.message}`, true);
+                console.error('Xəta:', error);
+            }
+        }
+        
+        function disconnect() {
+            if (socket) {
+                socket.close();
+                addLogMessage('Bağlantı istifadəçi tərəfindən kəsildi');
+            }
+        }
+        
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message && socket && socket.readyState === WebSocket.OPEN) {
+                socket.send(message);
+                addLogMessage(`Göndərildi: ${message}`);
+                messageInput.value = '';
+            }
+        }
+        
+        connectButton.addEventListener('click', connect);
+        disconnectButton.addEventListener('click', disconnect);
+        sendButton.addEventListener('click', sendMessage);
+        
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        // İnformasiya panelini ekrana çıxarırıq
+        addLogMessage('WebSocket test səhifəsi yükləndi. "Bağlan" düyməsinə klikləyərək bağlantını sınayın.');
+    </script>
+</body>
+</html>

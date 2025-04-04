@@ -1,0 +1,382 @@
+
+server/auth.ts:4:25 - error TS2835: Relative import paths need explicit file ext
+ensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext
+'. Did you mean './storage.js'?
+
+4 import { storage } from "./storage";
+                          ~~~~~~~~~~~
+
+server/auth.ts:5:22 - error TS2307: Cannot find module '@shared/schema' or its c
+orresponding type declarations.
+
+5 import { User } from "@shared/schema";
+                       ~~~~~~~~~~~~~~~~
+
+server/db.ts:37:38 - error TS2307: Cannot find module 'drizzle-orm/pg-pool' or i
+ts corresponding type declarations.
+
+37     const { drizzle } = await import('drizzle-orm/pg-pool');
+                                        ~~~~~~~~~~~~~~~~~~~~~
+
+server/index.ts:2:32 - error TS2835: Relative import paths need explicit file ex
+tensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenex
+t'. Did you mean './routes.js'?
+
+2 import { registerRoutes } from "./routes";
+                                 ~~~~~~~~~~
+
+server/index.ts:3:42 - error TS2835: Relative import paths need explicit file ex
+tensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenex
+t'. Did you mean './routes-simplified.js'?
+
+3 import { registerSimplifiedRoutes } from "./routes-simplified";
+                                           ~~~~~~~~~~~~~~~~~~~~~
+
+server/index.ts:4:45 - error TS2835: Relative import paths need explicit file ex
+tensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenex
+t'. Did you mean './vite.js'?
+
+4 import { setupVite, serveStatic, log } from "./vite";
+                                              ~~~~~~~~
+
+server/index.ts:9:34 - error TS2835: Relative import paths need explicit file ex
+tensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenex
+t'. Did you mean './session.js'?
+
+9 import { configureSession } from "./session";
+                                   ~~~~~~~~~~~
+
+server/index.ts:103:5 - error TS1232: An import declaration can only be used at
+the top level of a namespace or module.
+
+103     import { setupWebSocketServer } from './websocket';
+        ~~~~~~
+
+server/index.ts:103:42 - error TS2835: Relative import paths need explicit file
+extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'noden
+ext'. Did you mean './websocket.js'?
+
+103     import { setupWebSocketServer } from './websocket';
+                                             ~~~~~~~~~~~~~
+
+server/routes-simplified.ts:6:8 - error TS2300: Duplicate identifier 'fs'.
+
+6 import fs from 'fs';
+         ~~
+
+server/routes-simplified.ts:7:8 - error TS2300: Duplicate identifier 'path'.
+
+7 import path from 'path';
+         ~~~~
+
+server/routes-simplified.ts:37:25 - error TS2835: Relative import paths need exp
+licit file extensions in ECMAScript imports when '--moduleResolution' is 'node16
+' or 'nodenext'. Did you mean './storage.js'?
+
+37 import { storage } from "./storage";
+                           ~~~~~~~~~~~
+
+server/routes-simplified.ts:39:8 - error TS2300: Duplicate identifier 'path'.
+
+39 import path from 'path';
+          ~~~~
+
+server/routes-simplified.ts:40:8 - error TS2300: Duplicate identifier 'fs'.
+
+40 import fs from 'fs';
+          ~~
+
+server/routes-simplified.ts:41:55 - error TS2835: Relative import paths need exp
+licit file extensions in ECMAScript imports when '--moduleResolution' is 'node16
+' or 'nodenext'. Did you mean './auth.js'?
+
+41 import { authService, isAuthenticated, isAdmin } from './auth';
+                                                         ~~~~~~~~
+
+server/routes-simplified.ts:42:30 - error TS2835: Relative import paths need exp
+licit file extensions in ECMAScript imports when '--moduleResolution' is 'node16
+' or 'nodenext'. Did you mean './seed.js'?
+
+42 import { seedDatabase } from './seed';
+                                ~~~~~~~~
+
+server/routes-simplified.ts:251:66 - error TS7006: Parameter 'item' implicitly h
+as an 'any' type.
+
+251       const itemsWithImages = await Promise.all(items.map(async (item) => {
+                                                                     ~~~~
+
+server/routes-simplified.ts:253:39 - error TS7006: Parameter 'img' implicitly ha
+s an 'any' type.
+
+253         const mainImage = images.find(img => img.isMain)?.filePath ||
+                                          ~~~
+
+server/routes-simplified.ts:640:60 - error TS7006: Parameter 'p' implicitly has
+an 'any' type.
+
+640       const isParticipant = conversation.participants.some(p => p.id === use
+rId);
+                                                               ~
+
+server/routes-simplified.ts:777:60 - error TS7006: Parameter 'p' implicitly has
+an 'any' type.
+
+777       const isParticipant = conversation.participants.some(p => p.id === use
+rId);
+                                                               ~
+
+server/routes-simplified.ts:783:63 - error TS7006: Parameter 'p' implicitly has
+an 'any' type.
+
+783       const otherParticipant = conversation.participants.find(p => p.id !==
+userId);
+                                                                  ~
+
+server/routes-simplified.ts:1316:47 - error TS7006: Parameter 'user' implicitly
+has an 'any' type.
+
+1316       const usersWithoutPasswords = users.map(user => {
+                                                   ~~~~
+
+server/routes-simplified.ts:1434:67 - error TS7006: Parameter 'item' implicitly
+has an 'any' type.
+
+1434       const itemsWithDetails = await Promise.all(items.map(async (item) =>
+{
+                                                                       ~~~~
+
+server/routes-simplified.ts:1436:39 - error TS7006: Parameter 'img' implicitly h
+as an 'any' type.
+
+1436         const mainImage = images.find(img => img.isMain)?.filePath ||
+                                           ~~~
+
+server/routes.ts:3:38 - error TS2835: Relative import paths need explicit file e
+xtensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodene
+xt'. Did you mean './storage.js'?
+
+3 import { storage as dbStorage } from "./storage";
+                                       ~~~~~~~~~~~
+
+server/routes.ts:5:190 - error TS2307: Cannot find module '@shared/schema' or it
+s corresponding type declarations.
+
+5 import { insertUserSchema, insertItemSchema, insertMessageSchema, insertOfferS
+chema, insertFavoriteSchema, insertNotificationSchema, insertPushSubscriptionSch
+ema, insertReviewSchema } from "@shared/schema";
+
+
+                               ~~~~~~~~~~~~~~~~
+
+server/routes.ts:132:27 - error TS2345: Argument of type 'import("C:/Users/HP/De
+sktop/D folder/smsinfo/ISMAYIL/BarterBridge/node_modules/@types/ws/index", { wit
+h: { "resolution-mode": "import" } }).default' is not assignable to parameter of
+ type 'WebSocket'.
+  Property 'dispatchEvent' is missing in type 'import("C:/Users/HP/Desktop/D fol
+der/smsinfo/ISMAYIL/BarterBridge/node_modules/@types/ws/index", { with: { "resol
+ution-mode": "import" } }).default' but required in type 'WebSocket'.
+
+132       clients.set(userId, ws);
+                              ~~
+
+  node_modules/typescript/lib/lib.dom.d.ts:8309:5
+    8309     dispatchEvent(event: Event): boolean;
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    'dispatchEvent' is declared here.
+
+server/routes.ts:306:9 - error TS2588: Cannot assign to 'password' because it is
+ a constant.
+
+306         password = passwordToUse; // reassign to our mutable copy
+            ~~~~~~~~
+
+server/routes.ts:521:47 - error TS7006: Parameter 'user' implicitly has an 'any'
+ type.
+
+521       const usersWithoutPasswords = users.map(user => {
+                                                  ~~~~
+
+server/routes.ts:549:66 - error TS7006: Parameter 'item' implicitly has an 'any'
+ type.
+
+549       const itemsWithImages = await Promise.all(items.map(async (item) => {
+                                                                     ~~~~
+
+server/routes.ts:822:26 - error TS2339: Property 'user' does not exist on type '
+Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+822       const userId = req.user!.id;
+                             ~~~~
+
+server/routes.ts:872:33 - error TS2339: Property 'user' does not exist on type '
+Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+
+872       const currentUserId = req.user!.id;
+                                    ~~~~
+
+server/routes.ts:1015:66 - error TS7006: Parameter 'item' implicitly has an 'any
+' type.
+
+1015       const itemsWithImages = await Promise.all(items.map(async (item) => {
+                                                                      ~~~~
+
+server/routes.ts:1327:55 - error TS7006: Parameter 'conv' implicitly has an 'any
+' type.
+
+1327       const enhancedConversations = conversations.map(conv => {
+                                                           ~~~~
+
+server/routes.ts:1329:57 - error TS7006: Parameter 'p' implicitly has an 'any' t
+ype.
+
+1329         const otherParticipant = conv.participants.find(p => p.id !== userI
+d) || null;
+                                                             ~
+
+server/routes.ts:1363:60 - error TS7006: Parameter 'p' implicitly has an 'any' t
+ype.
+
+1363       const isParticipant = conversation.participants.some(p => p.id === us
+erId);
+                                                                ~
+
+server/routes.ts:1372:63 - error TS7006: Parameter 'p' implicitly has an 'any' t
+ype.
+
+1372       const otherParticipant = conversation.participants.find(p => p.id !==
+ userId) || null;
+                                                                   ~
+
+server/routes.ts:1487:60 - error TS7006: Parameter 'p' implicitly has an 'any' t
+ype.
+
+1487       const isParticipant = conversation.participants.some(p => p.id === us
+erId);
+                                                                ~
+
+server/routes.ts:1502:66 - error TS7006: Parameter 'p' implicitly has an 'any' t
+ype.
+
+1502       const otherParticipants = conversation.participants.filter(p => p.id
+!== userId);
+                                                                      ~
+
+server/routes.ts:1558:60 - error TS7006: Parameter 'p' implicitly has an 'any' t
+ype.
+
+1558       const isParticipant = conversation.participants.some(p => p.id === us
+erId);
+                                                                ~
+
+server/routes.ts:1583:66 - error TS7006: Parameter 'offer' implicitly has an 'an
+y' type.
+
+1583       const enrichedOffers = await Promise.all(offers.map(async (offer) =>
+{
+                                                                      ~~~~~
+
+server/routes.ts:1855:72 - error TS7006: Parameter 'fav' implicitly has an 'any'
+ type.
+
+1855       const enrichedFavorites = await Promise.all(favorites.map(async (fav)
+ => {
+                                                                            ~~~
+
+server/routes.ts:2092:64 - error TS7006: Parameter 'item' implicitly has an 'any
+' type.
+
+2092       const enrichedItems = await Promise.all(items.map(async (item) => {
+                                                                    ~~~~
+
+server/routes.ts:2117:47 - error TS7006: Parameter 'item' implicitly has an 'any
+' type.
+
+2117       const validItems = enrichedItems.filter(item => item !== null);
+                                                   ~~~~
+
+server/storage.ts:225:11 - error TS2739: Type '{ id: number; username: string; p
+assword: string; email: string; fullName: string | null; avatar: string | null;
+bio: string | null; phone: string | null; role: string; active: boolean; created
+At: Date; }' is missing the following properties from type '{ username: string;
+role: string; password: string; id: number; rating: number | null; avatar: strin
+g | null; email: string; fullName: string | null; city: string | null; active: b
+oolean; bio: string | null; phone: string | null; ratingCount: number | null; cr
+eatedAt: Date; }': rating, city, ratingCount
+
+225     const user: User = {
+              ~~~~
+
+server/storage.ts:326:36 - error TS18047: 'item.viewCount' is possibly 'null'.
+
+326       items = items.filter(item => item.viewCount >= options.minViews!);
+                                       ~~~~~~~~~~~~~~
+
+server/storage.ts:409:11 - error TS2741: Property 'currency' is missing in type
+'{ id: number; userId: number; title: string; description: string; category: str
+ing; subcategory: string | null; condition: string; city: string | null; status:
+ string; price: number | null; wantedExchange: string | null; viewCount: number;
+ createdAt: Date; updatedAt: Date; }' but required in type '{ userId: number; id
+: number; status: string; category: string; city: string | null; condition: stri
+ng; createdAt: Date; title: string; description: string; subcategory: string | n
+ull; ... 4 more ...; updatedAt: Date; }'.
+
+409     const item: Item = {
+              ~~~~
+
+server/storage.ts:1013:9 - error TS2322: Type 'number | null' is not assignable
+to type 'number | undefined'.
+  Type 'null' is not assignable to type 'number | undefined'.
+
+1013         averageRating: user.rating,
+             ~~~~~~~~~~~~~
+
+  shared/schema.ts:219:3
+    219   averageRating?: number;
+          ~~~~~~~~~~~~~
+    The expected type comes from property 'averageRating' which is declared here
+ on type 'UserWithRating'
+
+server/storage.ts:1014:9 - error TS2322: Type 'number | null' is not assignable
+to type 'number | undefined'.
+  Type 'null' is not assignable to type 'number | undefined'.
+
+1014         reviewCount: user.ratingCount
+             ~~~~~~~~~~~
+
+  shared/schema.ts:220:3
+    220   reviewCount?: number;
+          ~~~~~~~~~~~
+    The expected type comes from property 'reviewCount' which is declared here o
+n type 'UserWithRating'
+
+server/vite.ts:42:5 - error TS2322: Type '{ middlewareMode: boolean; hmr: { serv
+er: Server<typeof IncomingMessage, typeof ServerResponse>; }; allowedHosts: bool
+ean; }' is not assignable to type 'ServerOptions'.
+  Types of property 'allowedHosts' are incompatible.
+    Type 'boolean' is not assignable to type 'true | string[] | undefined'.
+
+42     server: serverOptions,
+       ~~~~~~
+
+server/websocket.ts:1:10 - error TS2305: Module '"./vite.js"' has no exported me
+mber 'logger'.
+
+1 import { logger } from './vite.js';
+           ~~~~~~
+
+
+Found 51 errors in 8 files.
+
+Errors  Files
+     2  server/auth.ts:4
+     1  server/db.ts:37
+     6  server/index.ts:2
+    15  server/routes-simplified.ts:6
+    20  server/routes.ts:3
+     5  server/storage.ts:225
+     1  server/vite.ts:42
+     1  server/websocket.ts:1
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Desktop/D folder/smsinfo/ISMAYIL/BarterBridge (main)
+$

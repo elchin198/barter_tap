@@ -1,0 +1,88 @@
+server/routes-simplified.ts:712:9 - error TS2322: Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is not assignable to type 'ConversationWithParticipants'.
+  Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is missing the following properties from type '{ participants: { id: number; username: string; password: string; fullName: string | null; email: string; avatar: string | null; bio: string | null; phone: string | null; city: string | null; ... 4 more ...; createdAt: Date; }[]; ... 5 more ...; message?: string | undefined; }': participants, otherParticipant, unreadCount
+
+712         conversation = await storage.createConversation({
+            ~~~~~~~~~~~~
+
+server/routes-simplified.ts:715:11 - error TS2322: Type '{ userId: number; role: string; }' is not assignable to type '{ userId: number; conversationId: number; } & { role?: string | undefined; }'.
+  Property 'conversationId' is missing in type '{ userId: number; role: string; }' but required in type '{ userId: number; conversationId: number; }'.
+
+715           { userId: userId, role: 'sender' },
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  shared/schema.ts:74:3
+    74   conversationId: integer("conversation_id").notNull().references(() => conversations.id),
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    'conversationId' is declared here.
+
+server/routes-simplified.ts:716:11 - error TS2322: Type '{ userId: number; role: string; }' is not assignable to type '{ userId: number; conversationId: number; } & { role?: string | undefined; }'.
+  Property 'conversationId' is missing in type '{ userId: number; role: string; }' but required in type '{ userId: number; conversationId: number; }'.
+
+716           { userId: recipientIdNum, role: 'receiver' }
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  shared/schema.ts:74:3
+    74   conversationId: integer("conversation_id").notNull().references(() => conversations.id),
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    'conversationId' is declared here.
+
+server/routes-simplified.ts:919:9 - error TS2322: Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is not assignable to type 'ConversationWithParticipants'.
+  Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is missing the following properties from type '{ participants: { id: number; username: string; password: string; fullName: string | null; email: string; avatar: string | null; bio: string | null; phone: string | null; city: string | null; ... 4 more ...; createdAt: Date; }[]; ... 5 more ...; message?: string | undefined; }': participants, otherParticipant, unreadCount
+
+919         conversation = await storage.createConversation(
+            ~~~~~~~~~~~~
+
+server/routes-simplified.ts:924:13 - error TS2322: Type '{ userId: number; role: string; }' is not assignable to type '{ userId: number; conversationId: number; } & { role?: string | undefined; }'.
+  Property 'conversationId' is missing in type '{ userId: number; role: string; }' but required in type '{ userId: number; conversationId: number; }'.
+
+924             { userId, role: 'sender' },
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  shared/schema.ts:74:3
+    74   conversationId: integer("conversation_id").notNull().references(() => conversations.id),
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    'conversationId' is declared here.
+
+server/routes-simplified.ts:925:13 - error TS2322: Type '{ userId: number; role: string; }' is not assignable to type '{ userId: number; conversationId: number; } & { role?: string | undefined; }'.
+  Property 'conversationId' is missing in type '{ userId: number; role: string; }' but required in type '{ userId: number; conversationId: number; }'.
+
+925             { userId: toUserIdNum, role: 'receiver' }
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  shared/schema.ts:74:3
+    74   conversationId: integer("conversation_id").notNull().references(() => conversations.id),
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    'conversationId' is declared here.
+
+server/routes.ts:1431:23 - error TS2304: Cannot find name 'fromUserId'.
+
+1431             { userId: fromUserId, conversationId: 0, role: 'sender' },
+                           ~~~~~~~~~~
+
+server/storage.ts:889:38 - error TS2339: Property 'values' does not exist on type 'MemStorage'.
+
+889     const favorite = Array.from(this.values())
+                                         ~~~~~~
+
+server/storage.ts:890:18 - error TS18046: 'f' is of type 'unknown'.
+
+890       .find(f => f.userId === userId && f.itemId === itemId);
+                     ~
+
+server/storage.ts:890:41 - error TS18046: 'f' is of type 'unknown'.
+
+890       .find(f => f.userId === userId && f.itemId === itemId);
+                                            ~
+
+server/storage.ts:894:43 - error TS2339: Property 'id' does not exist on type '{}'.
+
+894     return this.favorites.delete(favorite.id);
+                                              ~~
+
+
+Found 11 errors in 3 files.
+
+Errors  Files
+     6  server/routes-simplified.ts:712
+     1  server/routes.ts:1431
+     4  server/storage.ts:889

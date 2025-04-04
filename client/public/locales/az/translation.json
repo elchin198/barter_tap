@@ -1,0 +1,168 @@
+{
+  "navbar": {
+    "home": "Ana Səhifə",
+    "offers": "Təkliflər",
+    "aboutUs": "Haqqımızda",
+    "contactUs": "Əlaqə",
+    "myAccount": "Mənim Hesabım",
+    "logIn": "Daxil ol",
+    "logOut": "Çıxış",
+    "addItem": "Əşya Əlavə Et",
+    "language": "Dil",
+    "viewAll": "Hamısına bax",
+    "listNewItem": "Yeni Əşya Əlavə Et",
+    "signup": "Qeydiyyat"
+  },
+  "items": {
+    "new": "Yeni",
+    "condition": "Vəziyyəti",
+    "location": "Məkan",
+    "category": "Kateqoriya",
+    "price": "Qiymət",
+    "description": "Təsvir",
+    "images": "Şəkillər",
+    "contactInfo": "Əlaqə Məlumatı",
+    "listed": "Əlavə edilib",
+    "viewItem": "Əşyaya bax",
+    "makeOffer": "Təklif et",
+    "reportItem": "Şikayət et",
+    "shareItem": "Paylaş",
+    "saveItem": "Yadda saxla",
+    "ownerProfile": "Sahibin profili",
+    "similarItems": "Oxşar əşyalar",
+    "noItems": "Əşya tapılmadı",
+    "exchange": "Yalnız Mübadilə",
+    "viewDetails": "Ətraflı Bax"
+  },
+  "search": {
+    "placeholder": "Mübadilə etmək istədiyiniz əşyaları axtarın",
+    "filters": "Filtrlər",
+    "sortBy": "Sırala",
+    "newest": "Ən yeni",
+    "oldest": "Ən köhnə",
+    "priceHighToLow": "Qiymət: yüksəkdən aşağıya",
+    "priceLowToHigh": "Qiymət: aşağıdan yüksəyə",
+    "applyFilters": "Filtrləri tətbiq et",
+    "clearFilters": "Filtrləri təmizlə",
+    "searchResults": "Axtarış nəticələri",
+    "noResults": "Nəticə tapılmadı"
+  },
+  "common": {
+    "signup": "Qeydiyyat",
+    "viewAll": "Hamısını göstər",
+    "loading": "Yüklənir",
+    "error": "Xəta baş verdi",
+    "save": "Yadda saxla",
+    "cancel": "Ləğv et",
+    "edit": "Redaktə et",
+    "delete": "Sil",
+    "confirm": "Təsdiq et",
+    "submit": "Göndər",
+    "success": "Uğurlu",
+    "failed": "Uğursuz",
+    "continue": "Davam et",
+    "back": "Geri",
+    "login": "Giriş",
+    "listNewItem": "Yeni Əşya Əlavə Et",
+    "home": "Ana Səhifə",
+    "allItems": "Bütün Əşyalar",
+    "categories": "Kateqoriyalar",
+    "howItWorks": "Necə İşləyir",
+    "register": "Qeydiyyat",
+    "language": "Dil",
+    "myProfile": "Mənim Profilim",
+    "myItems": "Mənim Əşyalarım",
+    "messages": "Mesajlar",
+    "addItem": "Əşya Əlavə Et",
+    "dashboard": "İdarə Paneli",
+    "notifications": "Bildirişlər",
+    "favorites": "Seçilmişlər",
+    "offers": "Təkliflər",
+    "help": "Kömək",
+    "logout": "Çıxış"
+  },
+  "allOffers": {
+    "title": "Bütün təkliflər"
+  },
+  "recentItems": {
+    "title": "Son əlavə edilənlər"
+  },
+  "howItWorks": {
+    "title": "Necə işləyir",
+    "step1": {
+      "title": "Əşyalarınızı əlavə edin",
+      "description": "Artıq ehtiyacınız olmayan əşyaların şəkillərini və təsvirlərini əlavə edin."
+    },
+    "step2": {
+      "title": "Təkliflər verin",
+      "description": "İstədiyiniz əşyaları tapın və əvəzində öz əşyalarınızı təklif edin."
+    },
+    "step3": {
+      "title": "Mübadilə edin və qiymətləndirin",
+      "description": "Görüşün, mübadilə edin və təcrübənizi qiymətləndirin."
+    },
+    "learnMore": "Barter haqqında daha çox öyrənin"
+  },
+  "cta": {
+    "title": "İndi qoşulun və barterə başlayın",
+    "subtitle": "Minlərlə istifadəçi artıq pul xərcləmədən ehtiyacları olan əşyaları əldə ediblər. Barter hərəkatına qoşulun!"
+  },
+  "auth": {
+    "register": "Pulsuz qeydiyyatdan keçin",
+    "login": "Daxil ol",
+    "forgotPassword": "Şifrəni unutmusan?",
+    "createAccount": "Hesab yarat",
+    "alreadyHaveAccount": "Artıq hesabın var?",
+    "dontHaveAccount": "Hesabın yoxdur?",
+    "signUp": "Qeydiyyatdan keç"
+  },
+  "profile": {
+    "myProfile": "Profilim",
+    "editProfile": "Profili redaktə et",
+    "myItems": "Mənim əşyalarım",
+    "myOffers": "Mənim təkliflərim",
+    "savedItems": "Yadda saxlanmış əşyalar",
+    "settings": "Parametrlər",
+    "memberSince": "Qoşulub",
+    "lastActive": "Son aktivlik",
+    "responseRate": "Cavab nisbəti",
+    "ratings": "Reytinqlər",
+    "about": "Haqqında",
+    "contactInfo": "Əlaqə məlumatı",
+    "location": "Məkan"
+  },
+  "features": {
+    "messaging": {
+      "title": "Təhlükəsiz Mesajlaşma"
+    },
+    "rating": {
+      "title": "İstifadəçi Reytinqi",
+      "description": "Etibarlı istifadəçilər tapın və barterlərinizi qiymətləndirin."
+    },
+    "map": {
+      "title": "Xəritə ilə Axtarış",
+      "description": "Xəritə üzərində yaxınlıqdakı mübadilə təkliflərini tapın."
+    }
+  },
+  "seo": {
+    "defaultTitle": "BarterTap.az - Pulsuz Əşya Mübadilə Platforması",
+    "defaultDescription": "BarterTap.az ilə lazımsız əşyalarınızı pulsuz dəyişin. Pul xərcləmədən yeni əşyalar əldə edin.",
+    "defaultKeywords": "əşya mübadiləsi, barter, pulsuz mübadilə, ikinci əl, istifadə olunmuş əşyalar, mübadilə, azərbaycan",
+    "homeTitle": "BarterTap - Əşyaları dəyişin və pul xərcləməyin",
+    "homeDescription": "BarterTap ilə əşyalarınızı başqaları ilə dəyişin və ehtiyacınız olanı pul xərcləmədən əldə edin.",
+    "itemKeywords": "barter, {title}, {category}, dəyişmə, pulsuz, ikinci əl əşyalar, barter tap"
+  },
+  "categories": {
+    "all": "Hamısı",
+    "services": "Xidmətlər",
+    "books": "Kitablar",
+    "electronics": "Elektronika",
+    "vehicles": "Nəqliyyat",
+    "clothing": "Geyim",
+    "realEstate": "Daşınmaz Əmlak",
+    "garden": "Bağ",
+    "games": "Oyunlar",
+    "furniture": "Mebel",
+    "sports": "İdman"
+  }
+}

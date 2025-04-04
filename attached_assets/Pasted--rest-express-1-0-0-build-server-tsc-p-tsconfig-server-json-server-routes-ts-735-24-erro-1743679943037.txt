@@ -1,0 +1,361 @@
+
+> rest-express@1.0.0 build:server
+> tsc -p tsconfig.server.json
+
+server/routes.ts:735:24 - error TS18047: 'userRating' is possibly 'null'.
+
+735         averageRating: userRating.averageRating,
+                           ~~~~~~~~~~
+
+server/routes.ts:735:35 - error TS2339: Property 'averageRating' does not exist on type '{ user: any; rating: number; reviewCount: number; }'.
+
+735         averageRating: userRating.averageRating,
+                                      ~~~~~~~~~~~~~
+
+server/routes.ts:736:22 - error TS18047: 'userRating' is possibly 'null'.
+
+736         reviewCount: userRating.reviewCount
+                         ~~~~~~~~~~
+
+server/routes.ts:851:15 - error TS2339: Property 'password' does not exist on type '{ user: any; rating: number; reviewCount: number; }'.
+
+851       const { password, ...userWithoutPassword } = userRating;
+                  ~~~~~~~~
+
+server/routes.ts:1057:15 - error TS2339: Property 'password' does not exist on type '{ user: any; rating: number; reviewCount: number; } | null'.
+
+1057       const { password, ...ownerWithoutPassword } = ownerWithRating;
+                   ~~~~~~~~
+
+server/routes.ts:1431:11 - error TS2554: Expected 1 arguments, but got 2.
+
+1431           {
+               ~
+1432             participants: [
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ... 
+1435             ]
+     ~~~~~~~~~~~~~
+1436           }
+     ~~~~~~~~~~~
+
+server/routes.ts:1660:11 - error TS2554: Expected 1 arguments, but got 2.
+
+1660           {
+               ~
+1661             participants: [
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ... 
+1664             ]
+     ~~~~~~~~~~~~~
+1665           }
+     ~~~~~~~~~~~
+
+server/routes.ts:1988:15 - error TS2339: Property 'password' does not exist on type '{ user: any; rating: number; reviewCount: number; }'.
+
+1988       const { password, ...userWithoutPassword } = userRating;
+                   ~~~~~~~~
+
+server/routes.ts:2121:17 - error TS2339: Property 'password' does not exist on type '{ user: any; rating: number; reviewCount: number; } | null'.
+
+2121         const { password, ...ownerWithoutPassword } = ownerWithRating;
+                     ~~~~~~~~
+
+server/storage.ts:9:3 - error TS2305: Module '"../shared/schema.js"' has no exported member 'participants'.
+
+9   participants,
+    ~~~~~~~~~~~~
+
+server/storage.ts:27:21 - error TS2339: Property 'getDb' does not exist on type '{ getUser(userId: number): Promise<any>; getUserByUsername(username: string): Promise<any>; getUserByEmail(email: string): Promise<any>; createUser(userData: any): Promise<...>; ... 45 more ...; getActiveAdvertisement(position: string): Promise<...>; }'.
+
+27 const db = dbClient.getDb();
+                       ~~~~~
+
+server/storage.ts:36:69 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+36     return db.select().from(users).where(eq(users.id, userId)).then(rows => rows[0]);
+                                                                       ~~~~
+
+server/storage.ts:40:77 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+40     return db.select().from(users).where(eq(users.username, username)).then(rows => rows[0]);
+                                                                               ~~~~
+
+server/storage.ts:44:71 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+44     return db.select().from(users).where(eq(users.email, email)).then(rows => rows[0]);
+                                                                         ~~~~
+
+server/storage.ts:48:63 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+48     return db.insert(users).values(userData).returning().then(rows => rows[0]);
+                                                                 ~~~~
+
+server/storage.ts:52:88 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+52     return db.update(users).set(userData).where(eq(users.id, userId)).returning().then(rows => rows[0]);
+                                                                                          ~~~~
+
+server/storage.ts:72:65 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+72     return db.select().from(items).where(eq(items.id, id)).then(rows => rows[0]);
+                                                                   ~~~~
+
+server/storage.ts:110:54 - error TS2769: No overload matches this call.
+  Overload 1 of 3, '(left: Column<ColumnBaseConfig<ColumnDataType, string>, object, object>, right: unknown): SQL<unknown>', gave the following error.
+    Argument of type '{ name: string; }' is not assignable to parameter of type 'Column<ColumnBaseConfig<ColumnDataType, string>, object, object>'.
+      Type '{ name: string; }' is missing the following properties from type 'Column<ColumnBaseConfig<ColumnDataType, string>, object, object>': table, _, keyAsName, primary, and 18 more.
+  Overload 2 of 3, '(left: Aliased<number>, right: number | SQLWrapper): SQL<unknown>', gave the following error.
+    Argument of type '{ name: string; }' is not assignable to parameter of type 'Aliased<number>'.
+      Type '{ name: string; }' is missing the following properties from type 'Aliased<number>': sql, fieldAlias, _, getSQL
+  Overload 3 of 3, '(left: SQLWrapper, right: unknown): SQL<unknown>', gave the following error.
+    Argument of type '{ name: string; }' is not assignable to parameter of type 'SQLWrapper'.
+      Property 'getSQL' is missing in type '{ name: string; }' but required in type 'SQLWrapper'.
+
+110     return db.select().from(advertisements).where(eq(advertisements.id, id)).then(rows => rows[0]);
+                                                         ~~~~~~~~~~~~~~~~~
+
+  node_modules/drizzle-orm/sql/sql.d.ts:50:5
+    50     getSQL(): SQL;
+           ~~~~~~~~~~~~~~
+    'getSQL' is declared here.
+
+server/storage.ts:110:83 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+110     return db.select().from(advertisements).where(eq(advertisements.id, id)).then(rows => rows[0]);
+                                                                                      ~~~~
+
+server/storage.ts:114:58 - error TS2345: Argument of type '{ name: string; }' is not assignable to parameter of type 'SQLWrapper | AnyColumn'.
+  Type '{ name: string; }' is missing the following properties from type 'Column<Required<{ name: string; dataType: ColumnDataType; columnType: string; data: unknown; driverParam: unknown; notNull: boolean; hasDefault: boolean; enumValues: string[] | undefined; tableName: string; isPrimaryKey: boolean; isAutoincrement: boolean; hasRuntimeDefault: boolean; }>, object, object>': table, _, keyAsName, primary, and 18 more.
+
+114     return db.select().from(advertisements).orderBy(desc(advertisements.createdAt));
+                                                             ~~~~~~~~~~~~~~~~~~~~~~~~
+
+server/storage.ts:120:17 - error TS2769: No overload matches this call.
+  Overload 1 of 3, '(left: Column<ColumnBaseConfig<ColumnDataType, string>, object, object>, right: unknown): SQL<unknown>', gave the following error.
+    Argument of type '{ name: string; }' is not assignable to parameter of type 'Column<ColumnBaseConfig<ColumnDataType, string>, object, object>'.
+      Type '{ name: string; }' is missing the following properties from type 'Column<ColumnBaseConfig<ColumnDataType, string>, object, object>': table, _, keyAsName, primary, and 18 more.
+  Overload 2 of 3, '(left: Aliased<number>, right: number | SQLWrapper): SQL<unknown>', gave the following error.
+    Argument of type '{ name: string; }' is not assignable to parameter of type 'Aliased<number>'.
+      Type '{ name: string; }' is missing the following properties from type 'Aliased<number>': sql, fieldAlias, _, getSQL
+  Overload 3 of 3, '(left: SQLWrapper, right: unknown): SQL<unknown>', gave the following error.
+    Argument of type '{ name: string; }' is not assignable to parameter of type 'SQLWrapper'.
+      Property 'getSQL' is missing in type '{ name: string; }' but required in type 'SQLWrapper'.
+
+120       .where(eq(advertisements.id, id))
+                    ~~~~~~~~~~~~~~~~~
+
+  node_modules/drizzle-orm/sql/sql.d.ts:50:5
+    50     getSQL(): SQL;
+           ~~~~~~~~~~~~~~
+    'getSQL' is declared here.
+
+server/storage.ts:122:13 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+122       .then(rows => rows[0]);
+                ~~~~
+
+server/storage.ts:127:17 - error TS2769: No overload matches this call.
+  Overload 1 of 3, '(left: Column<ColumnBaseConfig<ColumnDataType, string>, object, object>, right: unknown): SQL<unknown>', gave the following error.
+    Argument of type '{ name: string; }' is not assignable to parameter of type 'Column<ColumnBaseConfig<ColumnDataType, string>, object, object>'.
+      Type '{ name: string; }' is missing the following properties from type 'Column<ColumnBaseConfig<ColumnDataType, string>, object, object>': table, _, keyAsName, primary, and 18 more.
+  Overload 2 of 3, '(left: Aliased<number>, right: number | SQLWrapper): SQL<unknown>', gave the following error.
+    Argument of type '{ name: string; }' is not assignable to parameter of type 'Aliased<number>'.
+      Type '{ name: string; }' is missing the following properties from type 'Aliased<number>': sql, fieldAlias, _, getSQL
+  Overload 3 of 3, '(left: SQLWrapper, right: unknown): SQL<unknown>', gave the following error.
+    Argument of type '{ name: string; }' is not assignable to parameter of type 'SQLWrapper'.
+      Property 'getSQL' is missing in type '{ name: string; }' but required in type 'SQLWrapper'.
+
+127       .where(eq(advertisements.id, id))
+                    ~~~~~~~~~~~~~~~~~
+
+  node_modules/drizzle-orm/sql/sql.d.ts:50:5
+    50     getSQL(): SQL;
+           ~~~~~~~~~~~~~~
+    'getSQL' is declared here.
+
+server/storage.ts:129:13 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+129       .then(rows => rows.length > 0);
+                ~~~~
+
+server/storage.ts:137:14 - error TS2769: No overload matches this call.
+  Overload 1 of 3, '(left: Column<ColumnBaseConfig<ColumnDataType, string>, object, object>, right: unknown): SQL<unknown>', gave the following error.
+    Argument of type '{ name: string; }' is not assignable to parameter of type 'Column<ColumnBaseConfig<ColumnDataType, string>, object, object>'.
+      Type '{ name: string; }' is missing the following properties from type 'Column<ColumnBaseConfig<ColumnDataType, string>, object, object>': table, _, keyAsName, primary, and 18 more.
+  Overload 2 of 3, '(left: Aliased<string>, right: string | SQLWrapper): SQL<unknown>', gave the following error.
+    Argument of type '{ name: string; }' is not assignable to parameter of type 'Aliased<string>'.
+      Type '{ name: string; }' is missing the following properties from type 'Aliased<string>': sql, fieldAlias, _, getSQL
+  Overload 3 of 3, '(left: SQLWrapper, right: unknown): SQL<unknown>', gave the following error.
+    Argument of type '{ name: string; }' is not assignable to parameter of type 'SQLWrapper'.
+      Property 'getSQL' is missing in type '{ name: string; }' but required in type 'SQLWrapper'.
+
+137           eq(advertisements.position, position),
+                 ~~~~~~~~~~~~~~~~~~~~~~~
+
+  node_modules/drizzle-orm/sql/sql.d.ts:50:5
+    50     getSQL(): SQL;
+           ~~~~~~~~~~~~~~
+    'getSQL' is declared here.
+
+server/storage.ts:138:14 - error TS2769: No overload matches this call.
+  Overload 1 of 3, '(left: Column<ColumnBaseConfig<ColumnDataType, string>, object, object>, right: unknown): SQL<unknown>', gave the following error.
+    Argument of type '{ name: string; }' is not assignable to parameter of type 'Column<ColumnBaseConfig<ColumnDataType, string>, object, object>'.
+      Type '{ name: string; }' is missing the following properties from type 'Column<ColumnBaseConfig<ColumnDataType, string>, object, object>': table, _, keyAsName, primary, and 18 more.
+  Overload 2 of 3, '(left: Aliased<boolean>, right: boolean | SQLWrapper): SQL<unknown>', gave the following error.
+    Argument of type '{ name: string; }' is not assignable to parameter of type 'Aliased<boolean>'.
+      Type '{ name: string; }' is missing the following properties from type 'Aliased<boolean>': sql, fieldAlias, _, getSQL
+  Overload 3 of 3, '(left: SQLWrapper, right: unknown): SQL<unknown>', gave the following error.
+    Argument of type '{ name: string; }' is not assignable to parameter of type 'SQLWrapper'.
+      Property 'getSQL' is missing in type '{ name: string; }' but required in type 'SQLWrapper'.
+
+138           eq(advertisements.active, true)
+                 ~~~~~~~~~~~~~~~~~~~~~
+
+  node_modules/drizzle-orm/sql/sql.d.ts:50:5
+    50     getSQL(): SQL;
+           ~~~~~~~~~~~~~~
+    'getSQL' is declared here.
+
+server/storage.ts:141:21 - error TS2345: Argument of type '{ name: string; }' is not assignable to parameter of type 'SQLWrapper | AnyColumn'.
+  Type '{ name: string; }' is missing the following properties from type 'Column<Required<{ name: string; dataType: ColumnDataType; columnType: string; data: unknown; driverParam: unknown; notNull: boolean; hasDefault: boolean; enumValues: string[] | undefined; tableName: string; isPrimaryKey: boolean; isAutoincrement: boolean; hasRuntimeDefault: boolean; }>, object, object>': table, _, keyAsName, primary, and 18 more.
+
+141       .orderBy(desc(advertisements.createdAt))
+                        ~~~~~~~~~~~~~~~~~~~~~~~~
+
+server/storage.ts:143:13 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+143       .then(rows => rows[0]); // ilk uyğun reklamı qaytarır
+                ~~~~
+
+server/storage.ts:148:63 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+148     return db.insert(items).values(itemData).returning().then(rows => rows[0]);
+                                                                  ~~~~
+
+server/storage.ts:152:84 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+152     return db.update(items).set(itemData).where(eq(items.id, id)).returning().then(rows => rows[0]);
+                                                                                       ~~~~
+
+server/storage.ts:156:70 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+156     return db.delete(items).where(eq(items.id, id)).returning().then(rows => rows.length > 0);
+                                                                         ~~~~
+
+server/storage.ts:164:65 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+164     return db.insert(images).values(imageData).returning().then(rows => rows[0]);
+                                                                    ~~~~
+
+server/storage.ts:171:99 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+171     return db.update(images).set({ isMain: true }).where(eq(images.id, imageId)).returning().then(rows => rows.length > 0);
+                                                                                                      ~~~~
+
+server/storage.ts:175:77 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+175     return db.delete(images).where(eq(images.id, imageId)).returning().then(rows => rows.length > 0);
+                                                                                ~~~~
+
+server/storage.ts:192:93 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+192     return db.select().from(conversations).where(eq(conversations.id, conversationId)).then(rows => rows[0]);
+                                                                                                ~~~~
+
+server/storage.ts:205:23 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+205     return query.then(rows => rows[0]);
+                          ~~~~
+
+server/storage.ts:209:79 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+209     return db.insert(conversations).values(conversationData).returning().then(rows => rows[0]);
+                                                                                  ~~~~
+
+server/storage.ts:213:98 - error TS2304: Cannot find name 'asc'.
+
+213     return db.select().from(messages).where(eq(messages.conversationId, conversationId)).orderBy(asc(messages.createdAt));
+                                                                                                     ~~~
+
+server/storage.ts:217:78 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+217     return db.select().from(messages).where(eq(messages.id, messageId)).then(rows => rows[0]);
+                                                                                 ~~~~
+
+server/storage.ts:226:69 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+226     return db.insert(messages).values(messageData).returning().then(rows => rows[0]);
+                                                                        ~~~~
+
+server/storage.ts:260:72 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+260     return db.select().from(offers).where(eq(offers.id, offerId)).then(rows => rows[0]);
+                                                                           ~~~~
+
+server/storage.ts:264:65 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+264     return db.insert(offers).values(offerData).returning().then(rows => rows[0]);
+                                                                    ~~~~
+
+server/storage.ts:268:116 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+268     return db.update(offers).set({ status, updatedAt: new Date() }).where(eq(offers.id, offerId)).returning().then(rows => rows[0]);
+                                                                                                                       ~~~~
+
+server/storage.ts:298:13 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+298       .then(rows => rows[0]);
+                ~~~~
+
+server/storage.ts:304:67 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+304     return db.insert(reviews).values(reviewData).returning().then(rows => rows[0]);
+                                                                      ~~~~
+
+server/storage.ts:359:13 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+359       .then(rows => rows.length);
+                ~~~~
+
+server/storage.ts:363:79 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+363     return db.insert(notifications).values(notificationData).returning().then(rows => rows[0]);
+                                                                                  ~~~~
+
+server/storage.ts:376:13 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+376       .then(rows => rows.length > 0);
+                ~~~~
+
+server/storage.ts:403:13 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+403       .then(rows => rows.length > 0);
+                ~~~~
+
+server/storage.ts:407:71 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+407     return db.insert(favorites).values(favoriteData).returning().then(rows => rows[0]);
+                                                                          ~~~~
+
+server/storage.ts:419:13 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+419       .then(rows => rows.length > 0);
+                ~~~~
+
+server/storage.ts:427:83 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+427     return db.insert(pushSubscriptions).values(subscriptionData).returning().then(rows => rows[0]);
+                                                                                      ~~~~
+
+server/storage.ts:434:13 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+434       .then(rows => rows.length > 0)
+                ~~~~
+
+
+Found 53 errors in 2 files.
+
+Errors  Files
+     9  server/routes.ts:735
+    44  server/storage.ts:9

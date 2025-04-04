@@ -1,0 +1,104 @@
+chunk-WERSD76P.js?v=98623329:521 Warning: React has detected a change in the order of Hooks called by ItemDetailContent. This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://reactjs.org/link/rules-of-hooks
+
+   Previous render            Next render
+   ------------------------------------------------------
+1. useContext                 useContext
+2. useSyncExternalStore       useSyncExternalStore
+3. useRef                     useRef
+4. useInsertionEffect         useInsertionEffect
+5. useContext                 useContext
+6. useState                   useState
+7. useEffect                  useEffect
+8. useContext                 useContext
+9. useCallback                useCallback
+10. useState                  useState
+11. useRef                    useRef
+12. useEffect                 useEffect
+13. useRef                    useRef
+14. useEffect                 useEffect
+15. useEffect                 useEffect
+16. useContext                useContext
+17. useState                  useState
+18. useState                  useState
+19. useState                  useState
+20. useState                  useState
+21. useState                  useState
+22. useContext                useContext
+23. useContext                useContext
+24. useContext                useContext
+25. useEffect                 useEffect
+26. useState                  useState
+27. useCallback               useCallback
+28. useSyncExternalStore      useSyncExternalStore
+29. useEffect                 useEffect
+30. useContext                useContext
+31. useContext                useContext
+32. useContext                useContext
+33. useEffect                 useEffect
+34. useState                  useState
+35. useCallback               useCallback
+36. useSyncExternalStore      useSyncExternalStore
+37. useEffect                 useEffect
+38. useEffect                 useEffect
+39. useContext                useContext
+40. useState                  useState
+41. useEffect                 useEffect
+42. useCallback               useCallback
+43. useSyncExternalStore      useSyncExternalStore
+44. useCallback               useCallback
+45. useContext                useContext
+46. useState                  useState
+47. useEffect                 useEffect
+48. useCallback               useCallback
+49. useSyncExternalStore      useSyncExternalStore
+50. useCallback               useCallback
+51. useContext                useContext
+52. useState                  useState
+53. useEffect                 useEffect
+54. useCallback               useCallback
+55. useSyncExternalStore      useSyncExternalStore
+56. useCallback               useCallback
+57. useContext                useContext
+58. useState                  useState
+59. useEffect                 useEffect
+60. useCallback               useCallback
+61. useSyncExternalStore      useSyncExternalStore
+62. useCallback               useCallback
+63. undefined                 useRef
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    at ItemDetailContent (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/pages/ItemDetail.tsx?t=1743252990043:79:30)
+    at ItemDetailWrapper (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/pages/ItemDetail.tsx?t=1743252990043:62:22)
+    at Route (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.de…/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=5b7526d7:323:16)
+    at Switch (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.de…/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=5b7526d7:379:17)
+    at main
+    at div
+    at Router (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/App.tsx?t=1743254178537&v=Uc7n0nmRYOYaItOzKD51s:60:22)
+    at AdminProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/context/AdminContext.tsx:32:33)
+    at AuthProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/context/AuthContext.tsx:21:32)
+    at QueryClientProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.de…rkspace/node_modules/.vite/deps/@tanstack_react-query.js?v=50962a13:2805:3)
+    at I18nextProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.de…runner/workspace/node_modules/.vite/deps/react-i18next.js?v=d22ed336:781:3)
+    at App
+2
+chunk-WERSD76P.js?v=98623329:11678 Uncaught Error: Rendered more hooks than during the previous render.
+    at ItemDetailContent (ItemDetail.tsx:318:21)
+chunk-WERSD76P.js?v=98623329:14032 The above error occurred in the <ItemDetailContent> component:
+
+    at ItemDetailContent (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/pages/ItemDetail.tsx?t=1743252990043:79:30)
+    at ItemDetailWrapper (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/pages/ItemDetail.tsx?t=1743252990043:62:22)
+    at Route (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.de…/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=5b7526d7:323:16)
+    at Switch (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.de…/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=5b7526d7:379:17)
+    at main
+    at div
+    at Router (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/App.tsx?t=1743254178537&v=Uc7n0nmRYOYaItOzKD51s:60:22)
+    at AdminProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/context/AdminContext.tsx:32:33)
+    at AuthProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/context/AuthContext.tsx:21:32)
+    at QueryClientProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.de…rkspace/node_modules/.vite/deps/@tanstack_react-query.js?v=50962a13:2805:3)
+    at I18nextProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.de…runner/workspace/node_modules/.vite/deps/react-i18next.js?v=d22ed336:781:3)
+    at App
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+chunk-WERSD76P.js?v=98623329:9129 Uncaught Error: Rendered more hooks than during the previous render.
+    at ItemDetailContent (ItemDetail.tsx:318:21)

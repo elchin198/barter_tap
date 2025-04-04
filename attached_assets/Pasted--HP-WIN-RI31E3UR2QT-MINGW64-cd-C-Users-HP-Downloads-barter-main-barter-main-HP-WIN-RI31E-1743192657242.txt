@@ -1,0 +1,389 @@
+
+HP@WIN-RI31E3UR2QT MINGW64 ~
+$ cd "C:\Users\HP\Downloads\barter-main\barter-main"
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter-main/barter-main (main)
+$ cd /c/Users/HP/Downloads/
+git clone https://github.com/elchin198/barter.git
+cd barter
+Cloning into 'barter'...
+remote: Enumerating objects: 1576, done.
+remote: Counting objects: 100% (23/23), done.
+remote: Compressing objects: 100% (23/23), done.
+remote: Total 1576 (delta 7), reused 10 (delta 0), pack-reused 1553 (from 1)
+Receiving objects: 100% (1576/1576), 88.42 MiB | 1.94 MiB/s, done.
+Resolving deltas: 100% (1051/1051), done.
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter (main)
+$ cd client
+npm install
+npm run build
+npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.
+is
+npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.
+is
+
+added 544 packages, and audited 545 packages in 15s
+
+65 packages are looking for funding
+  run `npm fund` for details
+
+7 moderate severity vulnerabilities
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bu
+ndle --format=esm --outdir=dist
+
+vite v5.4.14 building for production...
+transforming (6) ..\node_modules\react-i18next\dist\es\index.js
+images/layers.png referenced in images/layers.png didn't resolve at build time,
+it will remain unchanged to be resolved at runtime
+
+images/layers-2x.png referenced in images/layers-2x.png didn't resolve at build
+time, it will remain unchanged to be resolved at runtime
+
+images/marker-icon.png referenced in images/marker-icon.png didn't resolve at bu
+ild time, it will remain unchanged to be resolved at runtime
+transforming (35) src\components\SEO.tsx
+/barter-pattern.svg referenced in /barter-pattern.svg didn't resolve at build ti
+me, it will remain unchanged to be resolved at runtime
+✓ 3886 modules transformed.
+../dist/public/index.html                               3.21 kB │ gzip:   1.20 k
+B
+../dist/public/assets/index-CfAEoH7K.css              141.54 kB │ gzip:  28.44 k
+B
+../dist/public/assets/browser-ponyfill-BU9oZLPs.js     10.26 kB │ gzip:   3.50 k
+B
+../dist/public/assets/index-hpBVW2ch.js             1,674.32 kB │ gzip: 479.94 k
+B
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollu
+pjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 12.00s
+
+  dist\index.js  77.7kb
+
+Done in 41ms
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter/client (main)
+$ cd ..
+git add .
+git commit -m "Yeni dəyişikliklər və build sonrası"
+git push
+warning: in the working copy of 'dist/index.js', LF will be replaced by CRLF the
+ next time Git touches it
+warning: in the working copy of 'dist/public/assets/index-CfAEoH7K.css', LF will
+ be replaced by CRLF the next time Git touches it
+[main 03ab459] Yeni dəyişikliklər və build sonrası
+ 3 files changed, 33 insertions(+), 730 deletions(-)
+ delete mode 100644 dist/public/assets/browser-ponyfill-D8DcX4ly.js
+ delete mode 100644 dist/public/assets/index-LmAl6rp7.js
+Enumerating objects: 11, done.
+Counting objects: 100% (11/11), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (6/6), 787 bytes | 787.00 KiB/s, done.
+Total 6 (delta 3), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+To https://github.com/elchin198/barter.git
+   7ce2d1e..03ab459  main -> main
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter (main)
+$ cd /c/Users/HP/Downloads/barter-main/barter-main
+npm install
+npm run build
+npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.
+is
+npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.
+is
+
+added 545 packages, and audited 546 packages in 15s
+
+65 packages are looking for funding
+  run `npm fund` for details
+
+7 moderate severity vulnerabilities
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bu
+ndle --format=esm --outdir=dist
+
+vite v5.4.14 building for production...
+transforming (3) src\main.tsx
+images/layers.png referenced in images/layers.png didn't resolve at build time,
+it will remain unchanged to be resolved at runtime
+
+images/layers-2x.png referenced in images/layers-2x.png didn't resolve at build
+time, it will remain unchanged to be resolved at runtime
+
+images/marker-icon.png referenced in images/marker-icon.png didn't resolve at bu
+ild time, it will remain unchanged to be resolved at runtime
+transforming (31) ..\node_modules\wouter\esm\react-deps.js
+/barter-pattern.svg referenced in /barter-pattern.svg didn't resolve at build ti
+me, it will remain unchanged to be resolved at runtime
+✓ 3068 modules transformed.
+x Build failed in 6.47s
+error during build:
+client/src/components/items/MostViewedItems.tsx (12:7): "default" is not exporte
+d by "client/src/components/ui/skeleton.tsx", imported by "client/src/components
+/items/MostViewedItems.tsx".
+file: C:/Users/HP/Downloads/barter-main/barter-main/client/src/components/items/
+MostViewedItems.tsx:12:7
+
+10: import { motion } from "framer-motion";
+11: import { useTranslation } from "react-i18next";
+12: import Skeleton from "../ui/skeleton";
+           ^
+13: import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/
+components/ui/tooltip";
+
+    at getRollupError (file:///C:/Users/HP/Downloads/barter-main/barter-main/nod
+e_modules/rollup/dist/es/shared/parseAst.js:396:41)
+    at error (file:///C:/Users/HP/Downloads/barter-main/barter-main/node_modules
+/rollup/dist/es/shared/parseAst.js:392:42)
+    at Module.error (file:///C:/Users/HP/Downloads/barter-main/barter-main/node_
+modules/rollup/dist/es/shared/node-entry.js:15588:16)
+    at Module.traceVariable (file:///C:/Users/HP/Downloads/barter-main/barter-ma
+in/node_modules/rollup/dist/es/shared/node-entry.js:16037:29)
+    at ModuleScope.findVariable (file:///C:/Users/HP/Downloads/barter-main/barte
+r-main/node_modules/rollup/dist/es/shared/node-entry.js:13820:39)
+    at FunctionScope.findVariable (file:///C:/Users/HP/Downloads/barter-main/bar
+ter-main/node_modules/rollup/dist/es/shared/node-entry.js:5283:38)
+    at FunctionBodyScope.findVariable (file:///C:/Users/HP/Downloads/barter-main
+/barter-main/node_modules/rollup/dist/es/shared/node-entry.js:5283:38)
+    at TrackingScope.findVariable (file:///C:/Users/HP/Downloads/barter-main/bar
+ter-main/node_modules/rollup/dist/es/shared/node-entry.js:5283:38)
+    at BlockScope.findVariable (file:///C:/Users/HP/Downloads/barter-main/barter
+-main/node_modules/rollup/dist/es/shared/node-entry.js:5283:38)
+    at ReturnValueScope.findVariable (file:///C:/Users/HP/Downloads/barter-main/
+barter-main/node_modules/rollup/dist/es/shared/node-entry.js:5283:38)
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter-main/barter-main (main)
+$ client/src/components/ui/skeleton.tsx
+client/src/components/ui/skeleton.tsx: line 1: import: command not found
+client/src/components/ui/skeleton.tsx: line 6: syntax error near unexpected token `)'
+client/src/components/ui/skeleton.tsx: line 6: `}: React.HTMLAttributes<HTMLDivElement>) {'
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter-main/barter-main (main)
+$ export default Skeleton;
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter-main/barter-main (main)
+$ ^C
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter-main/barter-main (main)
+$ npm run build
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bu
+ndle --format=esm --outdir=dist
+
+vite v5.4.14 building for production...
+transforming (1) index.html
+images/layers.png referenced in images/layers.png didn't resolve at build time,
+it will remain unchanged to be resolved at runtime
+
+images/layers-2x.png referenced in images/layers-2x.png didn't resolve at build
+time, it will remain unchanged to be resolved at runtime
+
+images/marker-icon.png referenced in images/marker-icon.png didn't resolve at bu
+ild time, it will remain unchanged to be resolved at runtime
+transforming (33) src\components\SEO.tsx
+/barter-pattern.svg referenced in /barter-pattern.svg didn't resolve at build ti
+me, it will remain unchanged to be resolved at runtime
+✓ 3068 modules transformed.
+x Build failed in 7.17s
+error during build:
+client/src/components/reviews/UserRating.tsx (3:9): "Skeleton" is not exported b
+y "client/src/components/ui/skeleton.tsx", imported by "client/src/components/re
+views/UserRating.tsx".
+file: C:/Users/HP/Downloads/barter-main/barter-main/client/src/components/review
+s/UserRating.tsx:3:9
+
+1: import { useQuery } from '@tanstack/react-query';
+2: import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/
+components/ui/card';
+3: import { Skeleton } from '@/components/ui/skeleton';
+            ^
+4: import { User } from '@shared/schema';
+5: import ReviewStars from './ReviewStars';
+
+    at getRollupError (file:///C:/Users/HP/Downloads/barter-main/barter-main/nod
+e_modules/rollup/dist/es/shared/parseAst.js:396:41)
+    at error (file:///C:/Users/HP/Downloads/barter-main/barter-main/node_modules
+/rollup/dist/es/shared/parseAst.js:392:42)
+    at Module.error (file:///C:/Users/HP/Downloads/barter-main/barter-main/node_
+modules/rollup/dist/es/shared/node-entry.js:15588:16)
+    at Module.traceVariable (file:///C:/Users/HP/Downloads/barter-main/barter-ma
+in/node_modules/rollup/dist/es/shared/node-entry.js:16037:29)
+    at ModuleScope.findVariable (file:///C:/Users/HP/Downloads/barter-main/barte
+r-main/node_modules/rollup/dist/es/shared/node-entry.js:13820:39)
+    at FunctionScope.findVariable (file:///C:/Users/HP/Downloads/barter-main/bar
+ter-main/node_modules/rollup/dist/es/shared/node-entry.js:5283:38)
+    at FunctionBodyScope.findVariable (file:///C:/Users/HP/Downloads/barter-main
+/barter-main/node_modules/rollup/dist/es/shared/node-entry.js:5283:38)
+    at TrackingScope.findVariable (file:///C:/Users/HP/Downloads/barter-main/bar
+ter-main/node_modules/rollup/dist/es/shared/node-entry.js:5283:38)
+    at BlockScope.findVariable (file:///C:/Users/HP/Downloads/barter-main/barter
+-main/node_modules/rollup/dist/es/shared/node-entry.js:5283:38)
+    at Identifier.bind (file:///C:/Users/HP/Downloads/barter-main/barter-main/no
+de_modules/rollup/dist/es/shared/node-entry.js:5066:40)
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter-main/barter-main (main)
+$ export default Skeleton;
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter-main/barter-main (main)
+$ export default Skeleton
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter-main/barter-main (main)
+$ client/src/components/ui/skeleton.tsx
+client/src/components/ui/skeleton.tsx: line 1: import: command not found
+client/src/components/ui/skeleton.tsx: line 5: syntax error near unexpected token `)'
+client/src/components/ui/skeleton.tsx: line 5: `}: React.HTMLAttributes<HTMLDivElement>) {'
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter-main/barter-main (main)
+$ client/src/components/ui/skeleton.tsx
+code client/src/components/ui/skeleton.tsx
+client/src/components/ui/skeleton.tsx: line 1: import: command not found
+client/src/components/ui/skeleton.tsx: line 5: syntax error near unexpected token `)'
+client/src/components/ui/skeleton.tsx: line 5: `}: React.HTMLAttributes<HTMLDivElement>) {'
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter-main/barter-main (main)
+$ npm run build
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bu
+ndle --format=esm --outdir=dist
+
+vite v5.4.14 building for production...
+transforming (1) index.html
+images/layers.png referenced in images/layers.png didn't resolve at build time,
+it will remain unchanged to be resolved at runtime
+
+images/layers-2x.png referenced in images/layers-2x.png didn't resolve at build
+time, it will remain unchanged to be resolved at runtime
+
+images/marker-icon.png referenced in images/marker-icon.png didn't resolve at bu
+ild time, it will remain unchanged to be resolved at runtime
+transforming (58) ..\node_modules\@tanstack\react-query\build\modern\types.
+/barter-pattern.svg referenced in /barter-pattern.svg didn't resolve at build ti
+me, it will remain unchanged to be resolved at runtime
+✓ 3068 modules transformed.
+x Build failed in 6.56s
+error during build:
+client/src/components/reviews/UserRating.tsx (3:9): "Skeleton" is not exported b
+y "client/src/components/ui/skeleton.tsx", imported by "client/src/components/re
+views/UserRating.tsx".
+file: C:/Users/HP/Downloads/barter-main/barter-main/client/src/components/review
+s/UserRating.tsx:3:9
+
+1: import { useQuery } from '@tanstack/react-query';
+2: import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/
+components/ui/card';
+3: import { Skeleton } from '@/components/ui/skeleton';
+            ^
+4: import { User } from '@shared/schema';
+5: import ReviewStars from './ReviewStars';
+
+    at getRollupError (file:///C:/Users/HP/Downloads/barter-main/barter-main/nod
+e_modules/rollup/dist/es/shared/parseAst.js:396:41)
+    at error (file:///C:/Users/HP/Downloads/barter-main/barter-main/node_modules
+/rollup/dist/es/shared/parseAst.js:392:42)
+    at Module.error (file:///C:/Users/HP/Downloads/barter-main/barter-main/node_
+modules/rollup/dist/es/shared/node-entry.js:15588:16)
+    at Module.traceVariable (file:///C:/Users/HP/Downloads/barter-main/barter-ma
+in/node_modules/rollup/dist/es/shared/node-entry.js:16037:29)
+    at ModuleScope.findVariable (file:///C:/Users/HP/Downloads/barter-main/barte
+r-main/node_modules/rollup/dist/es/shared/node-entry.js:13820:39)
+    at FunctionScope.findVariable (file:///C:/Users/HP/Downloads/barter-main/bar
+ter-main/node_modules/rollup/dist/es/shared/node-entry.js:5283:38)
+    at FunctionBodyScope.findVariable (file:///C:/Users/HP/Downloads/barter-main
+/barter-main/node_modules/rollup/dist/es/shared/node-entry.js:5283:38)
+    at TrackingScope.findVariable (file:///C:/Users/HP/Downloads/barter-main/bar
+ter-main/node_modules/rollup/dist/es/shared/node-entry.js:5283:38)
+    at BlockScope.findVariable (file:///C:/Users/HP/Downloads/barter-main/barter
+-main/node_modules/rollup/dist/es/shared/node-entry.js:5283:38)
+    at Identifier.bind (file:///C:/Users/HP/Downloads/barter-main/barter-main/no
+de_modules/rollup/dist/es/shared/node-entry.js:5066:40)
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter-main/barter-main (main)
+$ ^C
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter-main/barter-main (main)
+$ npm run build
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bu
+ndle --format=esm --outdir=dist
+
+vite v5.4.14 building for production...
+transforming (3) src\main.tsx
+images/layers.png referenced in images/layers.png didn't resolve at build time,
+it will remain unchanged to be resolved at runtime
+
+images/layers-2x.png referenced in images/layers-2x.png didn't resolve at build
+time, it will remain unchanged to be resolved at runtime
+
+images/marker-icon.png referenced in images/marker-icon.png didn't resolve at bu
+ild time, it will remain unchanged to be resolved at runtime
+
+/barter-pattern.svg referenced in /barter-pattern.svg didn't resolve at build ti
+me, it will remain unchanged to be resolved at runtime
+✓ 3068 modules transformed.
+x Build failed in 6.42s
+error during build:
+client/src/components/reviews/UserRating.tsx (3:9): "Skeleton" is not exported b
+y "client/src/components/ui/skeleton.tsx", imported by "client/src/components/re
+views/UserRating.tsx".
+file: C:/Users/HP/Downloads/barter-main/barter-main/client/src/components/review
+s/UserRating.tsx:3:9
+
+1: import { Skeleton } from "@/components/ui/skeleton";
+2: import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/
+components/ui/card';
+3: import { Skeleton } from '@/components/ui/skeleton';
+            ^
+4: import { User } from '@shared/schema';
+5: import ReviewStars from './ReviewStars';
+
+    at getRollupError (file:///C:/Users/HP/Downloads/barter-main/barter-main/nod
+e_modules/rollup/dist/es/shared/parseAst.js:396:41)
+    at error (file:///C:/Users/HP/Downloads/barter-main/barter-main/node_modules
+/rollup/dist/es/shared/parseAst.js:392:42)
+    at Module.error (file:///C:/Users/HP/Downloads/barter-main/barter-main/node_
+modules/rollup/dist/es/shared/node-entry.js:15588:16)
+    at Module.traceVariable (file:///C:/Users/HP/Downloads/barter-main/barter-ma
+in/node_modules/rollup/dist/es/shared/node-entry.js:16037:29)
+    at ModuleScope.findVariable (file:///C:/Users/HP/Downloads/barter-main/barte
+r-main/node_modules/rollup/dist/es/shared/node-entry.js:13820:39)
+    at FunctionScope.findVariable (file:///C:/Users/HP/Downloads/barter-main/bar
+ter-main/node_modules/rollup/dist/es/shared/node-entry.js:5283:38)
+    at FunctionBodyScope.findVariable (file:///C:/Users/HP/Downloads/barter-main
+/barter-main/node_modules/rollup/dist/es/shared/node-entry.js:5283:38)
+    at TrackingScope.findVariable (file:///C:/Users/HP/Downloads/barter-main/bar
+ter-main/node_modules/rollup/dist/es/shared/node-entry.js:5283:38)
+    at BlockScope.findVariable (file:///C:/Users/HP/Downloads/barter-main/barter
+-main/node_modules/rollup/dist/es/shared/node-entry.js:5283:38)
+    at Identifier.bind (file:///C:/Users/HP/Downloads/barter-main/barter-main/no
+de_modules/rollup/dist/es/shared/node-entry.js:5066:40)
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter-main/barter-main (main)
+$

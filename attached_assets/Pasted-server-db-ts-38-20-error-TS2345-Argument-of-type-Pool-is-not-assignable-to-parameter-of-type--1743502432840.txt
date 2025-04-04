@@ -1,0 +1,102 @@
+server/db.ts:38:20 - error TS2345: Argument of type '[Pool]' is not assignable to parameter of type '[string | Sql<{}>] | [string | Sql<{}>, DrizzleConfig<Record<string, never>>] | [DrizzleConfig<Record<string, never>> & ({ ...; } | { ...; })]'.
+  Type '[Pool]' is not assignable to type '[string | Sql<{}>] | [DrizzleConfig<Record<string, never>> & ({ connection: string | ({ url?: string | undefined; } & Options<Record<string, PostgresType<any>>>); } | { ...; })]'.
+    Type '[Pool]' is not assignable to type '[string | Sql<{}>]'.
+      Type 'Pool' is not assignable to type 'string | Sql<{}>'.
+        Type 'Pool' is missing the following properties from type 'Sql<{}>': CLOSE, END, PostgresError, options, and 13 more.
+
+38     return drizzle(pool);
+                      ~~~~
+
+server/routes-simplified.ts:45:23 - error TS2304: Cannot find name 'path'.
+
+45     const uploadDir = path.join(process.cwd(), `public/uploads/${uploadType}`);
+                         ~~~~
+
+server/routes-simplified.ts:50:17 - error TS2304: Cannot find name 'path'.
+
+50     const ext = path.extname(file.originalname);
+                   ~~~~
+
+server/routes-simplified.ts:695:13 - error TS2353: Object literal may only specify known properties, and 'lastMessageAt' does not exist in type '{ itemId?: number | null | undefined; }'.
+
+695             lastMessageAt: new Date()
+                ~~~~~~~~~~~~~
+
+server/routes-simplified.ts:899:47 - error TS2345: Argument of type '{ fromUserId: number; toUserId: number; fromItemId: number; toItemId: number; status: string; message: any; }' is not assignable to parameter of type '{ conversationId: number; fromUserId: number; toUserId: number; fromItemId: number; toItemId: number; status?: string | undefined; message?: string | null | undefined; }'.
+  Property 'conversationId' is missing in type '{ fromUserId: number; toUserId: number; fromItemId: number; toItemId: number; status: string; message: any; }' but required in type '{ conversationId: number; fromUserId: number; toUserId: number; fromItemId: number; toItemId: number; status?: string | undefined; message?: string | null | undefined; }'.
+
+899       const offer = await storage.createOffer({
+                                                  ~
+900         fromUserId: userId,
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+905         message: message || null
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+906       });
+    ~~~~~~~
+
+  shared/schema.ts:99:3
+    99   conversationId: integer("conversation_id").notNull().references(() => conversations.id),
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    'conversationId' is declared here.
+
+server/routes-simplified.ts:924:13 - error TS2353: Object literal may only specify known properties, and 'lastMessageAt' does not exist in type '{ itemId?: number | null | undefined; }'.
+
+924             lastMessageAt: new Date()
+                ~~~~~~~~~~~~~
+
+server/routes-simplified.ts:1277:33 - error TS2304: Cannot find name 'path'.
+
+1277           const oldAvatarPath = path.join(process.cwd(), 'public', user.avatar);
+                                     ~~~~
+
+server/routes-simplified.ts:1278:15 - error TS2304: Cannot find name 'fs'.
+
+1278           if (fs.existsSync(oldAvatarPath)) {
+                   ~~
+
+server/routes-simplified.ts:1279:13 - error TS2304: Cannot find name 'fs'.
+
+1279             fs.unlinkSync(oldAvatarPath);
+                 ~~
+
+server/routes.ts:1095:11 - error TS2353: Object literal may only specify known properties, and 'id' does not exist in type '{ username: string; password: string; email: string; fullName?: string | null | undefined; avatar?: string | null | undefined; bio?: string | null | undefined; phone?: string | null | undefined; ... 4 more ...; active?: boolean | undefined; }'.
+
+1095           id: userId,
+               ~~
+
+server/routes.ts:1657:9 - error TS2322: Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is not assignable to type 'ConversationWithParticipants'.
+  Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is missing the following properties from type '{ participants: { id: number; username: string; password: string; fullName: string | null; email: string; avatar: string | null; bio: string | null; phone: string | null; city: string | null; ... 4 more ...; createdAt: Date; }[]; ... 5 more ...; message?: string | undefined; }': participants, otherParticipant, unreadCount
+
+1657         conversation = await dbStorage.createConversation(
+             ~~~~~~~~~~~~
+
+server/routes.ts:1668:25 - error TS18048: 'conversation' is possibly 'undefined'.
+
+1668         conversationId: conversation.id,
+                             ~~~~~~~~~~~~
+
+server/routes/advertisements.ts:3:25 - error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean '../storage.js'?
+
+3 import { storage } from '../storage';
+                          ~~~~~~~~~~~~
+
+server/storage.ts:680:11 - error TS2741: Property 'isRead' is missing in type '{ id: number; conversationId: number; senderId: number; content: string; status: string; createdAt: Date; }' but required in type '{ id: number; createdAt: Date; status: string; conversationId: number; senderId: number; content: string; isRead: boolean; }'.
+
+680     const message: Message = {
+              ~~~~~~~
+
+server/storage.ts:737:11 - error TS2741: Property 'message' is missing in type '{ id: number; conversationId: number; fromUserId: number; toUserId: number; fromItemId: number; toItemId: number; status: string; createdAt: Date; updatedAt: Date; }' but required in type '{ id: number; createdAt: Date; status: string; updatedAt: Date; message: string | null; conversationId: number; fromUserId: number; toUserId: number; fromItemId: number; toItemId: number; }'.
+
+737     const offer: Offer = {
+              ~~~~~
+
+
+Found 15 errors in 5 files.
+
+Errors  Files
+     1  server/db.ts:38
+     8  server/routes-simplified.ts:45
+     3  server/routes.ts:1095
+     1  server/routes/advertisements.ts:3
+     2  server/storage.ts:680

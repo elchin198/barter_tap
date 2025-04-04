@@ -1,0 +1,760 @@
+
+> rest-express@1.0.0 build:server
+> tsc -p tsconfig.server.json
+
+server/db_postgres.ts:4:10 - error TS2305: Module '"drizzle-orm/pg-core"' has no exported member 'drizzle'.
+
+4 import { drizzle } from 'drizzle-orm/pg-core';
+           ~~~~~~~
+
+server/db_postgres.ts:5:19 - error TS2459: Module '"./storage.js"' declares 'users' locally, but it is not exported.
+
+5 import { storage, users, items, offers, reviews, messages, conversations, conversationParticipants, notifications } from './storage.js';
+                    ~~~~~
+
+  server/storage.ts:4:3
+    4   users,
+        ~~~~~
+    'users' is declared here.
+
+server/db_postgres.ts:5:26 - error TS2459: Module '"./storage.js"' declares 'items' locally, but it is not exported.
+
+5 import { storage, users, items, offers, reviews, messages, conversations, conversationParticipants, notifications } from './storage.js';
+                           ~~~~~
+
+  server/storage.ts:5:3
+    5   items,
+        ~~~~~
+    'items' is declared here.
+
+server/db_postgres.ts:5:33 - error TS2459: Module '"./storage.js"' declares 'offers' locally, but it is not exported.
+
+5 import { storage, users, items, offers, reviews, messages, conversations, conversationParticipants, notifications } from './storage.js';
+                                  ~~~~~~
+
+  server/storage.ts:7:3
+    7   offers,
+        ~~~~~~
+    'offers' is declared here.
+
+server/db_postgres.ts:5:41 - error TS2459: Module '"./storage.js"' declares 'reviews' locally, but it is not exported.
+
+5 import { storage, users, items, offers, reviews, messages, conversations, conversationParticipants, notifications } from './storage.js';
+                                          ~~~~~~~
+
+  server/storage.ts:8:3
+    8   reviews,
+        ~~~~~~~
+    'reviews' is declared here.
+
+server/db_postgres.ts:5:50 - error TS2459: Module '"./storage.js"' declares 'messages' locally, but it is not exported.
+
+5 import { storage, users, items, offers, reviews, messages, conversations, conversationParticipants, notifications } from './storage.js';
+                                                   ~~~~~~~~
+
+  server/storage.ts:11:3
+    11   messages,
+         ~~~~~~~~
+    'messages' is declared here.
+
+server/db_postgres.ts:5:60 - error TS2459: Module '"./storage.js"' declares 'conversations' locally, but it is not exported.
+
+5 import { storage, users, items, offers, reviews, messages, conversations, conversationParticipants, notifications } from './storage.js';
+                                                             ~~~~~~~~~~~~~
+
+  server/storage.ts:9:3
+    9   conversations,
+        ~~~~~~~~~~~~~
+    'conversations' is declared here.
+
+server/db_postgres.ts:5:75 - error TS2459: Module '"./storage.js"' declares 'conversationParticipants' locally, but it is not exported.
+
+5 import { storage, users, items, offers, reviews, messages, conversations, conversationParticipants, notifications } from './storage.js';
+                                                                            ~~~~~~~~~~~~~~~~~~~~~~~~
+
+  server/storage.ts:10:3
+    10   conversationParticipants,
+         ~~~~~~~~~~~~~~~~~~~~~~~~
+    'conversationParticipants' is declared here.
+
+server/db_postgres.ts:5:101 - error TS2459: Module '"./storage.js"' declares 'notifications' locally, but it is not exported.
+
+5 import { storage, users, items, offers, reviews, messages, conversations, conversationParticipants, notifications } from './storage.js';
+                                                                                                      ~~~~~~~~~~~~~
+
+  server/storage.ts:12:3
+    12   notifications,
+         ~~~~~~~~~~~~~
+    'notifications' is declared here.
+
+server/db_postgres.ts:20:22 - error TS7006: Parameter 'error' implicitly has an 'any' type.
+
+20 const formatError = (error) => {
+                        ~~~~~
+
+server/db_postgres.ts:27:17 - error TS7006: Parameter 'userId' implicitly has an 'any' type.
+
+27   async getUser(userId) {
+                   ~~~~~~
+
+server/db_postgres.ts:37:20 - error TS7006: Parameter 'userData' implicitly has an 'any' type.
+
+37   async createUser(userData) {
+                      ~~~~~~~~
+
+server/db_postgres.ts:47:20 - error TS7006: Parameter 'userId' implicitly has an 'any' type.
+
+47   async updateUser(userId, userData) {
+                      ~~~~~~
+
+server/db_postgres.ts:47:28 - error TS7006: Parameter 'userData' implicitly has an 'any' type.
+
+47   async updateUser(userId, userData) {
+                              ~~~~~~~~
+
+server/db_postgres.ts:60:21 - error TS7006: Parameter 'search' implicitly has an 'any' type.
+
+60   async getAllUsers(search) {
+                       ~~~~~~
+
+server/index.ts:3:10 - error TS2305: Module '"./routes-simplified.js"' has no exported member 'registerSimplifiedRoutes'.
+
+3 import { registerSimplifiedRoutes } from "./routes-simplified.js";
+           ~~~~~~~~~~~~~~~~~~~~~~~~
+
+server/index.ts:13:10 - error TS2305: Module '"./websocket.js"' has no exported member 'setupWebSocketServer'.
+
+13 import { setupWebSocketServer } from './websocket.js';
+            ~~~~~~~~~~~~~~~~~~~~
+
+server/routes-simplified.ts:34:38 - error TS7006: Parameter 'app' implicitly has an 'any' type.
+
+34 export const registerRoutes = async (app) => {
+                                        ~~~
+
+server/routes-simplified.ts:43:33 - error TS2345: Argument of type 'RawData' is not assignable to parameter of type 'string'.
+  Type 'Buffer' is not assignable to type 'string'.
+
+43         const data = JSON.parse(message);
+                                   ~~~~~~~
+
+server/routes.ts:160:48 - error TS2339: Property 'createMessage' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+160             const newMessage = await dbStorage.createMessage({
+                                                   ~~~~~~~~~~~~~
+
+server/routes.ts:168:49 - error TS2339: Property 'getMessage' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+168             const fullMessage = await dbStorage.getMessage(newMessage.id);
+                                                    ~~~~~~~~~~
+
+server/routes.ts:172:50 - error TS2339: Property 'getConversation' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+172             const conversation = await dbStorage.getConversation(data.conversationId);
+                                                     ~~~~~~~~~~~~~~~
+
+server/routes.ts:189:33 - error TS2339: Property 'createNotification' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+189                 await dbStorage.createNotification({
+                                    ~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:199:49 - error TS2339: Property 'getUnreadNotificationsCount' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+199                   const count = await dbStorage.getUnreadNotificationsCount(participant.id);
+                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:221:44 - error TS2339: Property 'getUserByUsername' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+221       const existingUser = await dbStorage.getUserByUsername(userData.username);
+                                               ~~~~~~~~~~~~~~~~~
+
+server/routes.ts:227:45 - error TS2339: Property 'getUserByEmail' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+227       const existingEmail = await dbStorage.getUserByEmail(userData.email);
+                                                ~~~~~~~~~~~~~~
+
+server/routes.ts:274:32 - error TS2339: Property 'getUserByUsername' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+274         user = await dbStorage.getUserByUsername(TEST_USERNAME);
+                                   ~~~~~~~~~~~~~~~~~
+
+server/routes.ts:312:32 - error TS2339: Property 'getUserByUsername' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+312         user = await dbStorage.getUserByUsername(username);
+                                   ~~~~~~~~~~~~~~~~~
+
+server/routes.ts:526:47 - error TS7006: Parameter 'user' implicitly has an 'any' type.
+
+526       const usersWithoutPasswords = users.map(user => {
+                                                  ~~~~
+
+server/routes.ts:551:37 - error TS2339: Property 'getItems' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+551       const items = await dbStorage.getItems(options);
+                                        ~~~~~~~~
+
+server/routes.ts:555:40 - error TS2339: Property 'getImagesByItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+555         const images = await dbStorage.getImagesByItem(item.id);
+                                           ~~~~~~~~~~~~~~~
+
+server/routes.ts:583:36 - error TS2339: Property 'getItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+583       const item = await dbStorage.getItem(id);
+                                       ~~~~~~~
+
+server/routes.ts:596:38 - error TS2339: Property 'getImagesByItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+596       const images = await dbStorage.getImagesByItem(id);
+                                         ~~~~~~~~~~~~~~~
+
+server/routes.ts:634:43 - error TS2339: Property 'updateItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+634       const updatedItem = await dbStorage.updateItem(id, { status });
+                                              ~~~~~~~~~~
+
+server/routes.ts:652:36 - error TS2339: Property 'getItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+652       const item = await dbStorage.getItem(id);
+                                       ~~~~~~~
+
+server/routes.ts:658:39 - error TS2339: Property 'deleteItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+658       const success = await dbStorage.deleteItem(id);
+                                          ~~~~~~~~~~
+
+server/routes.ts:724:37 - error TS2339: Property 'getItemsByUser' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+724       const items = await dbStorage.getItemsByUser(userId);
+                                        ~~~~~~~~~~~~~~
+
+server/routes.ts:727:42 - error TS2339: Property 'getUserRating' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+727       const userRating = await dbStorage.getUserRating(userId);
+                                             ~~~~~~~~~~~~~
+
+server/routes.ts:811:39 - error TS2339: Property 'getReviewsByUser' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+811       const reviews = await dbStorage.getReviewsByUser(userId, asReviewer);
+                                          ~~~~~~~~~~~~~~~~
+
+server/routes.ts:828:41 - error TS2339: Property 'canReviewOffer' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+828       const canReview = await dbStorage.canReviewOffer(offerId, userId);
+                                            ~~~~~~~~~~~~~~
+
+server/routes.ts:845:42 - error TS2339: Property 'getUserRating' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+845       const userRating = await dbStorage.getUserRating(userId);
+                                             ~~~~~~~~~~~~~
+
+server/routes.ts:867:39 - error TS2339: Property 'getReviewsByOffer' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+867       const reviews = await dbStorage.getReviewsByOffer(offerId);
+                                          ~~~~~~~~~~~~~~~~~
+
+server/routes.ts:889:41 - error TS2339: Property 'canReviewOffer' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+889       const canReview = await dbStorage.canReviewOffer(offerId, currentUserId);
+                                            ~~~~~~~~~~~~~~
+
+server/routes.ts:897:38 - error TS2339: Property 'createReview' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+897       const review = await dbStorage.createReview({
+                                         ~~~~~~~~~~~~
+
+server/routes.ts:1005:37 - error TS2339: Property 'getItems' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1005       const items = await dbStorage.getItems({
+                                         ~~~~~~~~
+
+server/routes.ts:1020:40 - error TS2339: Property 'getImagesByItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1020         const images = await dbStorage.getImagesByItem(item.id);
+                                            ~~~~~~~~~~~~~~~
+
+server/routes.ts:1039:36 - error TS2339: Property 'incrementItemViewCount' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1039       const item = await dbStorage.incrementItemViewCount(itemId);
+                                        ~~~~~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1045:38 - error TS2339: Property 'getImagesByItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1045       const images = await dbStorage.getImagesByItem(itemId);
+                                          ~~~~~~~~~~~~~~~
+
+server/routes.ts:1054:47 - error TS2339: Property 'getUserRating' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1054       const ownerWithRating = await dbStorage.getUserRating(owner.id);
+                                                   ~~~~~~~~~~~~~
+
+server/routes.ts:1062:38 - error TS2339: Property 'isFavorite' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1062         isFavorite = await dbStorage.isFavorite(req.session.userId, itemId);
+                                          ~~~~~~~~~~
+
+server/routes.ts:1116:36 - error TS2339: Property 'createItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1116       const item = await dbStorage.createItem(itemData);
+                                        ~~~~~~~~~~
+
+server/routes.ts:1137:36 - error TS2339: Property 'getItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1137       const item = await dbStorage.getItem(itemId);
+                                        ~~~~~~~
+
+server/routes.ts:1147:43 - error TS2339: Property 'updateItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1147       const updatedItem = await dbStorage.updateItem(itemId, req.body);
+                                               ~~~~~~~~~~
+
+server/routes.ts:1166:36 - error TS2339: Property 'getItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1166       const item = await dbStorage.getItem(itemId);
+                                        ~~~~~~~
+
+server/routes.ts:1176:23 - error TS2339: Property 'deleteItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1176       await dbStorage.deleteItem(itemId);
+                           ~~~~~~~~~~
+
+server/routes.ts:1193:36 - error TS2339: Property 'getItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1193       const item = await dbStorage.getItem(itemId);
+                                        ~~~~~~~
+
+server/routes.ts:1209:37 - error TS2339: Property 'createImage' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1209       const image = await dbStorage.createImage({
+                                         ~~~~~~~~~~~
+
+server/routes.ts:1234:36 - error TS2339: Property 'getItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1234       const item = await dbStorage.getItem(itemId);
+                                        ~~~~~~~
+
+server/routes.ts:1247:46 - error TS2339: Property 'getImagesByItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1247       const existingImages = await dbStorage.getImagesByItem(itemId);
+                                                  ~~~~~~~~~~~~~~~
+
+server/routes.ts:1250:37 - error TS2339: Property 'createImage' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1250       const image = await dbStorage.createImage({
+                                         ~~~~~~~~~~~
+
+server/routes.ts:1271:36 - error TS2339: Property 'getItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1271       const item = await dbStorage.getItem(itemId);
+                                        ~~~~~~~
+
+server/routes.ts:1280:39 - error TS2339: Property 'setMainImage' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1280       const success = await dbStorage.setMainImage(imageId, itemId);
+                                           ~~~~~~~~~~~~
+
+server/routes.ts:1300:36 - error TS2339: Property 'getItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1300       const item = await dbStorage.getItem(itemId);
+                                        ~~~~~~~
+
+server/routes.ts:1309:39 - error TS2339: Property 'deleteImage' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1309       const success = await dbStorage.deleteImage(imageId);
+                                           ~~~~~~~~~~~
+
+server/routes.ts:1327:45 - error TS2339: Property 'getConversationsByUser' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1327       const conversations = await dbStorage.getConversationsByUser(userId);
+                                                 ~~~~~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1330:55 - error TS7006: Parameter 'conv' implicitly has an 'any' type.
+
+1330       const enhancedConversations = conversations.map(conv => {
+                                                           ~~~~
+
+server/routes.ts:1360:44 - error TS2339: Property 'getConversation' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1360       const conversation = await dbStorage.getConversation(conversationId);
+                                                ~~~~~~~~~~~~~~~
+
+server/routes.ts:1372:40 - error TS2339: Property 'getMessagesByConversation' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1372       const messages = await dbStorage.getMessagesByConversation(conversationId);
+                                            ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1378:23 - error TS2339: Property 'markMessagesAsRead' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1378       await dbStorage.markMessagesAsRead(conversationId, userId);
+                           ~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1411:38 - error TS2339: Property 'getItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1411         const item = await dbStorage.getItem(itemId);
+                                          ~~~~~~~
+
+server/routes.ts:1418:52 - error TS2339: Property 'getConversationByParticipants' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1418       const existingConversation = await dbStorage.getConversationByParticipants(userId, otherUserId, itemId);
+                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1426:40 - error TS2339: Property 'createConversation' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1426         conversation = await dbStorage.createConversation(
+                                            ~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1440:25 - error TS2339: Property 'createMessage' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1440         await dbStorage.createMessage({
+                             ~~~~~~~~~~~~~
+
+server/routes.ts:1448:25 - error TS2339: Property 'createNotification' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1448         await dbStorage.createNotification({
+                             ~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1458:41 - error TS2339: Property 'getUnreadNotificationsCount' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1458           const count = await dbStorage.getUnreadNotificationsCount(otherUserId);
+                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1485:44 - error TS2339: Property 'getConversation' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1485       const conversation = await dbStorage.getConversation(messageData.conversationId);
+                                                ~~~~~~~~~~~~~~~
+
+server/routes.ts:1496:39 - error TS2339: Property 'createMessage' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1496       const message = await dbStorage.createMessage(messageData);
+                                           ~~~~~~~~~~~~~
+
+server/routes.ts:1499:43 - error TS2339: Property 'getMessage' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1499       const fullMessage = await dbStorage.getMessage(message.id);
+                                               ~~~~~~~~~~
+
+server/routes.ts:1509:25 - error TS2339: Property 'createNotification' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1509         await dbStorage.createNotification({
+                             ~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1527:41 - error TS2339: Property 'getUnreadNotificationsCount' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1527           const count = await dbStorage.getUnreadNotificationsCount(participant.id);
+                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1556:44 - error TS2339: Property 'getConversation' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1556       const conversation = await dbStorage.getConversation(conversationId);
+                                                ~~~~~~~~~~~~~~~
+
+server/routes.ts:1567:41 - error TS2339: Property 'markMessagesAsRead' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1567       const markedIds = await dbStorage.markMessagesAsRead(conversationId, userId);
+                                             ~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1583:38 - error TS2339: Property 'getOffersByUser' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1583       const offers = await dbStorage.getOffersByUser(userId, status);
+                                          ~~~~~~~~~~~~~~~
+
+server/routes.ts:1589:42 - error TS2339: Property 'getItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1589         const fromItem = await dbStorage.getItem(offer.fromItemId);
+                                              ~~~~~~~
+
+server/routes.ts:1590:40 - error TS2339: Property 'getItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1590         const toItem = await dbStorage.getItem(offer.toItemId);
+                                            ~~~~~~~
+
+server/routes.ts:1593:48 - error TS2339: Property 'getImagesByItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1593         const fromItemImages = await dbStorage.getImagesByItem(offer.fromItemId);
+                                                    ~~~~~~~~~~~~~~~
+
+server/routes.ts:1594:46 - error TS2339: Property 'getImagesByItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1594         const toItemImages = await dbStorage.getImagesByItem(offer.toItemId);
+                                                  ~~~~~~~~~~~~~~~
+
+server/routes.ts:1631:40 - error TS2339: Property 'getItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1631       const fromItem = await dbStorage.getItem(offerData.fromItemId);
+                                            ~~~~~~~
+
+server/routes.ts:1640:38 - error TS2339: Property 'getItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1640       const toItem = await dbStorage.getItem(offerData.toItemId);
+                                          ~~~~~~~
+
+server/routes.ts:1650:37 - error TS2339: Property 'createOffer' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1650       const offer = await dbStorage.createOffer(offerData);
+                                         ~~~~~~~~~~~
+
+server/routes.ts:1653:42 - error TS2339: Property 'getConversationByParticipants' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1653       let conversation = await dbStorage.getConversationByParticipants(fromUserId, offerData.toUserId);
+                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1656:49 - error TS2339: Property 'createConversation' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1656         const newConversation = await dbStorage.createConversation(
+                                                     ~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1665:42 - error TS2339: Property 'getConversation' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1665           conversation = await dbStorage.getConversation(newConversation.id);
+                                              ~~~~~~~~~~~~~~~
+
+server/routes.ts:1671:25 - error TS2339: Property 'createMessage' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1671         await dbStorage.createMessage({
+                             ~~~~~~~~~~~~~
+
+server/routes.ts:1681:23 - error TS2339: Property 'createNotification' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1681       await dbStorage.createNotification({
+                           ~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1691:39 - error TS2339: Property 'getUnreadNotificationsCount' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1691         const count = await dbStorage.getUnreadNotificationsCount(offerData.toUserId);
+                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1720:37 - error TS2339: Property 'getOffer' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1720       const offer = await dbStorage.getOffer(offerId);
+                                         ~~~~~~~~
+
+server/routes.ts:1739:44 - error TS2339: Property 'updateOfferStatus' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1739       const updatedOffer = await dbStorage.updateOfferStatus(offerId, status);
+                                                ~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1746:25 - error TS2339: Property 'updateItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1746         await dbStorage.updateItem(offer.fromItemId, { status: 'pending' });
+                             ~~~~~~~~~~
+
+server/routes.ts:1747:25 - error TS2339: Property 'updateItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1747         await dbStorage.updateItem(offer.toItemId, { status: 'pending' });
+                             ~~~~~~~~~~
+
+server/routes.ts:1752:25 - error TS2339: Property 'updateItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1752         await dbStorage.updateItem(offer.fromItemId, { status: 'completed' });
+                             ~~~~~~~~~~
+
+server/routes.ts:1753:25 - error TS2339: Property 'updateItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1753         await dbStorage.updateItem(offer.toItemId, { status: 'completed' });
+                             ~~~~~~~~~~
+
+server/routes.ts:1758:25 - error TS2339: Property 'updateItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1758         await dbStorage.updateItem(offer.fromItemId, { status: 'active' });
+                             ~~~~~~~~~~
+
+server/routes.ts:1759:25 - error TS2339: Property 'updateItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1759         await dbStorage.updateItem(offer.toItemId, { status: 'active' });
+                             ~~~~~~~~~~
+
+server/routes.ts:1768:23 - error TS2339: Property 'createNotification' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1768       await dbStorage.createNotification({
+                           ~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1778:39 - error TS2339: Property 'getUnreadNotificationsCount' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1778         const count = await dbStorage.getUnreadNotificationsCount(otherUserId);
+                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1800:45 - error TS2339: Property 'getNotificationsByUser' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1800       const notifications = await dbStorage.getNotificationsByUser(userId, { includeRead, limit, offset });
+                                                 ~~~~~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1814:37 - error TS2339: Property 'getUnreadNotificationsCount' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1814       const count = await dbStorage.getUnreadNotificationsCount(userId);
+                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1829:39 - error TS2339: Property 'markNotificationAsRead' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1829       const success = await dbStorage.markNotificationAsRead(notificationId, userId);
+                                           ~~~~~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1846:23 - error TS2339: Property 'markAllNotificationsAsRead' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1846       await dbStorage.markAllNotificationsAsRead(userId);
+                           ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1861:41 - error TS2339: Property 'getFavoritesByUser' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1861       const favorites = await dbStorage.getFavoritesByUser(userId);
+                                             ~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1865:40 - error TS2339: Property 'getImagesByItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1865         const images = await dbStorage.getImagesByItem(fav.item.id);
+                                            ~~~~~~~~~~~~~~~
+
+server/routes.ts:1894:36 - error TS2339: Property 'getItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1894       const item = await dbStorage.getItem(favoriteData.itemId);
+                                        ~~~~~~~
+
+server/routes.ts:1900:40 - error TS2339: Property 'addFavorite' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1900       const favorite = await dbStorage.addFavorite(favoriteData);
+                                            ~~~~~~~~~~~
+
+server/routes.ts:1918:39 - error TS2339: Property 'removeFavorite' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1918       const success = await dbStorage.removeFavorite(userId, itemId);
+                                           ~~~~~~~~~~~~~~
+
+server/routes.ts:1940:44 - error TS2339: Property 'createOrUpdatePushSubscription' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1940       const subscription = await dbStorage.createOrUpdatePushSubscription(subscriptionData);
+                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1957:39 - error TS2339: Property 'deletePushSubscription' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1957       const success = await dbStorage.deletePushSubscription(userId);
+                                           ~~~~~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:1978:42 - error TS2339: Property 'getUserRating' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1978       const userRating = await dbStorage.getUserRating(userId);
+                                              ~~~~~~~~~~~~~
+
+server/routes.ts:1997:39 - error TS2339: Property 'getReviewsByUser' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+1997       const reviews = await dbStorage.getReviewsByUser(userId, asReviewer);
+                                           ~~~~~~~~~~~~~~~~
+
+server/routes.ts:2009:39 - error TS2339: Property 'getReviewsByOffer' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+2009       const reviews = await dbStorage.getReviewsByOffer(offerId);
+                                           ~~~~~~~~~~~~~~~~~
+
+server/routes.ts:2024:41 - error TS2339: Property 'canReviewOffer' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+2024       const canReview = await dbStorage.canReviewOffer(offerId, userId);
+                                             ~~~~~~~~~~~~~~
+
+server/routes.ts:2040:41 - error TS2339: Property 'canReviewOffer' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+2040       const canReview = await dbStorage.canReviewOffer(offerId, userId);
+                                             ~~~~~~~~~~~~~~
+
+server/routes.ts:2048:37 - error TS2339: Property 'getOffer' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+2048       const offer = await dbStorage.getOffer(offerId);
+                                         ~~~~~~~~
+
+server/routes.ts:2064:38 - error TS2339: Property 'createReview' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+2064       const review = await dbStorage.createReview(reviewData);
+                                          ~~~~~~~~~~~~
+
+server/routes.ts:2067:23 - error TS2339: Property 'createNotification' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+2067       await dbStorage.createNotification({
+                           ~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:2077:39 - error TS2339: Property 'getUnreadNotificationsCount' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+2077         const count = await dbStorage.getUnreadNotificationsCount(toUserId);
+                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+server/routes.ts:2099:37 - error TS2339: Property 'getItems' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+2099       const items = await dbStorage.getItems({
+                                         ~~~~~~~~
+
+server/routes.ts:2106:40 - error TS2339: Property 'getImagesByItem' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+2106         const images = await dbStorage.getImagesByItem(item.id);
+                                            ~~~~~~~~~~~~~~~
+
+server/routes.ts:2114:49 - error TS2339: Property 'getUserRating' does not exist on type '{ getUser(userId: any): Promise<any>; createUser(userData: any): Promise<any>; updateUser(userId: any, userData: any): Promise<any>; getAllUsers(search: any): Promise<...>; }'.
+
+2114         const ownerWithRating = await dbStorage.getUserRating(owner.id);
+                                                     ~~~~~~~~~~~~~
+
+server/seed.ts:155:1 - error TS1042: 'async' modifier cannot be used here.
+
+155 async const createTestUser = () => {
+    ~~~~~
+
+server/seed.ts:157:18 - error TS1308: 'await' expressions are only allowed within async functions and at the top levels of modules.
+
+157   let testUser = await storage.getUserByUsername('testuser');
+                     ~~~~~
+
+  server/seed.ts:155:30
+    155 async const createTestUser = () => {
+                                     ~~~~~~~
+    Did you mean to mark this function as 'async'?
+
+server/seed.ts:161:16 - error TS1308: 'await' expressions are only allowed within async functions and at the top levels of modules.
+
+161     testUser = await storage.createUser({
+                   ~~~~~
+
+  server/seed.ts:155:30
+    155 async const createTestUser = () => {
+                                     ~~~~~~~
+    Did you mean to mark this function as 'async'?
+
+server/storage.ts:2:20 - error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean './db_postgres.js'?
+
+2 import { db } from './db_postgres';
+                     ~~~~~~~~~~~~~~~
+
+server/storage.ts:14:8 - error TS2834: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Consider adding an extension to the import path.
+
+14 } from './schema';
+          ~~~~~~~~~~
+
+server/storage.ts:20:69 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+20     return db.select().from(users).where(eq(users.id, userId)).then(rows => rows[0]);
+                                                                       ~~~~
+
+server/storage.ts:24:77 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+24     return db.select().from(users).where(eq(users.username, username)).then(rows => rows[0]);
+                                                                               ~~~~
+
+server/storage.ts:45:65 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+45     return db.select().from(items).where(eq(items.id, id)).then(rows => rows[0]);
+                                                                   ~~~~
+
+server/storage.ts:75:83 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+75     return db.select().from(advertisements).where(eq(advertisements.id, id)).then(rows => rows[0]);
+                                                                                     ~~~~
+
+server/storage.ts:95:13 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+95       .then(rows => rows[0]); // ilk uyğun reklamı qaytarır
+               ~~~~
+
+
+Found 139 errors in 6 files.
+
+Errors  Files
+    15  server/db_postgres.ts:4
+     2  server/index.ts:3
+     2  server/routes-simplified.ts:34
+   110  server/routes.ts:160
+     3  server/seed.ts:155
+     7  server/storage.ts:2

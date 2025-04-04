@@ -1,0 +1,52 @@
+{
+  "categories": {
+    "all": "Hamısı",
+    "services": "Xidmətlər",
+    "books": "Kitablar",
+    "electronics": "Elektronika",
+    "vehicles": "Nəqliyyat",
+    "clothing": "Geyim",
+    "realEstate": "Daşınmaz əmlak",
+    "garden": "Bağ və bağça",
+    "games": "Oyunlar",
+    "furniture": "Mebel",
+    "sports": "İdman"
+  },
+  "search": {
+    "placeholder": "Barter etmək istədiyin məhsulu axtar"
+  },
+  "common": {
+    "login": "Daxil ol",
+    "signup": "Qeydiyyat",
+    "viewAll": "Hamısına bax"
+  },
+  "allOffers": {
+    "title": "Bütün təkliflər"
+  },
+  "recentItems": {
+    "title": "Son əlavə olunanlar"
+  },
+  "howItWorks": {
+    "title": "Necə işləyir?",
+    "step1": {
+      "title": "Əşyalarını əlavə et",
+      "description": "Artıq ehtiyac duymadığın əşyaların şəkillərini və təsvirini əlavə et."
+    },
+    "step2": {
+      "title": "Təklif göndər",
+      "description": "Bəyəndiyin məhsulları tap və öz əşyalarını təklif et."
+    },
+    "step3": {
+      "title": "Barter et və qiymətləndir",
+      "description": "Görüş, məhsulları dəyiş və təcrübəni qiymətləndir."
+    },
+    "learnMore": "Barter haqqında ətraflı öyrən"
+  },
+  "cta": {
+    "title": "İndi qoşul və barterə başla",
+    "subtitle": "Minlərlə istifadəçi pul xərcləmədən istədiyi məhsulları əldə edib. Barter hərəkətinə qoşul!"
+  },
+  "auth": {
+    "register": "Pulsuz qeydiyyatdan keç"
+  }
+}

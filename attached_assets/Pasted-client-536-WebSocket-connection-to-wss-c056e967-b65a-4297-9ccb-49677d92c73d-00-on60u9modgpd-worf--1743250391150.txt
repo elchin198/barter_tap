@@ -1,0 +1,445 @@
+client:536 WebSocket connection to 'wss://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/?token=aYgmRDdNDEIt' failed: 
+setupWebSocket @ client:536
+(anonymous) @ client:531Understand this errorAI
+client:536 Uncaught (in promise) SyntaxError: Failed to construct 'WebSocket': The URL 'wss://localhost:undefined/?token=aYgmRDdNDEIt' is invalid.
+    at setupWebSocket (client:536:19)
+    at fallback (client:509:16)
+    at WebSocket.<anonymous> (client:555:7)
+setupWebSocket @ client:536
+fallback @ client:509
+(anonymous) @ client:555Understand this errorAI
+chunk-WERSD76P.js?v=98623329:21551 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+i18next.js?v=70b32239:209 i18next: initialized {debug: true, initAsync: true, ns: Array(1), defaultNS: 'translation', fallbackLng: Array(1), …}
+i18n.ts:106 i18next initialized successfully
+i18n.ts:106 i18next initialized successfully
+i18next.js?v=70b32239:209 i18next::backendConnector: loaded namespace translation for language az {notifications: {…}, faq: {…}, seo: {…}, categories: {…}, conditions: {…}, …}
+i18next.js?v=70b32239:209 i18next: languageChanged az
+i18n.ts:31 i18next: init: i18next is already initialized. You should call init just once!
+output @ i18next.js?v=70b32239:209
+warn @ i18next.js?v=70b32239:202
+forward @ i18next.js?v=70b32239:251
+warn @ i18next.js?v=70b32239:234
+finish @ i18next.js?v=70b32239:1871
+done @ i18next.js?v=70b32239:2002
+(anonymous) @ i18next.js?v=70b32239:2018
+(anonymous) @ i18next.js?v=70b32239:1915
+(anonymous) @ i18next.js?v=70b32239:1517
+loaded @ i18next.js?v=70b32239:1499
+(anonymous) @ i18next.js?v=70b32239:1605
+resolver @ i18next.js?v=70b32239:1553
+(anonymous) @ i18next-http-backend.js?v=398ee6b6:405
+(anonymous) @ i18next-http-backend.js?v=398ee6b6:124
+Promise.then
+resolver2 @ i18next-http-backend.js?v=398ee6b6:123
+Promise.then
+fetchIt2 @ i18next-http-backend.js?v=398ee6b6:138
+requestWithFetch2 @ i18next-http-backend.js?v=398ee6b6:161
+request2 @ i18next-http-backend.js?v=398ee6b6:223
+loadUrl @ i18next-http-backend.js?v=398ee6b6:381
+(anonymous) @ i18next-http-backend.js?v=398ee6b6:371
+Promise.then
+_readAny @ i18next-http-backend.js?v=398ee6b6:365
+read @ i18next-http-backend.js?v=398ee6b6:354
+read @ i18next.js?v=70b32239:1569
+loadOne @ i18next.js?v=70b32239:1602
+(anonymous) @ i18next.js?v=70b32239:1586
+prepareLoading @ i18next.js?v=70b32239:1585
+load @ i18next.js?v=70b32239:1590
+loadResources @ i18next.js?v=70b32239:1913
+setLng @ i18next.js?v=70b32239:2017
+changeLanguage @ i18next.js?v=70b32239:2022
+load @ i18next.js?v=70b32239:1879
+setTimeout
+init @ i18next.js?v=70b32239:1884
+(anonymous) @ i18n.ts:31Understand this warningAI
+i18next.js?v=70b32239:209 i18next: initialized {debug: true, initAsync: true, ns: Array(1), defaultNS: 'translation', fallbackLng: Array(1), …}
+i18n.ts:106 i18next initialized successfully
+i18n.ts:106 i18next initialized successfully
+queryClient.ts:52 GET Query: /api/items/1
+AuthContext.tsx:21 AuthContext: Fetching current user data
+queryClient.ts:63 Query Response: 200 OK {headers: Array(10), url: 'https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/api/items/1'}
+queryClient.ts:75 Query Data: {id: 1, userId: 4, title: 'Bosqab', description: 'Yaxsidi tezeid', category: 'Beauty', …}
+ItemDetail.tsx:295 Warning: React has detected a change in the order of Hooks called by ItemDetail. This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://reactjs.org/link/rules-of-hooks
+
+   Previous render            Next render
+   ------------------------------------------------------
+1. useContext                 useContext
+2. useContext                 useContext
+3. useSyncExternalStore       useSyncExternalStore
+4. useRef                     useRef
+5. useInsertionEffect         useInsertionEffect
+6. useContext                 useContext
+7. useSyncExternalStore       useSyncExternalStore
+8. useRef                     useRef
+9. useInsertionEffect         useInsertionEffect
+10. useContext                useContext
+11. useState                  useState
+12. useEffect                 useEffect
+13. useContext                useContext
+14. useCallback               useCallback
+15. useState                  useState
+16. useRef                    useRef
+17. useEffect                 useEffect
+18. useRef                    useRef
+19. useEffect                 useEffect
+20. useEffect                 useEffect
+21. useContext                useContext
+22. useState                  useState
+23. useState                  useState
+24. useState                  useState
+25. useState                  useState
+26. useState                  useState
+27. useContext                useContext
+28. useContext                useContext
+29. useContext                useContext
+30. useEffect                 useEffect
+31. useState                  useState
+32. useCallback               useCallback
+33. useSyncExternalStore      useSyncExternalStore
+34. useEffect                 useEffect
+35. useContext                useContext
+36. useContext                useContext
+37. useContext                useContext
+38. useEffect                 useEffect
+39. useState                  useState
+40. useCallback               useCallback
+41. useSyncExternalStore      useSyncExternalStore
+42. useEffect                 useEffect
+43. useEffect                 useEffect
+44. useContext                useContext
+45. useState                  useState
+46. useEffect                 useEffect
+47. useCallback               useCallback
+48. useSyncExternalStore      useSyncExternalStore
+49. useCallback               useCallback
+50. useContext                useContext
+51. useState                  useState
+52. useEffect                 useEffect
+53. useCallback               useCallback
+54. useSyncExternalStore      useSyncExternalStore
+55. useCallback               useCallback
+56. useContext                useContext
+57. useState                  useState
+58. useEffect                 useEffect
+59. useCallback               useCallback
+60. useSyncExternalStore      useSyncExternalStore
+61. useCallback               useCallback
+62. useContext                useContext
+63. useState                  useState
+64. useEffect                 useEffect
+65. useCallback               useCallback
+66. useSyncExternalStore      useSyncExternalStore
+67. useCallback               useCallback
+68. undefined                 useRef
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    at ItemDetail (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/pages/ItemDetail.tsx?t=1743250164663:62:22)
+    at Route (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=5b7526d7:323:16)
+    at Switch (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=5b7526d7:379:17)
+    at main
+    at div
+    at Router (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/App.tsx?t=1743250164663&v=6wW9k26FH2GPOrlEUappJ:58:22)
+    at AdminProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/context/AdminContext.tsx:32:33)
+    at AuthProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/context/AuthContext.tsx:21:32)
+    at QueryClientProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=50962a13:2805:3)
+    at I18nextProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-i18next.js?v=d22ed336:781:3)
+    at App
+printWarning @ chunk-WERSD76P.js?v=98623329:521
+error @ chunk-WERSD76P.js?v=98623329:505
+warnOnHookMismatchInDev @ chunk-WERSD76P.js?v=98623329:11495
+updateHookTypesDev @ chunk-WERSD76P.js?v=98623329:11465
+useRef @ chunk-WERSD76P.js?v=98623329:12744
+useRef @ chunk-3TFVT2CW.js?v=98623329:1074
+ItemDetail @ ItemDetail.tsx:295
+renderWithHooks @ chunk-WERSD76P.js?v=98623329:11548
+updateFunctionComponent @ chunk-WERSD76P.js?v=98623329:14582
+beginWork @ chunk-WERSD76P.js?v=98623329:15924
+beginWork$1 @ chunk-WERSD76P.js?v=98623329:19753
+performUnitOfWork @ chunk-WERSD76P.js?v=98623329:19198
+workLoopSync @ chunk-WERSD76P.js?v=98623329:19137
+renderRootSync @ chunk-WERSD76P.js?v=98623329:19116
+performSyncWorkOnRoot @ chunk-WERSD76P.js?v=98623329:18874
+flushSyncCallbacks @ chunk-WERSD76P.js?v=98623329:9119
+(anonymous) @ chunk-WERSD76P.js?v=98623329:18627
+setTimeout
+scheduleFn @ @tanstack_react-query.js?v=50962a13:555
+flush @ @tanstack_react-query.js?v=50962a13:569
+batch @ @tanstack_react-query.js?v=50962a13:587
+dispatch_fn @ @tanstack_react-query.js?v=50962a13:996
+setData @ @tanstack_react-query.js?v=50962a13:696
+onSuccess @ @tanstack_react-query.js?v=50962a13:897
+resolve @ @tanstack_react-query.js?v=50962a13:456
+Promise.then
+run @ @tanstack_react-query.js?v=50962a13:498
+start @ @tanstack_react-query.js?v=50962a13:536
+fetch @ @tanstack_react-query.js?v=50962a13:926
+executeFetch_fn @ @tanstack_react-query.js?v=50962a13:2211
+onSubscribe @ @tanstack_react-query.js?v=50962a13:1898
+subscribe @ @tanstack_react-query.js?v=50962a13:24
+(anonymous) @ @tanstack_react-query.js?v=50962a13:3022
+subscribeToStore @ chunk-WERSD76P.js?v=98623329:11984
+commitHookEffectListMount @ chunk-WERSD76P.js?v=98623329:16915
+commitPassiveMountOnFiber @ chunk-WERSD76P.js?v=98623329:18156
+commitPassiveMountEffects_complete @ chunk-WERSD76P.js?v=98623329:18129
+commitPassiveMountEffects_begin @ chunk-WERSD76P.js?v=98623329:18119
+commitPassiveMountEffects @ chunk-WERSD76P.js?v=98623329:18109
+flushPassiveEffectsImpl @ chunk-WERSD76P.js?v=98623329:19490
+flushPassiveEffects @ chunk-WERSD76P.js?v=98623329:19447
+performSyncWorkOnRoot @ chunk-WERSD76P.js?v=98623329:18868
+flushSyncCallbacks @ chunk-WERSD76P.js?v=98623329:9119
+commitRootImpl @ chunk-WERSD76P.js?v=98623329:19432
+commitRoot @ chunk-WERSD76P.js?v=98623329:19277
+finishConcurrentRender @ chunk-WERSD76P.js?v=98623329:18805
+performConcurrentWorkOnRoot @ chunk-WERSD76P.js?v=98623329:18718
+workLoop @ chunk-WERSD76P.js?v=98623329:197
+flushWork @ chunk-WERSD76P.js?v=98623329:176
+performWorkUntilDeadline @ chunk-WERSD76P.js?v=98623329:384Understand this errorAI
+chunk-WERSD76P.js?v=98623329:11678 Uncaught Error: Rendered more hooks than during the previous render.
+    at updateWorkInProgressHook (chunk-WERSD76P.js?v=98623329:11678:21)
+    at updateRef (chunk-WERSD76P.js?v=98623329:12064:22)
+    at Object.useRef (chunk-WERSD76P.js?v=98623329:12745:22)
+    at useRef (chunk-3TFVT2CW.js?v=98623329:1074:29)
+    at ItemDetail (ItemDetail.tsx:295:21)
+    at renderWithHooks (chunk-WERSD76P.js?v=98623329:11548:26)
+    at updateFunctionComponent (chunk-WERSD76P.js?v=98623329:14582:28)
+    at beginWork (chunk-WERSD76P.js?v=98623329:15924:22)
+    at HTMLUnknownElement.callCallback2 (chunk-WERSD76P.js?v=98623329:3674:22)
+    at Object.invokeGuardedCallbackDev (chunk-WERSD76P.js?v=98623329:3699:24)
+updateWorkInProgressHook @ chunk-WERSD76P.js?v=98623329:11678
+updateRef @ chunk-WERSD76P.js?v=98623329:12064
+useRef @ chunk-WERSD76P.js?v=98623329:12745
+useRef @ chunk-3TFVT2CW.js?v=98623329:1074
+ItemDetail @ ItemDetail.tsx:295
+renderWithHooks @ chunk-WERSD76P.js?v=98623329:11548
+updateFunctionComponent @ chunk-WERSD76P.js?v=98623329:14582
+beginWork @ chunk-WERSD76P.js?v=98623329:15924
+callCallback2 @ chunk-WERSD76P.js?v=98623329:3674
+invokeGuardedCallbackDev @ chunk-WERSD76P.js?v=98623329:3699
+invokeGuardedCallback @ chunk-WERSD76P.js?v=98623329:3733
+beginWork$1 @ chunk-WERSD76P.js?v=98623329:19765
+performUnitOfWork @ chunk-WERSD76P.js?v=98623329:19198
+workLoopSync @ chunk-WERSD76P.js?v=98623329:19137
+renderRootSync @ chunk-WERSD76P.js?v=98623329:19116
+performSyncWorkOnRoot @ chunk-WERSD76P.js?v=98623329:18874
+flushSyncCallbacks @ chunk-WERSD76P.js?v=98623329:9119
+(anonymous) @ chunk-WERSD76P.js?v=98623329:18627
+setTimeout
+scheduleFn @ @tanstack_react-query.js?v=50962a13:555
+flush @ @tanstack_react-query.js?v=50962a13:569
+batch @ @tanstack_react-query.js?v=50962a13:587
+dispatch_fn @ @tanstack_react-query.js?v=50962a13:996
+setData @ @tanstack_react-query.js?v=50962a13:696
+onSuccess @ @tanstack_react-query.js?v=50962a13:897
+resolve @ @tanstack_react-query.js?v=50962a13:456
+Promise.then
+run @ @tanstack_react-query.js?v=50962a13:498
+start @ @tanstack_react-query.js?v=50962a13:536
+fetch @ @tanstack_react-query.js?v=50962a13:926
+executeFetch_fn @ @tanstack_react-query.js?v=50962a13:2211
+onSubscribe @ @tanstack_react-query.js?v=50962a13:1898
+subscribe @ @tanstack_react-query.js?v=50962a13:24
+(anonymous) @ @tanstack_react-query.js?v=50962a13:3022
+subscribeToStore @ chunk-WERSD76P.js?v=98623329:11984
+commitHookEffectListMount @ chunk-WERSD76P.js?v=98623329:16915
+commitPassiveMountOnFiber @ chunk-WERSD76P.js?v=98623329:18156
+commitPassiveMountEffects_complete @ chunk-WERSD76P.js?v=98623329:18129
+commitPassiveMountEffects_begin @ chunk-WERSD76P.js?v=98623329:18119
+commitPassiveMountEffects @ chunk-WERSD76P.js?v=98623329:18109
+flushPassiveEffectsImpl @ chunk-WERSD76P.js?v=98623329:19490
+flushPassiveEffects @ chunk-WERSD76P.js?v=98623329:19447
+performSyncWorkOnRoot @ chunk-WERSD76P.js?v=98623329:18868
+flushSyncCallbacks @ chunk-WERSD76P.js?v=98623329:9119
+commitRootImpl @ chunk-WERSD76P.js?v=98623329:19432
+commitRoot @ chunk-WERSD76P.js?v=98623329:19277
+finishConcurrentRender @ chunk-WERSD76P.js?v=98623329:18805
+performConcurrentWorkOnRoot @ chunk-WERSD76P.js?v=98623329:18718
+workLoop @ chunk-WERSD76P.js?v=98623329:197
+flushWork @ chunk-WERSD76P.js?v=98623329:176
+performWorkUntilDeadline @ chunk-WERSD76P.js?v=98623329:384Understand this errorAI
+chunk-WERSD76P.js?v=98623329:11678 Uncaught Error: Rendered more hooks than during the previous render.
+    at updateWorkInProgressHook (chunk-WERSD76P.js?v=98623329:11678:21)
+    at updateRef (chunk-WERSD76P.js?v=98623329:12064:22)
+    at Object.useRef (chunk-WERSD76P.js?v=98623329:12745:22)
+    at useRef (chunk-3TFVT2CW.js?v=98623329:1074:29)
+    at ItemDetail (ItemDetail.tsx:295:21)
+    at renderWithHooks (chunk-WERSD76P.js?v=98623329:11548:26)
+    at updateFunctionComponent (chunk-WERSD76P.js?v=98623329:14582:28)
+    at beginWork (chunk-WERSD76P.js?v=98623329:15924:22)
+    at HTMLUnknownElement.callCallback2 (chunk-WERSD76P.js?v=98623329:3674:22)
+    at Object.invokeGuardedCallbackDev (chunk-WERSD76P.js?v=98623329:3699:24)
+updateWorkInProgressHook @ chunk-WERSD76P.js?v=98623329:11678
+updateRef @ chunk-WERSD76P.js?v=98623329:12064
+useRef @ chunk-WERSD76P.js?v=98623329:12745
+useRef @ chunk-3TFVT2CW.js?v=98623329:1074
+ItemDetail @ ItemDetail.tsx:295
+renderWithHooks @ chunk-WERSD76P.js?v=98623329:11548
+updateFunctionComponent @ chunk-WERSD76P.js?v=98623329:14582
+beginWork @ chunk-WERSD76P.js?v=98623329:15924
+callCallback2 @ chunk-WERSD76P.js?v=98623329:3674
+invokeGuardedCallbackDev @ chunk-WERSD76P.js?v=98623329:3699
+invokeGuardedCallback @ chunk-WERSD76P.js?v=98623329:3733
+beginWork$1 @ chunk-WERSD76P.js?v=98623329:19765
+performUnitOfWork @ chunk-WERSD76P.js?v=98623329:19198
+workLoopSync @ chunk-WERSD76P.js?v=98623329:19137
+renderRootSync @ chunk-WERSD76P.js?v=98623329:19116
+recoverFromConcurrentError @ chunk-WERSD76P.js?v=98623329:18736
+performSyncWorkOnRoot @ chunk-WERSD76P.js?v=98623329:18879
+flushSyncCallbacks @ chunk-WERSD76P.js?v=98623329:9119
+(anonymous) @ chunk-WERSD76P.js?v=98623329:18627
+setTimeout
+scheduleFn @ @tanstack_react-query.js?v=50962a13:555
+flush @ @tanstack_react-query.js?v=50962a13:569
+batch @ @tanstack_react-query.js?v=50962a13:587
+dispatch_fn @ @tanstack_react-query.js?v=50962a13:996
+setData @ @tanstack_react-query.js?v=50962a13:696
+onSuccess @ @tanstack_react-query.js?v=50962a13:897
+resolve @ @tanstack_react-query.js?v=50962a13:456
+Promise.then
+run @ @tanstack_react-query.js?v=50962a13:498
+start @ @tanstack_react-query.js?v=50962a13:536
+fetch @ @tanstack_react-query.js?v=50962a13:926
+executeFetch_fn @ @tanstack_react-query.js?v=50962a13:2211
+onSubscribe @ @tanstack_react-query.js?v=50962a13:1898
+subscribe @ @tanstack_react-query.js?v=50962a13:24
+(anonymous) @ @tanstack_react-query.js?v=50962a13:3022
+subscribeToStore @ chunk-WERSD76P.js?v=98623329:11984
+commitHookEffectListMount @ chunk-WERSD76P.js?v=98623329:16915
+commitPassiveMountOnFiber @ chunk-WERSD76P.js?v=98623329:18156
+commitPassiveMountEffects_complete @ chunk-WERSD76P.js?v=98623329:18129
+commitPassiveMountEffects_begin @ chunk-WERSD76P.js?v=98623329:18119
+commitPassiveMountEffects @ chunk-WERSD76P.js?v=98623329:18109
+flushPassiveEffectsImpl @ chunk-WERSD76P.js?v=98623329:19490
+flushPassiveEffects @ chunk-WERSD76P.js?v=98623329:19447
+performSyncWorkOnRoot @ chunk-WERSD76P.js?v=98623329:18868
+flushSyncCallbacks @ chunk-WERSD76P.js?v=98623329:9119
+commitRootImpl @ chunk-WERSD76P.js?v=98623329:19432
+commitRoot @ chunk-WERSD76P.js?v=98623329:19277
+finishConcurrentRender @ chunk-WERSD76P.js?v=98623329:18805
+performConcurrentWorkOnRoot @ chunk-WERSD76P.js?v=98623329:18718
+workLoop @ chunk-WERSD76P.js?v=98623329:197
+flushWork @ chunk-WERSD76P.js?v=98623329:176
+performWorkUntilDeadline @ chunk-WERSD76P.js?v=98623329:384Understand this errorAI
+chunk-WERSD76P.js?v=98623329:14032 The above error occurred in the <ItemDetail> component:
+
+    at ItemDetail (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/pages/ItemDetail.tsx?t=1743250164663:62:22)
+    at Route (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=5b7526d7:323:16)
+    at Switch (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=5b7526d7:379:17)
+    at main
+    at div
+    at Router (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/App.tsx?t=1743250164663&v=6wW9k26FH2GPOrlEUappJ:58:22)
+    at AdminProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/context/AdminContext.tsx:32:33)
+    at AuthProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/context/AuthContext.tsx:21:32)
+    at QueryClientProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=50962a13:2805:3)
+    at I18nextProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-i18next.js?v=d22ed336:781:3)
+    at App
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+logCapturedError @ chunk-WERSD76P.js?v=98623329:14032
+update.callback @ chunk-WERSD76P.js?v=98623329:14052
+callCallback @ chunk-WERSD76P.js?v=98623329:11248
+commitUpdateQueue @ chunk-WERSD76P.js?v=98623329:11265
+commitLayoutEffectOnFiber @ chunk-WERSD76P.js?v=98623329:17093
+commitLayoutMountEffects_complete @ chunk-WERSD76P.js?v=98623329:17980
+commitLayoutEffects_begin @ chunk-WERSD76P.js?v=98623329:17969
+commitLayoutEffects @ chunk-WERSD76P.js?v=98623329:17920
+commitRootImpl @ chunk-WERSD76P.js?v=98623329:19353
+commitRoot @ chunk-WERSD76P.js?v=98623329:19277
+performSyncWorkOnRoot @ chunk-WERSD76P.js?v=98623329:18895
+flushSyncCallbacks @ chunk-WERSD76P.js?v=98623329:9119
+(anonymous) @ chunk-WERSD76P.js?v=98623329:18627
+setTimeout
+scheduleFn @ @tanstack_react-query.js?v=50962a13:555
+flush @ @tanstack_react-query.js?v=50962a13:569
+batch @ @tanstack_react-query.js?v=50962a13:587
+dispatch_fn @ @tanstack_react-query.js?v=50962a13:996
+setData @ @tanstack_react-query.js?v=50962a13:696
+onSuccess @ @tanstack_react-query.js?v=50962a13:897
+resolve @ @tanstack_react-query.js?v=50962a13:456
+Promise.then
+run @ @tanstack_react-query.js?v=50962a13:498
+start @ @tanstack_react-query.js?v=50962a13:536
+fetch @ @tanstack_react-query.js?v=50962a13:926
+executeFetch_fn @ @tanstack_react-query.js?v=50962a13:2211
+onSubscribe @ @tanstack_react-query.js?v=50962a13:1898
+subscribe @ @tanstack_react-query.js?v=50962a13:24
+(anonymous) @ @tanstack_react-query.js?v=50962a13:3022
+subscribeToStore @ chunk-WERSD76P.js?v=98623329:11984
+commitHookEffectListMount @ chunk-WERSD76P.js?v=98623329:16915
+commitPassiveMountOnFiber @ chunk-WERSD76P.js?v=98623329:18156
+commitPassiveMountEffects_complete @ chunk-WERSD76P.js?v=98623329:18129
+commitPassiveMountEffects_begin @ chunk-WERSD76P.js?v=98623329:18119
+commitPassiveMountEffects @ chunk-WERSD76P.js?v=98623329:18109
+flushPassiveEffectsImpl @ chunk-WERSD76P.js?v=98623329:19490
+flushPassiveEffects @ chunk-WERSD76P.js?v=98623329:19447
+performSyncWorkOnRoot @ chunk-WERSD76P.js?v=98623329:18868
+flushSyncCallbacks @ chunk-WERSD76P.js?v=98623329:9119
+commitRootImpl @ chunk-WERSD76P.js?v=98623329:19432
+commitRoot @ chunk-WERSD76P.js?v=98623329:19277
+finishConcurrentRender @ chunk-WERSD76P.js?v=98623329:18805
+performConcurrentWorkOnRoot @ chunk-WERSD76P.js?v=98623329:18718
+workLoop @ chunk-WERSD76P.js?v=98623329:197
+flushWork @ chunk-WERSD76P.js?v=98623329:176
+performWorkUntilDeadline @ chunk-WERSD76P.js?v=98623329:384Understand this errorAI
+chunk-WERSD76P.js?v=98623329:11678 Uncaught Error: Rendered more hooks than during the previous render.
+    at updateWorkInProgressHook (chunk-WERSD76P.js?v=98623329:11678:21)
+    at updateRef (chunk-WERSD76P.js?v=98623329:12064:22)
+    at Object.useRef (chunk-WERSD76P.js?v=98623329:12745:22)
+    at useRef (chunk-3TFVT2CW.js?v=98623329:1074:29)
+    at ItemDetail (ItemDetail.tsx:295:21)
+    at renderWithHooks (chunk-WERSD76P.js?v=98623329:11548:26)
+    at updateFunctionComponent (chunk-WERSD76P.js?v=98623329:14582:28)
+    at beginWork (chunk-WERSD76P.js?v=98623329:15924:22)
+    at beginWork$1 (chunk-WERSD76P.js?v=98623329:19753:22)
+    at performUnitOfWork (chunk-WERSD76P.js?v=98623329:19198:20)
+updateWorkInProgressHook @ chunk-WERSD76P.js?v=98623329:11678
+updateRef @ chunk-WERSD76P.js?v=98623329:12064
+useRef @ chunk-WERSD76P.js?v=98623329:12745
+useRef @ chunk-3TFVT2CW.js?v=98623329:1074
+ItemDetail @ ItemDetail.tsx:295
+renderWithHooks @ chunk-WERSD76P.js?v=98623329:11548
+updateFunctionComponent @ chunk-WERSD76P.js?v=98623329:14582
+beginWork @ chunk-WERSD76P.js?v=98623329:15924
+beginWork$1 @ chunk-WERSD76P.js?v=98623329:19753
+performUnitOfWork @ chunk-WERSD76P.js?v=98623329:19198
+workLoopSync @ chunk-WERSD76P.js?v=98623329:19137
+renderRootSync @ chunk-WERSD76P.js?v=98623329:19116
+recoverFromConcurrentError @ chunk-WERSD76P.js?v=98623329:18736
+performSyncWorkOnRoot @ chunk-WERSD76P.js?v=98623329:18879
+flushSyncCallbacks @ chunk-WERSD76P.js?v=98623329:9119
+(anonymous) @ chunk-WERSD76P.js?v=98623329:18627
+setTimeout
+scheduleFn @ @tanstack_react-query.js?v=50962a13:555
+flush @ @tanstack_react-query.js?v=50962a13:569
+batch @ @tanstack_react-query.js?v=50962a13:587
+dispatch_fn @ @tanstack_react-query.js?v=50962a13:996
+setData @ @tanstack_react-query.js?v=50962a13:696
+onSuccess @ @tanstack_react-query.js?v=50962a13:897
+resolve @ @tanstack_react-query.js?v=50962a13:456
+Promise.then
+run @ @tanstack_react-query.js?v=50962a13:498
+start @ @tanstack_react-query.js?v=50962a13:536
+fetch @ @tanstack_react-query.js?v=50962a13:926
+executeFetch_fn @ @tanstack_react-query.js?v=50962a13:2211
+onSubscribe @ @tanstack_react-query.js?v=50962a13:1898
+subscribe @ @tanstack_react-query.js?v=50962a13:24
+(anonymous) @ @tanstack_react-query.js?v=50962a13:3022
+subscribeToStore @ chunk-WERSD76P.js?v=98623329:11984
+commitHookEffectListMount @ chunk-WERSD76P.js?v=98623329:16915
+commitPassiveMountOnFiber @ chunk-WERSD76P.js?v=98623329:18156
+commitPassiveMountEffects_complete @ chunk-WERSD76P.js?v=98623329:18129
+commitPassiveMountEffects_begin @ chunk-WERSD76P.js?v=98623329:18119
+commitPassiveMountEffects @ chunk-WERSD76P.js?v=98623329:18109
+flushPassiveEffectsImpl @ chunk-WERSD76P.js?v=98623329:19490
+flushPassiveEffects @ chunk-WERSD76P.js?v=98623329:19447
+performSyncWorkOnRoot @ chunk-WERSD76P.js?v=98623329:18868
+flushSyncCallbacks @ chunk-WERSD76P.js?v=98623329:9119
+commitRootImpl @ chunk-WERSD76P.js?v=98623329:19432
+commitRoot @ chunk-WERSD76P.js?v=98623329:19277
+finishConcurrentRender @ chunk-WERSD76P.js?v=98623329:18805
+performConcurrentWorkOnRoot @ chunk-WERSD76P.js?v=98623329:18718
+workLoop @ chunk-WERSD76P.js?v=98623329:197
+flushWork @ chunk-WERSD76P.js?v=98623329:176
+performWorkUntilDeadline @ chunk-WERSD76P.js?v=98623329:384Understand this errorAI
+AuthContext.tsx:35 AuthContext: /api/auth/me response {status: 200, statusText: 'OK', headers: Array(10), url: 'https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/api/auth/me'}
+AuthContext.tsx:56 AuthContext: User data fetched successfully: {id: 4, username: 'elchin.esgerov@bk.ru', email: 'elchin.esgerov@bk.ru', fullName: 'Elchin Asgarov', avatar: null, …}

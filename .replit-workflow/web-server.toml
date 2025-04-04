@@ -1,0 +1,4 @@
+[Workflow]
+name = "Web Server"
+command = "node server.js"
+onBoot = true

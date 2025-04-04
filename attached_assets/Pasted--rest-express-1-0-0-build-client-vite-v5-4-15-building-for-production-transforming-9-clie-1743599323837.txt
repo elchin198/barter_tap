@@ -1,0 +1,276 @@
+
+"> rest-express@1.0.0 build:client 
+vite v5.4.15 building for production...
+transforming (9) client/src/pages/unauthorized.tsx
+images/layers.png referenced in images/layers.png didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+images/layers-2x.png referenced in images/layers-2x.png didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+images/marker-icon.png referenced in images/marker-icon.png didn't resolve at build time, it will remain unchanged to be resolved at runtime
+[vite:css] @import must precede all other statements (besides @charset or empty @layer)
+690|  
+691|  /* Rest of the styles can be imported */
+692|  @import 'leaflet/dist/leaflet.css';
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+693|  
+✓ 38 modules transformed.
+x Build failed in 1.98s
+error during build:
+client/src/pages/Dashboard.tsx (495:87): Expression expected (Note that you need plugins to import files that are not JavaScript)
+file: /home/runner/workspace/client/src/pages/Dashboard.tsx:495:87
+
+493:                                   Qəbul et
+494:                                 </Button>
+495:                                 <Button size="sm" variant="outline" className="flex-1" onClick={() => console.log('Rə...
+                                                                                            ^
+496:                                   Rədd et
+497:                                 </Button>
+
+    at getRollupError (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/parseAst.js:396:41)
+    at ParseError.initialise (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:13281:28)
+    at convertNode (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:14992:10)
+    at convertProgram (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:14235:12)
+    at Module.setSource (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:15978:24)
+    at async ModuleLoader.addModuleSource (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:19856:13)" Bu build problemi artıq 3 fərqli səbəbdən eyni anda baş verir. Aşağıda hər bir problemi tam şəkildə izah edir və dəqiq düzəliş yollarını verirəm:
+
+❌ 1. @import 'leaflet/dist/leaflet.css' – YANLIŞ İSTİFADƏ
+sql
+Copy
+Edit
+@import must precede all other statements
+📌 Səbəb:
+@import ifadəsi CSS-də ən başda olmalıdır. Amma sən onu 690-cı sətrdə, digər stil qaydalarından sonra yazmısan.
+
+✅ Həll:
+Faylın ən yuxarısına (birinci sətrə) köçür:
+
+css
+Copy
+Edit
+@import 'leaflet/dist/leaflet.css';
+
+/* Daha sonra digər stillər */
+❌ 2. images/layers.png, marker-icon.png və s. – yığılmır
+📌 Səbəb:
+Bu şəkillər ya node_modules/leaflet içindədir, ya da src/images/ içindədir, amma vite onları resolve edə bilmir.
+
+✅ Həll (iki seçim):
+✅ A) Şəkilləri public/images/ qovluğuna köçür və bu cür istinad et:
+ts
+Copy
+Edit
+<img src="/images/marker-icon.png" />
+✅ B) Əgər leaflet.css içində url(...) istifadə edirsə:
+vite.config.ts faylına bu pluginləri əlavə et:
+
+ts
+Copy
+Edit
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import copy from 'rollup-plugin-copy';
+
+export default defineConfig({
+  plugins: [
+    react(),
+    copy({
+      targets: [
+        {
+          src: 'node_modules/leaflet/dist/images/*',
+          dest: 'dist/images'
+        }
+      ],
+      hook: 'writeBundle'
+    })
+  ]
+});
+Bu plugin leaflet şəkillərini avtomatik olaraq dist/images/ qovluğuna kopyalayacaq.
+
+❌ 3. Dashboard.tsx: Expression expected – SINTAKSİS XƏTASI
+ini
+Copy
+Edit
+onClick={() => console.log('Rə...
+                           ^
+📌 Səbəb:
+Bu console.log('Rə...') ifadəsi tam bağlanmayıb, çox güman ki, sətir natamamdır.
+
+✅ Həll:
+Tam Button JSX elementi belə olmalıdır:
+
+tsx
+Copy
+Edit
+<Button
+  size="sm"
+  variant="outline"
+  className="flex-1"
+  onClick={() => console.log('Rədd et')}
+>
+  Rədd et
+</Button>
+✅ Qısa Yekun Dəyişiklik Planı:
+CSS @import sətrini faylın başına köçür.
+
+Leaflet şəkilləri üçün:
+
+Ya public/images/-ə köçür,
+
+Ya vite.config.ts içində rollup-plugin-copy ilə dist/-ə kopyala.
+
+JSX Button elementi içindəki onClick={() => ...} tam və düzgün bağlandığına əmin ol.
+Əla, indi artıq son problemləri çox dəqiq görə bilirik. Gəlin üç əsas problemi ardıcıl həll edək:
+
+✅ 1. @import xətası (CSS daxilində)
+🔥 Xəta:
+scss
+Copy
+[vite:css] @import must precede all other statements (besides @charset or empty @layer)
+692|  @import 'leaflet/dist/leaflet.css';
+🛠️ Həll:
+CSS faylında @import hər şeydən əvvəl olmalıdır. Yəni:
+
+css
+Copy
+/* ✅ Doğru */
+@import 'leaflet/dist/leaflet.css';
+
+body {
+  margin: 0;
+}
+📁 Fayl:
+Böyük ehtimalla bu Dashboard.module.css, main.css və ya index.css içindədir. Axtar:
+
+bash
+Copy
+grep -rn "@import 'leaflet/dist/leaflet.css';" client/
+Sonra həmin faylda @import-u ən yuxarıya çək. Əgər başqa CSS kodlarının arasında qalıbsa – build pozulur.
+
+✅ 2. Hələ də davam edən JSX xətası (Expression expected)
+🔥 Problem:
+tsx
+Copy
+<Button size="sm" variant="outline" className="flex-1" onClick={() => console.log('Rə...
+Bu, bağlanmayan function expression-dır. Kodun tam versiyası bu cür olmalıdır:
+
+🛠️ Həll (Tam düzdür):
+tsx
+Copy
+<Button
+  size="sm"
+  variant="outline"
+  className="flex-1"
+  onClick={() => console.log('Rədd et')}
+>
+  Rədd et
+</Button>
+Kodun sonunda )}> bağlanmalıdır. Sənin kodda parantezlər tamamlanmayıb, ona görə Expression expected xətası çıxır.
+
+✅ 3. Şəkillər resolve olunmur (images/layers.png)
+Bu problem sadəcə warningdir, amma istəmirsənsə runtime-da çözülməsini, həll et:
+
+🛠️ Həll Variantları:
+🔹 A: Əgər şəkil public/ qovluğundadırsa:
+tsx
+Copy
+<img src="/images/layers.png" />
+🔹 B: Əgər şəkil src/assets/ içindədirsə:
+tsx
+Copy
+import layersImg from '../assets/images/layers.png';
+
+<img src={layersImg} />
+⚠️ Amma sadəcə bu kimi yazılıbsa və import edilməyibsə:
+
+tsx
+Copy
+<img src="images/layers.png" />
+→ bu, Vite üçün build zamanı görünmür və warning verir.
+
+✅ Qısa Yoxlama Siyahısı
+✅	Addım
+🔁 updatedAt təkrarı silindi	
+🧠 JSX onClick={() => ...} tam bağlandı	
+🎨 CSS @import ən yuxarıya yerləşdirildi	
+🖼️ Şəkillər ya import, ya public/ ilə göstərildi	
+İndi bu düzəlişləri et və sonra yenidən build et:
+
+bash
+Copy
+rm -rf dist .vite
+npm run build  Build error-lar artıq konkret yerlərə yönəldi. Aşağıda dörd əsas səhv var və tam texniki həll yolları göstərilib.
+
+🔥 1. CSS xəta: @import düzgün yerdə deyil
+css
+Copy
+Edit
+[vite:css] @import must precede all other statements
+✅ Həll:
+index.css və ya leaflet.css daxilində bu sətir:
+
+css
+Copy
+Edit
+@import 'leaflet/dist/leaflet.css';
+→ Bu, faylın ən əvvəlində olmalıdır!
+
+@import yalnız @charset və @layer-dən əvvəl ola bilər
+
+📌 Düzgün düzülüş:
+
+css
+Copy
+Edit
+@import 'leaflet/dist/leaflet.css';
+
+/* sonra digər style-lar gəlir */
+body {
+  font-family: sans-serif;
+}
+🔥 2. Dashboard.tsx — onClick={() => console.log(…)} tamamlanmayıb
+bash
+Copy
+Edit
+Expression expected
+client/src/pages/Dashboard.tsx:495:87
+✅ Həll:
+Aşağıdakı JSX sətiri bitməyib:
+
+tsx
+Copy
+Edit
+<Button
+  size="sm"
+  variant="outline"
+  className="flex-1"
+  onClick={() => console.log("Rədd edildi")}
+>
+  Rədd et
+</Button>
+✅ Əlavə oluna bilər: ; və } mütləq tam yazılmalıdır.
+
+⚠️ 3. Şəkillər build zamanı tapılmır
+bash
+Copy
+Edit
+images/layers.png referenced in images/layers.png didn't resolve at build time
+✅ Həll:
+Bu şəkilləri public/images/ qovluğuna köçür və bu cür çağır:
+
+tsx
+Copy
+Edit
+<img src="/images/layers.png" />
+Əgər src/assets içindədirsə, bu cür import etməlisən:
+
+tsx
+Copy
+Edit
+import layers from '../assets/layers.png'
+<img src={layers} />
+✅ YEKUN DÜZƏLİŞLƏR
+🧠 Dəyişməli fayllar:
+Fayl	Problem	Həll
+index.css, leaflet.css	@import aşağıdadır	Faylın əvvəlinə qoy
+Dashboard.tsx	onClick tamamlanmayıb	(e) => {} tam bağla
+Şəkil yolları	Vite tapa bilmir	Ya public/-ə köçür, ya import et

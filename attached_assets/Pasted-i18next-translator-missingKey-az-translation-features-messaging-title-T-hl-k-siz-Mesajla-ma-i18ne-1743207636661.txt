@@ -1,0 +1,26 @@
+i18next::translator: missingKey az translation features.messaging.title Təhlükəsiz Mesajlaşma
+i18next::translator: missingKey az translation features.messaging.description İstifadəçilərlə birbaşa və təhlükəsiz əlaqə saxlaya bilərsiniz.
+i18next::translator: missingKey az translation testimonials.title İstifadəçi Rəyləri
+i18next::translator: missingKey az translation cta.title İndi qoşulun və mübadiləyə başlayın
+i18next::translator: missingKey az translation cta.subtitle Minlərlə istifadəçi artıq pul xərcləmədən ehtiyac duyduqları əşyaları əldə edib. Siz də dəyişim hərəkatına qoşulun!
+i18next::translator: missingKey az translation auth.register Qeydiyyatdan keçin
+i18next::translator: missingKey az translation howItWorks.title Necə İşləyir
+i18next::translator: missingKey az translation stats.users Aktiv İstifadəçi
+i18next::translator: missingKey az translation stats.items Elan Sayı
+i18next::translator: missingKey az translation stats.trades Tamamlanmış Mübadilə
+i18next::translator: missingKey az translation stats.rating İstifadəçi Reytinqi
+`DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog
+Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+i18next::translator: missingKey az translation hero.title Lazım olmayan əşyalarınızı lazım olanlarla dəyişin
+i18next::translator: missingKey az translation hero.subtitle Minlərlə insanın yeni əşyalar almaq əvəzinə mübadilə etdiyi platformaya qoşulun.
+i18next::translator: missingKey az translation search.placeholder Nə axtarırsınız?
+i18next::translator: missingKey az translation search.allCategories Bütün Kateqoriyalar
+i18next::translator: missingKey az translation categories.electronics Elektronika
+i18next::translator: missingKey az translation categories.clothing Geyim
+i18next::translator: missingKey az translation categories.books Kitablar
+i18next::translator: missingKey az translation categories.furniture Mebel
+i18next::translator

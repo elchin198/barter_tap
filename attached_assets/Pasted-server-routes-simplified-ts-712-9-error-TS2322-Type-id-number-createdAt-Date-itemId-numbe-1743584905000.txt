@@ -1,0 +1,85 @@
+server/routes-simplified.ts:712:9 - error TS2322: Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is not assignable to type 'ConversationWithParticipants'.
+  Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is missing the following properties from type '{ participants: { id: number; username: string; password: string; fullName: string | null; email: string; avatar: string | null; bio: string | null; phone: string | null; city: string | null; ... 4 more ...; createdAt: Date; }[]; ... 5 more ...; message?: string | undefined; }': participants, otherParticipant, unreadCount
+
+712         conversation = await storage.createConversation({
+            ~~~~~~~~~~~~
+
+server/routes-simplified.ts:714:11 - error TS2353: Object literal may only specify known properties, and 'lastMessageAt' does not exist in type '{ itemId?: number | null | undefined; }'.
+
+714           lastMessageAt: new Date()
+              ~~~~~~~~~~~~~
+
+server/routes-simplified.ts:920:9 - error TS2322: Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is not assignable to type 'ConversationWithParticipants'.
+  Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is missing the following properties from type '{ participants: { id: number; username: string; password: string; fullName: string | null; email: string; avatar: string | null; bio: string | null; phone: string | null; city: string | null; ... 4 more ...; createdAt: Date; }[]; ... 5 more ...; message?: string | undefined; }': participants, otherParticipant, unreadCount
+
+920         conversation = await storage.createConversation(
+            ~~~~~~~~~~~~
+
+server/routes-simplified.ts:923:13 - error TS2353: Object literal may only specify known properties, and 'lastMessageAt' does not exist in type '{ itemId?: number | null | undefined; }'.
+
+923             lastMessageAt: new Date()
+                ~~~~~~~~~~~~~
+
+server/routes.ts:1428:13 - error TS2353: Object literal may only specify known properties, and 'lastMessageAt' does not exist in type '{ itemId?: number | null | undefined; }'.
+
+1428             lastMessageAt: new Date()
+                 ~~~~~~~~~~~~~
+
+server/routes.ts:1658:35 - error TS2353: Object literal may only specify known properties, and 'role' does not exist in type '{ userId: number; conversationId: number; }'.
+
+1658             { userId: fromUserId, role: 'sender' },
+                                       ~~~~
+
+server/routes.ts:1659:43 - error TS2353: Object literal may only specify known properties, and 'role' does not exist in type '{ userId: number; conversationId: number; }'.
+
+1659             { userId: offerData.toUserId, role: 'receiver' }
+                                               ~~~~
+
+server/routes.ts:1940:44 - error TS2551: Property 'createOrUpdatePushSubscription' does not exist on type 'MemStorage'. Did you mean 'asynccreateOrUpdatePushSubscription'?
+
+1940       const subscription = await dbStorage.createOrUpdatePushSubscription(subscriptionData);
+                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  server/storage.ts:899:3
+    899   asynccreateOrUpdatePushSubscription(insertSubscription: InsertPushSubscription): Promise<PushSubscription> {
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    'asynccreateOrUpdatePushSubscription' is declared here.
+
+server/storage.ts:112:14 - error TS2420: Class 'MemStorage' incorrectly implements interface 'IStorage'.
+  Property 'createOrUpdatePushSubscription' is missing in type 'MemStorage' but required in type 'IStorage'.
+
+112 export class MemStorage implements IStorage {
+                 ~~~~~~~~~~
+
+  server/storage.ts:92:3
+    92   createOrUpdatePushSubscription(subscription: InsertPushSubscription): Promise<PushSubscription>;
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    'createOrUpdatePushSubscription' is declared here.
+
+server/storage.ts:901:22 - error TS1308: 'await' expressions are only allowed within async functions and at the top levels of modules.
+
+901     const existing = await this.getPushSubscription(insertSubscription.userId);
+                         ~~~~~
+
+  server/storage.ts:899:3
+    899   asynccreateOrUpdatePushSubscription(insertSubscription: InsertPushSubscription): Promise<PushSubscription> {
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Did you mean to mark this function as 'async'?
+
+server/storage.ts:912:7 - error TS2739: Type '{ subscription: Json; updatedAt: Date; id: number; createdAt: Date; userId: number; }' is missing the following properties from type 'Promise<{ id: number; createdAt: Date; userId: number; updatedAt: Date; subscription: unknown; }>': then, catch, finally, [Symbol.toStringTag]
+
+912       return updatedSubscription;
+          ~~~~~~
+
+server/storage.ts:928:5 - error TS2739: Type '{ id: number; createdAt: Date; userId: number; updatedAt: Date; subscription: unknown; }' is missing the following properties from type 'Promise<{ id: number; createdAt: Date; userId: number; updatedAt: Date; subscription: unknown; }>': then, catch, finally, [Symbol.toStringTag]
+
+928     return subscription;
+        ~~~~~~
+
+
+Found 12 errors in 3 files.
+
+Errors  Files
+     4  server/routes-simplified.ts:712
+     4  server/routes.ts:1428
+     4  server/storage.ts:112

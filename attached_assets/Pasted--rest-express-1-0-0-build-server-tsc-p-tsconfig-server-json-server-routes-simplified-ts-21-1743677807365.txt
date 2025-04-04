@@ -1,0 +1,302 @@
+
+> rest-express@1.0.0 build:server
+> tsc -p tsconfig.server.json
+
+server/routes-simplified.ts:21:29 - error TS2339: Property 'Server' does not exist on type 'typeof WebSocket'.
+
+21   const wss = new WebSocket.Server({ server });
+                               ~~~~~~
+
+server/routes.ts:523:49 - error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+
+523       const users = await dbStorage.getAllUsers(search);
+                                                    ~~~~~~
+
+server/routes.ts:526:47 - error TS7006: Parameter 'user' implicitly has an 'any' type.
+
+526       const usersWithoutPasswords = users.map(user => {
+                                                  ~~~~
+
+server/routes.ts:1330:55 - error TS7006: Parameter 'conv' implicitly has an 'any' type.
+
+1330       const enhancedConversations = conversations.map(conv => {
+                                                           ~~~~
+
+server/routes.ts:1431:11 - error TS2554: Expected 1 arguments, but got 2.
+
+1431           [
+               ~
+1432             { userId: userId, conversationId: 0, role: 'sender' },
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1433             { userId: otherUserId, conversationId: 0, role: 'receiver' }
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1434           ]
+     ~~~~~~~~~~~
+
+server/routes.ts:1658:11 - error TS2554: Expected 1 arguments, but got 2.
+
+1658           [
+               ~
+1659             { userId: fromUserId, conversationId: 0, role: 'sender' },
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1660             { userId: offerData.toUserId, conversationId: 0, role: 'receiver' }
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1661           ]
+     ~~~~~~~~~~~
+
+server/routes/advertisements.ts:10:42 - error TS2551: Property 'getAllAdvertisements' does not exist on type '{ getDb(): any; getUser(userId: number): Promise<any>; getUserByUsername(username: string): Promise<any>; getUserByEmail(email: string): Promise<any>; ... 43 more ...; deletePushSubscription(userId: number): Promise<...>; }'. Did you mean 'getAdvertisement'?
+
+10     const advertisements = await storage.getAllAdvertisements();
+                                            ~~~~~~~~~~~~~~~~~~~~
+
+  server/storage.ts:95:9
+    95   async getAdvertisement(id: number) {
+               ~~~~~~~~~~~~~~~~
+    'getAdvertisement' is declared here.
+
+server/routes/advertisements.ts:44:41 - error TS2551: Property 'getActiveAdvertisementByPosition' does not exist on type '{ getDb(): any; getUser(userId: number): Promise<any>; getUserByUsername(username: string): Promise<any>; getUserByEmail(email: string): Promise<any>; ... 43 more ...; deletePushSubscription(userId: number): Promise<...>; }'. Did you mean 'getActiveAdvertisements'?
+
+44     const advertisement = await storage.getActiveAdvertisementByPosition(position);
+                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  server/storage.ts:99:9
+    99   async getActiveAdvertisements() {
+               ~~~~~~~~~~~~~~~~~~~~~~~
+    'getActiveAdvertisements' is declared here.
+
+server/routes/advertisements.ts:63:42 - error TS2551: Property 'getAllAdvertisements' does not exist on type '{ getDb(): any; getUser(userId: number): Promise<any>; getUserByUsername(username: string): Promise<any>; getUserByEmail(email: string): Promise<any>; ... 43 more ...; deletePushSubscription(userId: number): Promise<...>; }'. Did you mean 'getAdvertisement'?
+
+63     const advertisements = await storage.getAllAdvertisements();
+                                            ~~~~~~~~~~~~~~~~~~~~
+
+  server/storage.ts:95:9
+    95   async getAdvertisement(id: number) {
+               ~~~~~~~~~~~~~~~~
+    'getAdvertisement' is declared here.
+
+server/routes/advertisements.ts:81:41 - error TS2551: Property 'createAdvertisement' does not exist on type '{ getDb(): any; getUser(userId: number): Promise<any>; getUserByUsername(username: string): Promise<any>; getUserByEmail(email: string): Promise<any>; ... 43 more ...; deletePushSubscription(userId: number): Promise<...>; }'. Did you mean 'getAdvertisement'?
+
+81     const advertisement = await storage.createAdvertisement(advertisementData);
+                                           ~~~~~~~~~~~~~~~~~~~
+
+  server/storage.ts:95:9
+    95   async getAdvertisement(id: number) {
+               ~~~~~~~~~~~~~~~~
+    'getAdvertisement' is declared here.
+
+server/routes/advertisements.ts:95:41 - error TS2551: Property 'updateAdvertisement' does not exist on type '{ getDb(): any; getUser(userId: number): Promise<any>; getUserByUsername(username: string): Promise<any>; getUserByEmail(email: string): Promise<any>; ... 43 more ...; deletePushSubscription(userId: number): Promise<...>; }'. Did you mean 'getAdvertisement'?
+
+95     const advertisement = await storage.updateAdvertisement(id, advertisementData);
+                                           ~~~~~~~~~~~~~~~~~~~
+
+  server/storage.ts:95:9
+    95   async getAdvertisement(id: number) {
+               ~~~~~~~~~~~~~~~~
+    'getAdvertisement' is declared here.
+
+server/routes/advertisements.ts:113:35 - error TS2551: Property 'deleteAdvertisement' does not exist on type '{ getDb(): any; getUser(userId: number): Promise<any>; getUserByUsername(username: string): Promise<any>; getUserByEmail(email: string): Promise<any>; ... 43 more ...; deletePushSubscription(userId: number): Promise<...>; }'. Did you mean 'getAdvertisement'?
+
+113     const success = await storage.deleteAdvertisement(id);
+                                      ~~~~~~~~~~~~~~~~~~~
+
+  server/storage.ts:95:9
+    95   async getAdvertisement(id: number) {
+               ~~~~~~~~~~~~~~~~
+    'getAdvertisement' is declared here.
+
+server/seed-items.ts:92:33 - error TS2554: Expected 1 arguments, but got 0.
+
+92     const users = await storage.getAllUsers();
+                                   ~~~~~~~~~~~
+
+  server/storage.ts:45:21
+    45   async getAllUsers(search: string) {
+                           ~~~~~~~~~~~~~~
+    An argument for 'search' was not provided.
+
+server/storage.ts:2:10 - error TS2305: Module '"./db_postgres.js"' has no exported member 'db'.
+
+2 import { db } from './db_postgres.js';
+           ~~
+
+server/storage.ts:15:3 - error TS2305: Module '"../shared/schema.js"' has no exported member 'advertisements'.
+
+15   advertisements,
+     ~~~~~~~~~~~~~~
+
+server/storage.ts:26:69 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+26     return db.select().from(users).where(eq(users.id, userId)).then(rows => rows[0]);
+                                                                       ~~~~
+
+server/storage.ts:30:77 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+30     return db.select().from(users).where(eq(users.username, username)).then(rows => rows[0]);
+                                                                               ~~~~
+
+server/storage.ts:34:71 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+34     return db.select().from(users).where(eq(users.email, email)).then(rows => rows[0]);
+                                                                         ~~~~
+
+server/storage.ts:38:63 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+38     return db.insert(users).values(userData).returning().then(rows => rows[0]);
+                                                                 ~~~~
+
+server/storage.ts:42:88 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+42     return db.update(users).set(userData).where(eq(users.id, userId)).returning().then(rows => rows[0]);
+                                                                                          ~~~~
+
+server/storage.ts:58:65 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+58     return db.select().from(items).where(eq(items.id, id)).then(rows => rows[0]);
+                                                                   ~~~~
+
+server/storage.ts:96:83 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+96     return db.select().from(advertisements).where(eq(advertisements.id, id)).then(rows => rows[0]);
+                                                                                     ~~~~
+
+server/storage.ts:111:13 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+111       .then(rows => rows[0]); // ilk uyğun reklamı qaytarır
+                ~~~~
+
+server/storage.ts:116:63 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+116     return db.insert(items).values(itemData).returning().then(rows => rows[0]);
+                                                                  ~~~~
+
+server/storage.ts:120:84 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+120     return db.update(items).set(itemData).where(eq(items.id, id)).returning().then(rows => rows[0]);
+                                                                                       ~~~~
+
+server/storage.ts:124:70 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+124     return db.delete(items).where(eq(items.id, id)).returning().then(rows => rows.length > 0);
+                                                                         ~~~~
+
+server/storage.ts:132:65 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+132     return db.insert(images).values(imageData).returning().then(rows => rows[0]);
+                                                                    ~~~~
+
+server/storage.ts:139:99 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+139     return db.update(images).set({ isMain: true }).where(eq(images.id, imageId)).returning().then(rows => rows.length > 0);
+                                                                                                      ~~~~
+
+server/storage.ts:143:77 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+143     return db.delete(images).where(eq(images.id, imageId)).returning().then(rows => rows.length > 0);
+                                                                                ~~~~
+
+server/storage.ts:160:93 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+160     return db.select().from(conversations).where(eq(conversations.id, conversationId)).then(rows => rows[0]);
+                                                                                                ~~~~
+
+server/storage.ts:173:23 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+173     return query.then(rows => rows[0]);
+                          ~~~~
+
+server/storage.ts:177:79 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+177     return db.insert(conversations).values(conversationData).returning().then(rows => rows[0]);
+                                                                                  ~~~~
+
+server/storage.ts:185:78 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+185     return db.select().from(messages).where(eq(messages.id, messageId)).then(rows => rows[0]);
+                                                                                 ~~~~
+
+server/storage.ts:194:69 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+194     return db.insert(messages).values(messageData).returning().then(rows => rows[0]);
+                                                                        ~~~~
+
+server/storage.ts:228:72 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+228     return db.select().from(offers).where(eq(offers.id, offerId)).then(rows => rows[0]);
+                                                                           ~~~~
+
+server/storage.ts:232:65 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+232     return db.insert(offers).values(offerData).returning().then(rows => rows[0]);
+                                                                    ~~~~
+
+server/storage.ts:236:116 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+236     return db.update(offers).set({ status, updatedAt: new Date() }).where(eq(offers.id, offerId)).returning().then(rows => rows[0]);
+                                                                                                                       ~~~~
+
+server/storage.ts:266:13 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+266       .then(rows => rows[0]);
+                ~~~~
+
+server/storage.ts:272:67 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+272     return db.insert(reviews).values(reviewData).returning().then(rows => rows[0]);
+                                                                      ~~~~
+
+server/storage.ts:327:13 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+327       .then(rows => rows.length);
+                ~~~~
+
+server/storage.ts:331:79 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+331     return db.insert(notifications).values(notificationData).returning().then(rows => rows[0]);
+                                                                                  ~~~~
+
+server/storage.ts:344:13 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+344       .then(rows => rows.length > 0);
+                ~~~~
+
+server/storage.ts:371:13 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+371       .then(rows => rows.length > 0);
+                ~~~~
+
+server/storage.ts:375:71 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+375     return db.insert(favorites).values(favoriteData).returning().then(rows => rows[0]);
+                                                                          ~~~~
+
+server/storage.ts:387:13 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+387       .then(rows => rows.length > 0);
+                ~~~~
+
+server/storage.ts:395:83 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+395     return db.insert(pushSubscriptions).values(subscriptionData).returning().then(rows => rows[0]);
+                                                                                      ~~~~
+
+server/storage.ts:402:13 - error TS7006: Parameter 'rows' implicitly has an 'any' type.
+
+402       .then(rows => rows.length > 0);
+                ~~~~
+
+server/websocket.ts:34:29 - error TS2339: Property 'Server' does not exist on type 'typeof WebSocket'.
+
+34   const wss = new WebSocket.Server({ server });
+                               ~~~~~~
+
+
+Found 48 errors in 6 files.
+
+Errors  Files
+     1  server/routes-simplified.ts:21
+     5  server/routes.ts:523
+     6  server/routes/advertisements.ts:10
+     1  server/seed-items.ts:92
+    34  server/storage.ts:2
+     1  server/websocket.ts:34

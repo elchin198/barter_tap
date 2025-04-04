@@ -1,0 +1,111 @@
+{
+  "seo": {
+    "defaultTitle": "BarterTap.az - Free Item Exchange Platform",
+    "defaultDescription": "With BarterTap.az, exchange your unused items for free. Get new items without spending money.",
+    "defaultKeywords": "item exchange, barter, free exchange, second hand, used items, exchange, azerbaijan"
+  },
+  "categories": {
+    "all": "All",
+    "services": "Services",
+    "books": "Books",
+    "electronics": "Electronics",
+    "vehicles": "Vehicles",
+    "clothing": "Clothing",
+    "realEstate": "Real Estate",
+    "garden": "Garden",
+    "games": "Games",
+    "furniture": "Furniture",
+    "sports": "Sports"
+  },
+  "search": {
+    "placeholder": "Search for items you want to exchange"
+  },
+  "navbar": {
+    "myAccount": "My Account"
+  },
+  "common": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "listNewItem": "List New Item",
+    "viewAll": "View All",
+    "home": "Home",
+    "allItems": "All Items",
+    "categories": "Categories",
+    "howItWorks": "How It Works",
+    "register": "Register",
+    "language": "Language",
+    "myProfile": "My Profile",
+    "myItems": "My Items",
+    "messages": "Messages",
+    "addItem": "Add Item",
+    "dashboard": "Dashboard",
+    "notifications": "Notifications",
+    "favorites": "Favorites",
+    "offers": "Offers",
+    "help": "Help",
+    "logout": "Logout"
+  },
+  "allOffers": {
+    "title": "All Offers"
+  },
+  "recentItems": {
+    "title": "Recently Added"
+  },
+  "items": {
+    "new": "New",
+    "exchange": "Exchange Only",
+    "viewDetails": "View Details",
+    "makeOffer": "Make Offer"
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "step1": {
+      "title": "Add Your Item",
+      "description": "Add photos and description of items you no longer need."
+    },
+    "step2": {
+      "title": "Make an Offer",
+      "description": "Find items you like and offer your items for exchange."
+    },
+    "step3": {
+      "title": "Exchange and Rate",
+      "description": "Meet, exchange items, and rate your experience."
+    },
+    "learnMore": "Learn more about exchanging"
+  },
+  "cta": {
+    "title": "Join Now and Start Exchanging",
+    "subtitle": "Thousands of users have already gotten items they need without spending money. Join the exchange movement!"
+  },
+  "auth": {
+    "register": "Register for Free"
+  },
+  "footer": {
+    "description": "BarterTap.az is Azerbaijan's largest free item exchange platform. It allows you to exchange unwanted items for things you want and obtain new items without spending money.",
+    "quickLinks": "Quick Links",
+    "account": "Account",
+    "helpSupport": "Help & Support",
+    "faq": "FAQ",
+    "contact": "Contact Us",
+    "terms": "Terms of Use",
+    "privacy": "Privacy Policy",
+    "helpCenter": "Help Center",
+    "copyright": "All rights reserved."
+  },
+  "errors": {
+    "itemNotFoundTitle": "Item Not Found",
+    "itemNotFoundDescription": "The item you are looking for does not exist or has been removed.",
+    "unauthorized": {
+      "title": "Unauthorized Access",
+      "description": "Login required to view this page",
+      "message": "You need to be logged in to view this page. If you don't have an account, you can register for one."
+    },
+    "loginToAccount": "Login to Account",
+    "backToHome": "Back to Home"
+  },
+  "features": {
+    "messaging": {
+      "title": "Secure Messaging"
+    }
+  }
+}

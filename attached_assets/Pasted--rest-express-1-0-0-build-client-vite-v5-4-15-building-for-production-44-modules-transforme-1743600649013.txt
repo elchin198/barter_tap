@@ -1,0 +1,99 @@
+"> rest-express@1.0.0 build:client 
+vite v5.4.15 building for production...
+✓ 44 modules transformed.
+x Build failed in 1.82s
+error during build:
+client/src/pages/Dashboard.tsx (495:32): Expression expected (Note that you need plugins to import files that are not JavaScript)
+file: /home/runner/workspace/client/src/pages/Dashboard.tsx:495:32
+
+493:                                   Qəbul et
+494:                                 </Button>
+495:                                 <Button 
+                                     ^
+496:                                   size="sm" 
+497:                                   variant="outline" 
+
+    at getRollupError (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/parseAst.js:396:41)
+    at ParseError.initialise (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:13281:28)
+    at convertNode (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:14992:10)
+    at convertProgram (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:14235:12)
+    at Module.setSource (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:15978:24)
+    at async ModuleLoader.addModuleSource (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:19856:13) " Bu dəfəki build xətası artıq tam aydın şəkildə göstərir ki, 495-ci sətirdə JSX sintaksın düzgün yazılmayıb və ya əvvəlki element tam bağlanmayıb. Bu tip problem adətən aşağıdakı hallarda olur:
+
+❌ Səbəb:
+tsx
+Copy
+Edit
+495: <Button 
+        ^
+Bu <Button elementi HTML və ya JSX baxımından düzgün açılmayıb və ya öncəki JSX elementi tam bağlanmayıb.
+
+✅ 100% DOĞRU İŞLƏYƏN MİSAL
+Aşağıdakı kod React + TypeScript üçün sintaks cəhətdən doğrudur və problemsiz vite build edəcək:
+
+tsx
+Copy
+Edit
+<Button
+  size="sm"
+  variant="outline"
+  className="flex-1"
+  onClick={() => alert('Offer rejected')}
+>
+  Rədd et
+</Button>
+📌 Sənə yardımçı olmaq üçün:
+İndi sənin Dashboard.tsx faylındakı problemli hissəni copy-paste ilə əvəzləyə biləcəyin şəkildə göndərirəm:
+
+✅ Əvəz Etmək Üçün Kod:
+tsx
+Copy
+Edit
+<Button
+  size="sm"
+  variant="outline"
+  className="flex-1"
+  onClick={() => {
+    alert('Offer rejected');
+  }}
+>
+  Rədd et
+</Button>
+Və əgər sənin Qəbul et butonun yuxarıdadırsa, tam blok belə ola bilər:
+tsx
+Copy
+Edit
+<Button
+  size="sm"
+  variant="default"
+  className="flex-1"
+  onClick={() => {
+    alert('Offer accepted');
+  }}
+>
+  Qəbul et
+</Button>
+
+<Button
+  size="sm"
+  variant="outline"
+  className="flex-1"
+  onClick={() => {
+    alert('Offer rejected');
+  }}
+>
+  Rədd et
+</Button>
+💡 Son Qeyd:
+Əgər bu hissə return (...) daxilindədirsə, return-dən sonra dırnaq işarəsi mütləq () ilə əhatə olunmalıdır:
+
+tsx
+Copy
+Edit
+return (
+  <>
+    <Button ... />
+    <Button ... />
+  </>
+);
+ 

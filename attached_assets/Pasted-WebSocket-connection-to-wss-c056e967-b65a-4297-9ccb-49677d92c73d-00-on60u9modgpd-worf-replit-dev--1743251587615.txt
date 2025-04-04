@@ -1,0 +1,34 @@
+WebSocket connection to 'wss://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/?token=aYgmRDdNDEIt' failed: 
+setupWebSocket @ client:536Understand this errorAI
+client:536 Uncaught (in promise) SyntaxError: Failed to construct 'WebSocket': The URL 'wss://localhost:undefined/?token=aYgmRDdNDEIt' is invalid.
+    at setupWebSocket (client:536:19)
+    at fallback (client:509:16)
+    at WebSocket.<anonymous> (client:555:7)Understand this errorAI
+chunk-WERSD76P.js?v=98623329:21551 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+i18next.js?v=70b32239:209 i18next: initialized Object
+i18n.ts:106 i18next initialized successfully
+i18n.ts:106 i18next initialized successfully
+i18next.js?v=70b32239:209 i18next::backendConnector: loaded namespace translation for language az Object
+i18next.js?v=70b32239:209 i18next: languageChanged az
+i18next.js?v=70b32239:209 i18next: init: i18next is already initialized. You should call init just once!
+output @ i18next.js?v=70b32239:209Understand this warningAI
+i18next.js?v=70b32239:209 i18next: initialized Object
+i18n.ts:106 i18next initialized successfully
+i18n.ts:106 i18next initialized successfully
+2queryClient.ts:52 GET Query: /api/items
+AuthContext.tsx:21 AuthContext: Fetching current user data
+queryClient.ts:63 Query Response: 200 OK Object
+queryClient.ts:75 Query Data: Array(1)
+AuthContext.tsx:35 AuthContext: /api/auth/me response Object
+AuthContext.tsx:56 AuthContext: User data fetched successfully: Object
+queryClient.ts:52 GET Query: /api/notifications/count
+queryClient.ts:63 Query Response: 200 OK Object
+queryClient.ts:75 Query Data: Array(1)
+queryClient.ts:63 Query Response: 200 OK Object
+queryClient.ts:75 Query Data: Object
+queryClient.ts:52 GET Query: /api/notifications/count
+queryClient.ts:63 Query Response: 200 OK {headers: Array(10), url: 'https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/api/notifications/count'}
+queryClient.ts:75 Query Data: {count: 0}
+queryClient.ts:52 GET Query: /api/notifications/count
+queryClient.ts:63 Query Response: 200 OK {headers: Array(10), url: 'https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/api/notifications/count'}
+queryClient.ts:75 Query Data: {count: 0}

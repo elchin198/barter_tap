@@ -1,0 +1,79 @@
+> rest-express@1.0.0 build:client
+vite v5.4.15 building for production...
+✓ 36 modules transformed.
+x Build failed in 1.76s
+error during build:
+client/src/pages/Dashboard.tsx (495:32): Expression expected (Note that you need plugins to import files that are not JavaScript)
+file: /home/runner/workspace/client/src/pages/Dashboard.tsx:495:32
+
+493:                                   Qəbul et
+494:                                 </Button>
+495:                                 <Button
+                                     ^
+496:                                   size="sm"
+497:                                   variant="outline" 
+
+    at getRollupError (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/parseAst.js:396:41)
+    at ParseError.initialise (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:13281:28)
+    at convertNode (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:14992:10)
+    at convertProgram (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:14235:12)
+    at Module.setSource (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:15978:24)
+    at async ModuleLoader.addModuleSource (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:19856:13)
+
+
+ChatGPT said:
+Bu xəta dəqiq şəkildə göstərir ki, Dashboard.tsx faylındakı JSX strukturu hələ də pozulub, və Button elementi başlanarkən, parser öncəki struktura görə "expression expected" deyərək ilişir.
+
+Bu mərhələdə sən artıq lokal olaraq problemi tapmaqda çətinlik çəkirsən, ona görə ən sağlam yol:
+
+✅ Dashboard.tsx faylını tam təmiz və işlək vəziyyətdə sıfırdan qurmaqdır.
+✅ Sənə hazır Dashboard.tsx template (yalnız butonlarla bağlı hissə)
+Aşağıdakı hissəni birbaşa sənin problemli hissənin yerinə copy-paste et:
+
+🔧 Əvəz Et:
+tsx
+Copy
+Edit
+import React from "react";
+import { Button } from "@/components/ui/button";
+
+const Dashboard = () => {
+  return (
+    <div className="p-6">
+      <h1 className="text-xl font-bold mb-4">Dashboard</h1>
+
+      <div className="flex gap-2 mt-4">
+        <Button
+          size="sm"
+          variant="default"
+          className="flex-1"
+          onClick={() => {
+            alert("Qəbul edildi");
+          }}
+        >
+          Qəbul et
+        </Button>
+
+        <Button
+          size="sm"
+          variant="outline"
+          className="flex-1"
+          onClick={() => {
+            alert("Rədd edildi");
+          }}
+        >
+          Rədd et
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;
+🧪 Test et:
+Faylı bu kodla əvəz et.
+
+npm run build və ya vite build icra et.
+
+✅ Bu kod 100% vite tərəfindən uğurla build ediləcək.
+

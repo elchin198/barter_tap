@@ -1,0 +1,126 @@
+🛠️ BarterTap Platforması – Problemlər və Həll Yolları
+1. Verilənlər Bazası Uyğunsuzluğu
+Problem:
+Layihədə həm MySQL (PHP backend) həm də PostgreSQL (Python skript) istifadə edilir. Bu qarışıqlıq konfiqurasiya və debugging zamanı problemlər yaradır.
+
+Həll:
+Yalnız bir DB texnologiyasına keçin (tövsiyə: PostgreSQL, çünki Python skriptləri artıq mövcuddur).
+
+api.php və bütün backend kodunu PostgreSQL dəstəkli etmək üçün yenidən yazın (PDO və ya pg_connect).
+
+check_database.py kimi skriptləri saxlayaraq avtomat testlərdə istifadə edin.
+
+2. Şifrələrin Açıq Formatda Saxlanılması
+Problem:
+api.php daxilində getenv(...) ?: 'your_database_password' kimi fallback ilə real parol kodda saxlanılır.
+
+Həll:
+.env faylını serverə yerləşdirin və bütün şifrələri yalnız getenv() ilə oxuyun.
+
+Git repo-da .env faylını .gitignore-a daxil edin.
+
+GitHub Secrets və ya Hostinger mühit dəyişənləri istifadə edin.
+
+3. Frontend və Backend Arasında Əlaqə Problemi
+Problem:
+.env.development faylı boşdur, nəticədə lokal frontend API-yə bağlana bilmir.
+
+Həll:
+.env.development daxilində aşağıdakıları əlavə edin:
+
+env
+Copy
+Edit
+VITE_API_URL=http://localhost:5000/api
+axios və ya fetch çağırışlarında bu VITE_API_URL dəyərindən istifadə olunduğuna əmin olun.
+
+4. Deployment Prosesində Zəifliklər
+Problem:
+deploy.sh skripti npm run build ilə frontend build edir, lakin əgər npm install öncədən edilməyibsə — proses uğursuz olur.
+
+Həll:
+deploy.sh-in əvvəlinə aşağıdakı sətri əlavə edin:
+
+bash
+Copy
+Edit
+echo "NPM bağımlılıqları quraşdırılır..."
+npm install
+5. Frontenddə Login və Formlar API ilə Bağlı Deyil
+Problem:
+ItemForm.tsx və AuthContext.tsx komponentlərində submit və login funksionallıqları backend-ə heç bir sorğu göndərmir.
+
+Həll:
+AuthContext.tsx daxilində login funksiyasını belə dəyişin:
+
+tsx
+Copy
+Edit
+const login = async ({ email, password }) => {
+  const res = await api.post('/login', { email, password });
+  setUser(res.data.user);
+  localStorage.setItem('user', JSON.stringify(res.data.user));
+  return res.data.user;
+};
+ItemForm.tsx daxilində onSubmit əlavə edin və api.post('/items', data) ilə göndərin.
+
+6. create_tables.sql Faylı Yoxdur
+Problem:
+db_setup.sh skripti create_tables.sql faylına əsaslanır, amma bu fayl layihədə yoxdur.
+
+Həll:
+Yeni create_tables.sql faylı yaradın və əsas cədvəlləri daxil edin, misal:
+
+sql
+Copy
+Edit
+CREATE TABLE items (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(100),
+  description TEXT,
+  category VARCHAR(50),
+  condition VARCHAR(50),
+  image_url TEXT,
+  user_id INT
+);
+7. API endpoint-lərin qarışıq strukturu
+Problem:
+api.php monolit skript kimi işləyir, bütün request-ləri bir yerdə emal edir.
+
+Həll:
+PHP framework (məs: Laravel Light, Slim) istifadə edərək endpoint-ləri modullar üzrə ayırın.
+
+Alternativ: Node.js/Express ilə yenidən yazın və /api/items, /api/login kimi REST endpoint-ləri yaradın.
+
+8. Xəritə/Location komponenti ilə bağlı qeyri-müəyyənlik
+Problem:
+leaflet.css mövcuddur, amma Leaflet-in frontend komponentləri və koordinatlarla iş hissəsi yoxdur.
+
+Həll:
+react-leaflet kitabxanasını əlavə edin.
+
+ItemForm və ya ItemCard komponentində lokasiyanı göstərmək üçün interaktiv xəritə komponenti yaradın.
+
+9. İ18n (dil dəstəyi) tamamlanmayıb
+Problem:
+i18n.ts mövcuddur, amma komponentlərdə çoxdilli istifadə yoxdur.
+
+Həll:
+react-i18next tam konfiqurasiya edin.
+
+Bütün title, description sahələrini t('key') şəklində çoxdilli dəstəyə keçirin.
+
+BONUS: Təklif olunan İnteqrasiya Planı
+Qısa addımlar:
+.env faylları və db_setup.sh düzəldilsin
+
+Backend PostgreSQL-ə köçürülsün
+
+Frontend API inteqrasiyası tamamlanaraq axios ilə işləsin
+
+Deployment prosesinə test mərhələsi əlavə olunsun
+
+AuthContext, ItemForm və API arasında real əlaqə qurulsun
+
+Hər mərhələ GitHub issues və milestones ilə izlənilsin
+

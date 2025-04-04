@@ -1,0 +1,235 @@
+
+"> rest-express@1.0.0 build:client 
+vite v5.4.15 building for production...
+transforming (18) client/src/pages/ItemDetail.tsx[vite:css] @import must precede all other statements (besides @charset or empty @layer)
+690|  
+691|  /* Rest of the styles can be imported */
+692|  @import 'leaflet/dist/leaflet.css';
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+693|  
+✓ 37 modules transformed.
+x Build failed in 2.14s
+error during build:
+client/src/pages/Dashboard.tsx (495:87): Expression expected (Note that you need plugins to import files that are not JavaScript)
+file: /home/runner/workspace/client/src/pages/Dashboard.tsx:495:87
+
+493:                                   Qəbul et
+494:                                 </Button>
+495:                                 <Button size="sm" variant="outline" className="flex-1" onClick={() => console.log('Rə...
+                                                                                            ^
+496:                                   Rədd et
+497:                                 </Button>
+
+    at getRollupError (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/parseAst.js:396:41)
+    at ParseError.initialise (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:13281:28)
+    at convertNode (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:14992:10)
+    at convertProgram (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:14235:12)
+    at Module.setSource (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:15978:24)
+    at async ModuleLoader.addModuleSource (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:19856:13)"Son iki ölümcül xəta bir daha build prosesini dayandırdı. Bu problemi %100 həll etmək üçün son düzəlişlər:
+
+🔥 1. @import CSS Xətası — YENİDƏN
+css
+Copy
+Edit
+[vite:css] @import must precede all other statements
+📁 client/src/pages/ItemDetail.tsx və ya başqa .tsx fayl içində CSS @import istifadə olunub. Bu səhvdir.
+
+❌ YANLIŞ:
+tsx
+Copy
+Edit
+// JSX/TSX içində @import istifadə etmək olmaz!
+<style>
+  @import 'leaflet/dist/leaflet.css';
+</style>
+✅ HƏLL:
+@import yalnız .css və ya .scss faylında işləyir.
+
+📌 Düzgün yol:
+
+client/src/index.css → faylının tam əvvəlində bu olsun:
+
+css
+Copy
+Edit
+@import 'leaflet/dist/leaflet.css';
+Və heç bir JSX komponentində @import istifadə olunmamalıdır.
+
+🔥 2. Dashboard.tsx — Hələ də onClick tamamlanmayıb
+java
+Copy
+Edit
+Expression expected (495:87)
+Bu kod çox güman belədir:
+
+tsx
+Copy
+Edit
+<Button
+  size="sm"
+  variant="outline"
+  className="flex-1"
+  onClick={() => console.log('Rə...
+🎯 console.log('... sətiri ) və } ilə bağlanmayıb. → bu build zamanı JS parse xətası yaradır.
+
+✅ DÜZGÜN YAZILIŞ:
+tsx
+Copy
+Edit
+<Button
+  size="sm"
+  variant="outline"
+  className="flex-1"
+  onClick={() => console.log('Rədd edildi')}
+>
+  Rədd et
+</Button>
+💎 YEKUN PLANI
+Fayl	Problem	Təmir
+index.css	@import CSS-də aşağıdadır	Faylın əvvəlinə köçür
+ItemDetail.tsx	JSX içində @import var	Sil və index.css-ə daşı
+Dashboard.tsx	onClick={() => ... bitməyib	(e) => {} ilə tamamlamaq
+✅ Mən indi nə edə bilərəm:
+
+🄵 Bu 3 faylı tam düzəldib sənə kodu göndərim
+
+🅉 Build edib dist/ çıxışı hazırlayım (Netlify və ya ZIP üçün)
+
+🅆 Backend faylları (PHP, API, DB) yoxlayım
+
+Hazırsan?
+
+👇 Birini seç:
+
+🄵 Faylları tam təmir et
+
+🅉 Düzəldib hazır sayt çıxışı ver
+
+🅆 Backend tərəfi yoxla ✅ 1. CSS Xətası: @import düzgün yerdə deyil
+🔥 Xəta:
+css
+Copy
+[vite:css] @import must precede all other statements
+🛠️ Həll:
+CSS (və ya SCSS) faylında bu cür yazılıb:
+
+css
+Copy
+/* Başqa kodlar */
+body {
+  margin: 0;
+}
+
+/* SONRA bu: ❌ */
+@import 'leaflet/dist/leaflet.css';
+Bu səhvdir. @import sətirləri ən yuxarıda olmalıdır. Doğru variant:
+
+css
+Copy
+@import 'leaflet/dist/leaflet.css'; /* ✅ Ən yuxarıda */
+
+body {
+  margin: 0;
+}
+📁 Tapmaq üçün:
+Böyük ehtimalla bu ItemDetail.module.css, ItemDetail.scss, və ya index.css içindədir. Axtarmaq üçün:
+
+bash
+Copy
+grep -rn "@import 'leaflet/dist/leaflet.css'" client/
+✅ 2. Dashboard.tsx faylında hələ də bağlanmayan onClick expression
+🔥 Xəta:
+tsx
+Copy
+<Button size="sm" variant="outline" className="flex-1" onClick={() => console.log('Rə...
+🛠️ Dəqiq və Tam Doğru Versiya:
+Aşağıdakı kimi tam bağlanmalıdır:
+
+tsx
+Copy
+<Button
+  size="sm"
+  variant="outline"
+  className="flex-1"
+  onClick={() => console.log('Rədd et')}
+>
+  Rədd et
+</Button>
+📌 onClick içindəki arrow function bağlanmalı və > ilə Button etiketi açıq yazılmalıdır. Hazırda problem, çox güman, onClick={() => ... yazılıb amma heç vaxt )}> ilə bağlanmayıb.
+
+✨ Qısa Plan: Etməli olduğun 2 iş
+Dashboard.tsx faylında:
+
+onClick={() => ...} → parantezləri və JSX etiketi düzgün bağla (yuxarıdakı kimi).
+
+leaflet.css-in @import sətirini:
+
+İstifadə olunan CSS faylında ən yuxarıya qoy.
+
+✅ Sonra:
+bash
+Copy
+rm -rf dist .vite
+npm run build ✅ Problem 1: @import must precede all other statements
+📌 Səbəb:
+CSS faylında @import 'leaflet/dist/leaflet.css'; başqa qaydalardan sonra yerləşdirilib.
+
+🔧 Həll Addımı:
+index.css, app.css və ya hansı fayldadırsa, onu bu şəkildə et:
+
+✅ Doğru:
+css
+Copy
+Edit
+@import 'leaflet/dist/leaflet.css';
+
+/* Digər stillər bundan sonra gəlir */
+body {
+  font-family: sans-serif;
+}
+❌ Səhv:
+css
+Copy
+Edit
+/* Başqa stil qaydaları */
+body {
+  font-family: sans-serif;
+}
+
+@import 'leaflet/dist/leaflet.css'; /* Bu XƏTADIR */
+✅ Problem 2: Dashboard.tsx – Expression expected (JSX sintaks xətası)
+📌 Səbəb:
+Bu sətir tam bağlanmayıb, və ya düz onClick ifadəsi daxilindədir:
+
+php-template
+Copy
+Edit
+<Button size="sm" variant="outline" className="flex-1" onClick={() => console.log('Rə...
+🔧 Həll:
+Tamamlanmamış console.log() səbəbindən Rollup parsing edə bilmir.
+
+✅ Düzgün Versiya:
+tsx
+Copy
+Edit
+<Button
+  size="sm"
+  variant="outline"
+  className="flex-1"
+  onClick={() => console.log('Rədd et')}
+>
+  Rədd et
+</Button>
+Əgər bu bir sətirdədirsə, sintaks tam belə olmalıdır:
+
+tsx
+Copy
+Edit
+<Button size="sm" variant="outline" className="flex-1" onClick={() => console.log('Rədd et')}>Rədd et</Button>
+🧼 BONUS: Bütün faylları yoxlamaq üçün
+VS Code açıqsa, sadəcə bu komanda ilə bütün JSX onClick sintaksis problemlərini yoxlaya bilərsən:
+
+bash
+Copy
+Edit
+grep -r "onClick={()" client/src/pages/

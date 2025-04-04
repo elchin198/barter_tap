@@ -1,0 +1,124 @@
+Çox gözəl, sən artıq son mərhələdəsən! Bu səhvlər əsasən tip uyğunluğu, eksik modul və yanlış struktur ilə bağlıdır. İndi gəlin bu 20 xətanı addım-addım həll edək və build-i tamamlayıb Render-ə deploy edək.
+
+✅ HƏLLƏR
+🔧 1. Module Not Found: drizzle-orm/pg-pool
+Səbəb: drizzle-orm modulunda pg-pool istifadə etmək üçün postgres adapteri əlavə edilməlidir.
+
+Həll:
+
+bash
+Copy
+Edit
+npm install drizzle-orm pg pg-pool
+🔧 2. configureSession() funksiyasına argument verilməsi səhvi
+ts
+Copy
+Edit
+const sessionMiddleware = configureSession({...});
+Həll: Əgər configureSession() artıq parametr almırsa, onu belə yaz:
+
+ts
+Copy
+Edit
+const sessionMiddleware = configureSession(); // boş
+Əgər konfiqurasiya dəstəklənirsə, configureSession funksiyasını tapıb parametrləri ona uyğun yazmaq lazımdır. Kodda istifadə olunan configureSession() funksiyasına baxaq.
+
+🔧 3. port parametrinə string verilməsi
+ts
+Copy
+Edit
+server.listen(port, "0.0.0.0", () => {
+Həll: Port stringdirsə, onu parseInt ilə number et:
+
+ts
+Copy
+Edit
+server.listen(parseInt(port), "0.0.0.0", () => {
+🔧 4. Duplicate imports (fs, path)
+Həll: fs və path yalnız bir dəfə import olunmalıdır:
+
+ts
+Copy
+Edit
+import fs from 'fs';
+import path from 'path';
+Digər təkrarlanan import-ları sil.
+
+🔧 5. lastMessageAt, isRead, message kimi property-lər tipi tanımır
+Həll: Bu sahələri aid type və ya interface-lərə əlavə et. Məsələn:
+
+ts
+Copy
+Edit
+interface Message {
+  id: number;
+  conversationId: number;
+  senderId: number;
+  content: string;
+  status: string;
+  createdAt: Date;
+  isRead: boolean; // bunu əlavə et
+}
+vəya
+
+ts
+Copy
+Edit
+interface Notification {
+  type: string;
+  userId: number;
+  content: string;
+  referenceId?: number | null;
+  isRead: boolean; // bunu da əlavə et
+}
+🔧 6. WebSocket dispatchEvent xətası
+Səbəb: DOM WebSocket əvəzinə ws modulunun WebSocket tipi istifadə olunur.
+
+Həll: Kodun bu hissəsini belə dəyiş:
+
+ts
+Copy
+Edit
+import WebSocket from 'ws';
+const clients = new Map<number, WebSocket>();
+və ya sadəcə:
+
+ts
+Copy
+Edit
+const clients = new Map<number, any>();
+🔧 7. passwordToCheck tapılmadı
+Həll: Kodda əvvəl const passwordToCheck = input.password; kimi dəyişəni əlavə et və ya birbaşa input.password istifadə et:
+
+ts
+Copy
+Edit
+if (!user || user.password !== input.password)
+🔧 8. Schema uyğunluqları və tip uyğunluqları
+Bu hissələrdə @shared/schema faylına əlavə etməlisən:
+
+ts
+Copy
+Edit
+export const insertMessageSchema = z.object({
+  conversationId: z.number(),
+  senderId: z.number(),
+  content: z.string(),
+  status: z.string().optional(),
+  isRead: z.boolean().default(false), // əlavə et
+});
+✅ NƏ ETMƏLİSƏN İNDİ?
+Aşağıdakı əmr ilə bütün eksik modulu yüklə:
+
+bash
+Copy
+Edit
+npm install drizzle-orm pg pg-pool
+server/db.ts, server/index.ts, server/routes.ts, server/routes-simplified.ts və server/storage.ts fayllarında yuxarıdakı düzəlişləri et.
+
+Sonra:
+
+bash
+Copy
+Edit
+npm run build

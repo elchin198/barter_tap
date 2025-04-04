@@ -1,0 +1,84 @@
+client:536 WebSocket connection to 'wss://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/?token=aYgmRDdNDEIt' failed: 
+setupWebSocket @ client:536
+(anonymous) @ client:531Understand this errorAI
+client:536 Uncaught (in promise) SyntaxError: Failed to construct 'WebSocket': The URL 'wss://localhost:undefined/?token=aYgmRDdNDEIt' is invalid.
+    at setupWebSocket (client:536:19)
+    at fallback (client:509:16)
+    at WebSocket.<anonymous> (client:555:7)
+setupWebSocket @ client:536
+fallback @ client:509
+(anonymous) @ client:555Understand this errorAI
+chunk-WERSD76P.js?v=98623329:21551 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+i18next.js?v=70b32239:209 i18next: initialized {debug: true, initAsync: true, ns: Array(1), defaultNS: 'translation', fallbackLng: Array(1), …}
+i18n.ts:107 i18next initialized successfully
+i18n.ts:107 i18next initialized successfully
+i18next.js?v=70b32239:209 i18next::backendConnector: loaded namespace translation for language az {notifications: {…}, faq: {…}, seo: {…}, categories: {…}, conditions: {…}, …}
+i18next.js?v=70b32239:209 i18next::backendConnector: loaded namespace translation for language ru {faq: {…}, seo: {…}, categories: {…}, search: {…}, navbar: {…}, …}
+i18next.js?v=70b32239:209 i18next::backendConnector: loaded namespace translation for language az {notifications: {…}, faq: {…}, seo: {…}, categories: {…}, conditions: {…}, …}
+2i18next.js?v=70b32239:209 i18next: languageChanged ru
+i18n.ts:102 i18next: init: i18next is already initialized. You should call init just once!
+output @ i18next.js?v=70b32239:209
+warn @ i18next.js?v=70b32239:202
+forward @ i18next.js?v=70b32239:251
+warn @ i18next.js?v=70b32239:234
+finish @ i18next.js?v=70b32239:1871
+done @ i18next.js?v=70b32239:2002
+(anonymous) @ i18next.js?v=70b32239:2018
+(anonymous) @ i18next.js?v=70b32239:1915
+(anonymous) @ i18next.js?v=70b32239:1517
+loaded @ i18next.js?v=70b32239:1499
+(anonymous) @ i18next.js?v=70b32239:1605
+resolver @ i18next.js?v=70b32239:1553
+(anonymous) @ i18next-http-backend.js?v=398ee6b6:405
+(anonymous) @ i18next-http-backend.js?v=398ee6b6:124
+Promise.then
+resolver2 @ i18next-http-backend.js?v=398ee6b6:123
+Promise.then
+fetchIt2 @ i18next-http-backend.js?v=398ee6b6:138
+requestWithFetch2 @ i18next-http-backend.js?v=398ee6b6:161
+request2 @ i18next-http-backend.js?v=398ee6b6:223
+loadUrl @ i18next-http-backend.js?v=398ee6b6:381
+(anonymous) @ i18next-http-backend.js?v=398ee6b6:371
+Promise.then
+_readAny @ i18next-http-backend.js?v=398ee6b6:365
+read @ i18next-http-backend.js?v=398ee6b6:354
+read @ i18next.js?v=70b32239:1569
+loadOne @ i18next.js?v=70b32239:1602
+(anonymous) @ i18next.js?v=70b32239:1586
+prepareLoading @ i18next.js?v=70b32239:1585
+load @ i18next.js?v=70b32239:1590
+loadResources @ i18next.js?v=70b32239:1913
+setLng @ i18next.js?v=70b32239:2017
+changeLanguage @ i18next.js?v=70b32239:2030
+(anonymous) @ i18n.ts:102Understand this warningAI
+i18next.js?v=70b32239:209 i18next: initialized {debug: true, initAsync: true, ns: Array(1), defaultNS: 'translation', fallbackLng: Array(1), …}
+i18n.ts:107 i18next initialized successfully
+i18n.ts:107 i18next initialized successfully
+AuthContext.tsx:21 AuthContext: Fetching current user data
+i18next.js?v=70b32239:209 i18next::backendConnector: loaded namespace translation for language ru {faq: {…}, seo: {…}, categories: {…}, search: {…}, navbar: {…}, …}
+i18next.js?v=70b32239:209 i18next: languageChanged ru
+AuthContext.tsx:25 
+            
+            
+           GET https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/api/auth/me 401 (Unauthorized)
+fetchUser @ AuthContext.tsx:25
+initAuth @ AuthContext.tsx:76
+(anonymous) @ AuthContext.tsx:87
+commitHookEffectListMount @ chunk-WERSD76P.js?v=98623329:16915
+commitPassiveMountOnFiber @ chunk-WERSD76P.js?v=98623329:18156
+commitPassiveMountEffects_complete @ chunk-WERSD76P.js?v=98623329:18129
+commitPassiveMountEffects_begin @ chunk-WERSD76P.js?v=98623329:18119
+commitPassiveMountEffects @ chunk-WERSD76P.js?v=98623329:18109
+flushPassiveEffectsImpl @ chunk-WERSD76P.js?v=98623329:19490
+flushPassiveEffects @ chunk-WERSD76P.js?v=98623329:19447
+performSyncWorkOnRoot @ chunk-WERSD76P.js?v=98623329:18868
+flushSyncCallbacks @ chunk-WERSD76P.js?v=98623329:9119
+commitRootImpl @ chunk-WERSD76P.js?v=98623329:19432
+commitRoot @ chunk-WERSD76P.js?v=98623329:19277
+finishConcurrentRender @ chunk-WERSD76P.js?v=98623329:18805
+performConcurrentWorkOnRoot @ chunk-WERSD76P.js?v=98623329:18718
+workLoop @ chunk-WERSD76P.js?v=98623329:197
+flushWork @ chunk-WERSD76P.js?v=98623329:176
+performWorkUntilDeadline @ chunk-WERSD76P.js?v=98623329:384Understand this errorAI
+AuthContext.tsx:35 AuthContext: /api/auth/me response {status: 401, statusText: 'Unauthorized', headers: Array(10), url: 'https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/api/auth/me'}
+AuthContext.tsx:45 AuthContext: User not authenticated (401)

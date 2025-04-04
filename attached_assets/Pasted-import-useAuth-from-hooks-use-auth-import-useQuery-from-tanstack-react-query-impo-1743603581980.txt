@@ -1,0 +1,147 @@
+import { useAuth } from "@/hooks/use-auth";
+import { useQuery } from "@tanstack/react-query";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger
+} from "@/components/ui/tabs";
+import {
+  Activity,
+  Package,
+  Users,
+  ShoppingCart,
+  Heart,
+  MessageCircle,
+  Star,
+  TrendingUp
+} from "lucide-react";
+import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import ItemCard from "@/components/items/ItemCard";
+import { useTranslation } from "react-i18next";
+import { Item } from "@shared/schema";
+
+export default function Dashboard() {
+  const { t } = useTranslation();
+  const { user } = useAuth();
+
+  const { data: userItems = [], isLoading: itemsLoading } = useQuery({
+    queryKey: ["/api/items/user"],
+    queryFn: async () => {
+      const res = await fetch("/api/items/user");
+      if (!res.ok) throw new Error("İstifadəçi elanlarını yükləmək mümkün olmadı");
+      return res.json();
+    },
+    enabled: !!user
+  });
+
+  const { data: offers = [], isLoading: offersLoading } = useQuery({
+    queryKey: ["/api/offers"],
+    queryFn: async () => {
+      const res = await fetch("/api/offers");
+      if (!res.ok) throw new Error("Təklifləri yükləmək mümkün olmadı");
+      return res.json();
+    },
+    enabled: !!user
+  });
+
+  const { data: stats = {
+    views: 0,
+    favorites: 0,
+    offers: 0,
+    completed: 0,
+    rating: 0
+  }, isLoading: statsLoading } = useQuery({
+    queryKey: ["/api/user/stats"],
+    queryFn: async () => {
+      const res = await fetch("/api/user/stats");
+      if (!res.ok) throw new Error("Statistikanı yükləmək mümkün olmadı");
+      return res.json();
+    },
+    enabled: !!user
+  });
+
+  if (!user) {
+    return (
+      <Card className="m-8 p-8 text-center">
+        <CardTitle>Daxil olmaq lazımdır</CardTitle>
+        <CardDescription className="mt-2 mb-4">
+          Şəxsi məlumatlar panelini görmək üçün hesabınıza daxil olun
+        </CardDescription>
+        <Button asChild>
+          <Link to="/auth">Daxil ol</Link>
+        </Button>
+      </Card>
+    );
+  }
+
+  return (
+    <div className="container mx-auto py-8 px-4">
+      <h1 className="text-3xl font-bold mb-6">Məlumat Lövhəsi</h1>
+
+      <div className="grid gap-6 md:grid-cols-4 lg:grid-cols-4 mb-6">
+        <DashboardCard
+          title="Görüntülənmələr"
+          value={stats.views}
+          icon={<Activity className="h-5 w-5" />}
+          description="Elanlarınızın görüntülənmə sayı"
+        />
+        <DashboardCard
+          title="Elanlar"
+          value={userItems.length}
+          icon={<Package className="h-5 w-5" />}
+          description="Aktiv elanlarınızın sayı"
+        />
+        <DashboardCard
+          title="Təkliflər"
+          value={offers.length}
+          icon={<ShoppingCart className="h-5 w-5" />}
+          description="Aldığınız mübadilə təklifləri"
+        />
+        <DashboardCard
+          title="Reytinq"
+          value={stats.rating.toFixed(1)}
+          icon={<Star className="h-5 w-5" />}
+          description="Ortalama istifadəçi reytinqiniz"
+          valueClassName="text-yellow-500"
+        />
+      </div>
+    </div>
+  );
+}
+
+interface DashboardCardProps {
+  title: string;
+  value: number | string;
+  icon: React.ReactNode;
+  description: string;
+  valueClassName?: string;
+}
+
+function DashboardCard({ title, value, icon, description, valueClassName }: DashboardCardProps) {
+  return (
+    <Card>
+      <CardContent className="p-6">
+        <div className="flex items-center justify-between space-x-4">
+          <div className="flex flex-col space-y-1">
+            <span className="text-sm font-medium text-gray-500">{title}</span>
+            <span className={`text-2xl font-bold ${valueClassName || ''}`}>{value}</span>
+          </div>
+          <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+            {icon}
+          </div>
+        </div>
+        <p className="text-xs text-gray-500 mt-4">{description}</p>
+      </CardContent>
+    </Card>
+  );
+}

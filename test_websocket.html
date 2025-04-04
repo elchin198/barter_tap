@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarterTap WebSocket Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .connection-status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .connected {
+            background-color: #d5f5e3;
+            color: #1e8449;
+        }
+        .disconnected {
+            background-color: #f5b7b1;
+            color: #922b21;
+        }
+        .log {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #3498db;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .message {
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+        .sent {
+            background-color: #ebf5fb;
+            text-align: right;
+        }
+        .received {
+            background-color: #eaeded;
+        }
+    </style>
+</head>
+<body>
+    <h1>BarterTap WebSocket Test</h1>
+    
+    <div id="status" class="connection-status disconnected">
+        Disconnected
+    </div>
+    
+    <div class="controls">
+        <input type="number" id="userId" placeholder="User ID" value="1" />
+        <button id="connect">Bağlan</button>
+        <button id="disconnect">Bağlantını kəs</button>
+    </div>
+    
+    <div class="controls">
+        <input type="text" id="message" placeholder="Message..." />
+        <button id="send">Göndər</button>
+    </div>
+    
+    <h3>Mesaj jurnalı:</h3>
+    <div id="log" class="log"></div>
+    
+    <script>
+        const statusEl = document.getElementById('status');
+        const connectBtn = document.getElementById('connect');
+        const disconnectBtn = document.getElementById('disconnect');
+        const userIdInput = document.getElementById('userId');
+        const messageInput = document.getElementById('message');
+        const sendBtn = document.getElementById('send');
+        const logEl = document.getElementById('log');
+        
+        let socket = null;
+        
+        function updateStatus(connected) {
+            if (connected) {
+                statusEl.textContent = 'Bağlantı quruldu';
+                statusEl.className = 'connection-status connected';
+                connectBtn.disabled = true;
+                disconnectBtn.disabled = false;
+                sendBtn.disabled = false;
+            } else {
+                statusEl.textContent = 'Bağlantı kəsildi';
+                statusEl.className = 'connection-status disconnected';
+                connectBtn.disabled = false;
+                disconnectBtn.disabled = true;
+                sendBtn.disabled = true;
+            }
+        }
+        
+        function addToLog(message, type = 'info') {
+            const messageEl = document.createElement('div');
+            messageEl.className = `message ${type}`;
+            messageEl.textContent = typeof message === 'object' ? JSON.stringify(message, null, 2) : message;
+            
+            // Add timestamp
+            const timestamp = new Date().toLocaleTimeString();
+            const timeEl = document.createElement('span');
+            timeEl.style.color = '#888';
+            timeEl.style.fontSize = '0.8em';
+            timeEl.textContent = ` [${timestamp}]`;
+            messageEl.appendChild(timeEl);
+            
+            logEl.appendChild(messageEl);
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+        
+        function connect() {
+            if (socket) {
+                socket.close();
+            }
+            
+            const userId = userIdInput.value || '1';
+            
+            // Get current URL (handles both localhost and production)
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const host = window.location.host;
+            
+            // Detect Replit environment
+            const isReplit = window.location.hostname.includes('repl');
+            
+            let wsUrl;
+            
+            if (isReplit) {
+                // On Replit we don't need a specific port
+                wsUrl = `${protocol}//${host}/api/ws?userId=${userId}&appToken=test_${Date.now()}`;
+            } else {
+                // Locally we might need to connect to a specific port
+                const serverPort = window.location.port || '3000';
+                wsUrl = `${protocol}//${window.location.hostname}:${serverPort}/api/ws?userId=${userId}&appToken=test_${Date.now()}`;
+            }
+            
+            addToLog(`WebSocket bağlantısı qurulur: ${wsUrl}`);
+            
+            try {
+                socket = new WebSocket(wsUrl);
+                
+                socket.addEventListener('open', () => {
+                    updateStatus(true);
+                    addToLog('WebSocket bağlantısı quruldu');
+                });
+                
+                socket.addEventListener('message', (event) => {
+                    try {
+                        const data = JSON.parse(event.data);
+                        addToLog(data, 'received');
+                    } catch (err) {
+                        addToLog(`Mesaj alındı (raw): ${event.data}`, 'received');
+                    }
+                });
+                
+                socket.addEventListener('close', () => {
+                    updateStatus(false);
+                    addToLog('WebSocket bağlantısı kəsildi');
+                    socket = null;
+                });
+                
+                socket.addEventListener('error', (error) => {
+                    updateStatus(false);
+                    addToLog(`WebSocket xətası: ${error.message || 'Unknown error'}`);
+                });
+            } catch (err) {
+                addToLog(`Error creating WebSocket: ${err.message}`);
+                updateStatus(false);
+            }
+        }
+        
+        function disconnect() {
+            if (socket) {
+                socket.close();
+            }
+        }
+        
+        function sendMessage() {
+            if (!socket || socket.readyState !== WebSocket.OPEN) {
+                addToLog('Mesaj göndərilə bilmədi: WebSocket bağlantısı yoxdur.');
+                return;
+            }
+            
+            const messageText = messageInput.value.trim();
+            if (!messageText) return;
+            
+            try {
+                // Try to parse as JSON
+                let messageObj;
+                try {
+                    messageObj = JSON.parse(messageText);
+                } catch (err) {
+                    // Not valid JSON, create a simple message object
+                    messageObj = {
+                        type: 'message',
+                        content: messageText,
+                        timestamp: new Date().toISOString()
+                    };
+                }
+                
+                socket.send(JSON.stringify(messageObj));
+                addToLog(messageObj, 'sent');
+                messageInput.value = '';
+            } catch (err) {
+                addToLog(`Mesaj göndərilə bilmədi: ${err.message}`);
+            }
+        }
+        
+        // Event listeners
+        connectBtn.addEventListener('click', connect);
+        disconnectBtn.addEventListener('click', disconnect);
+        sendBtn.addEventListener('click', sendMessage);
+        
+        messageInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        // Initialize
+        updateStatus(false);
+    </script>
+</body>
+</html>

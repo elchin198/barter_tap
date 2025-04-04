@@ -1,0 +1,175 @@
+24     userId?: number;
+       ~~~~~~
+
+server/session.ts:24:5 - error TS2717: Subsequent property declarations must hav
+e the same type.  Property 'userId' must be of type 'number | null', but here ha
+s type 'number | undefined'.
+
+24     userId?: number;
+       ~~~~~~
+
+  server/routes.ts:14:5
+    14     userId: number | null;
+           ~~~~~~
+    'userId' was also declared here.
+
+server/session.ts:25:5 - error TS2687: All declarations of 'username' must have
+identical modifiers.
+
+25     username?: string;
+       ~~~~~~~~
+
+server/session.ts:25:5 - error TS2717: Subsequent property declarations must hav
+e the same type.  Property 'username' must be of type 'string | null', but here
+has type 'string | undefined'.
+
+25     username?: string;
+       ~~~~~~~~
+
+  server/routes.ts:15:5
+    15     username: string | null;
+           ~~~~~~~~
+    'username' was also declared here.
+
+server/session.ts:26:5 - error TS2687: All declarations of 'role' must have iden
+tical modifiers.
+
+26     role?: string;
+       ~~~~
+
+server/session.ts:26:5 - error TS2717: Subsequent property declarations must hav
+e the same type.  Property 'role' must be of type 'string | null', but here has
+type 'string | undefined'.
+
+26     role?: string;
+       ~~~~
+
+  server/routes.ts:16:5
+    16     role: string | null;
+           ~~~~
+    'role' was also declared here.
+
+server/storage.ts:14:8 - error TS2307: Cannot find module '@shared/schema' or it
+s corresponding type declarations.
+
+14 } from "@shared/schema";
+          ~~~~~~~~~~~~~~~~
+
+server/storage.ts:311:73 - error TS18048: 'options.minPrice' is possibly 'undefi
+ned'.
+
+311       items = items.filter(item => item.price !== null && item.price >= opti
+ons.minPrice);
+                                                                            ~~~~
+~~~~~~~~~~~~
+
+server/storage.ts:315:73 - error TS18048: 'options.maxPrice' is possibly 'undefi
+ned'.
+
+315       items = items.filter(item => item.price !== null && item.price <= opti
+ons.maxPrice);
+                                                                            ~~~~
+~~~~~~~~~~~~
+
+server/storage.ts:326:54 - error TS18048: 'options.minViews' is possibly 'undefi
+ned'.
+
+326       items = items.filter(item => item.viewCount >= options.minViews);
+                                                         ~~~~~~~~~~~~~~~~
+
+server/storage.ts:520:51 - error TS7006: Parameter 'p' implicitly has an 'any' t
+ype.
+
+520       const hasOtherUser = conv.participants.some(p => p.id === userId2);
+                                                      ~
+
+server/storage.ts:542:8 - error TS7006: Parameter 'a' implicitly has an 'any' ty
+pe.
+
+542       (a, b) => b.lastMessageAt.getTime() - a.lastMessageAt.getTime()
+           ~
+
+server/storage.ts:542:11 - error TS7006: Parameter 'b' implicitly has an 'any' t
+ype.
+
+542       (a, b) => b.lastMessageAt.getTime() - a.lastMessageAt.getTime()
+              ~
+
+server/vite.ts:9:24 - error TS2307: Cannot find module '../vite.config' or its c
+orresponding type declarations.
+
+9 import viteConfig from "../vite.config";
+                         ~~~~~~~~~~~~~~~~
+
+server/websocket.ts:4:24 - error TS2835: Relative import paths need explicit fil
+e extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nod
+enext'. Did you mean './vite.js'?
+
+4 import { logger } from './vite';
+                         ~~~~~~~~
+
+server/websocket.ts:8:29 - error TS2339: Property 'Server' does not exist on typ
+e 'typeof WebSocket'.
+
+8   const wss = new WebSocket.Server({ server });
+                              ~~~~~~
+
+server/websocket.ts:15:25 - error TS7006: Parameter 'ws' implicitly has an 'any'
+ type.
+
+15   wss.on('connection', (ws, req) => {
+                           ~~
+
+server/websocket.ts:15:29 - error TS7006: Parameter 'req' implicitly has an 'any
+' type.
+
+15   wss.on('connection', (ws, req) => {
+                               ~~~
+
+server/websocket.ts:32:23 - error TS7006: Parameter 'message' implicitly has an
+'any' type.
+
+32     ws.on('message', (message) => {
+                         ~~~~~~~
+
+server/websocket.ts:64:50 - error TS18046: 'error' is of type 'unknown'.
+
+64         logger.error(`WebSocket message error: ${error.message}`);
+                                                    ~~~~~
+
+server/websocket.ts:79:21 - error TS7006: Parameter 'error' implicitly has an 'a
+ny' type.
+
+79     ws.on('error', (error) => {
+                       ~~~~~
+
+server/websocket.ts:85:29 - error TS7006: Parameter 'sender' implicitly has an '
+any' type.
+
+85   function broadcastMessage(sender, message) {
+                               ~~~~~~
+
+server/websocket.ts:85:37 - error TS7006: Parameter 'message' implicitly has an
+'any' type.
+
+85   function broadcastMessage(sender, message) {
+                                       ~~~~~~~
+
+
+Found 78 errors in 11 files.
+
+Errors  Files
+     2  server/auth.ts:4
+     1  server/db.ts:37
+     6  server/index.ts:2
+    15  server/routes-simplified.ts:6
+    29  server/routes.ts:3
+     1  server/seed-items.ts:2
+     1  server/seed.ts:2
+     6  server/session.ts:24
+     7  server/storage.ts:14
+     1  server/vite.ts:9
+     9  server/websocket.ts:4
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Desktop/D folder/smsinfo/ISMAYIL/BarterBridge (main)
+$

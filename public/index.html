@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarterTap WebSocket Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2563eb;
+            text-align: center;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f9fafb;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #2563eb;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin: 10px 0;
+        }
+        #messageArea {
+            border: 1px solid #ddd;
+            padding: 10px;
+            min-height: 200px;
+            margin-top: 10px;
+            border-radius: 4px;
+            background-color: #f5f5f5;
+            overflow-y: auto;
+        }
+        .action-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>BarterTap WebSocket Test</h1>
+    
+    <div class="card">
+        <h2>WebSocket Bağlantı Testi</h2>
+        <p id="status">Bağlantı statusu: Gözləyir...</p>
+        <button class="btn" id="connectBtn">Bağlantı qur</button>
+        
+        <div class="action-row">
+            <input type="text" id="messageInput" placeholder="Mesajınızı daxil edin...">
+            <button class="btn" id="sendBtn" disabled>Göndər</button>
+        </div>
+        
+        <h3>Mesajlar:</h3>
+        <div id="messageArea"></div>
+    </div>
+    
+    <div class="card">
+        <h2>Yararlı Linklər</h2>
+        <ul>
+            <li><a href="/api/healthcheck" class="btn">Server statusunu yoxla</a></li>
+            <li><a href="/websocket-test-simple.html" class="btn">Alternativ WebSocket tester</a></li>
+        </ul>
+    </div>
+    
+    <script>
+        let socket = null;
+        const statusEl = document.getElementById('status');
+        const connectBtn = document.getElementById('connectBtn');
+        const sendBtn = document.getElementById('sendBtn');
+        const messageInput = document.getElementById('messageInput');
+        const messageArea = document.getElementById('messageArea');
+        
+        // WebSocket adresini müəyyən et
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        const wsUrl = `${protocol}//${window.location.host}/api/ws`;
+        
+        function appendMessage(message, isReceived = false) {
+            const msgDiv = document.createElement('div');
+            msgDiv.style.padding = '5px';
+            msgDiv.style.marginBottom = '5px';
+            msgDiv.style.borderLeft = isReceived ? '3px solid green' : '3px solid blue';
+            msgDiv.style.paddingLeft = '10px';
+            msgDiv.textContent = `${isReceived ? 'Alındı' : 'Göndərildi'}: ${message}`;
+            messageArea.appendChild(msgDiv);
+            messageArea.scrollTop = messageArea.scrollHeight;
+        }
+        
+        function connect() {
+            try {
+                statusEl.textContent = 'Bağlantı qurulur...';
+                console.log(`WebSocket bağlantısı qurulur: ${wsUrl}`);
+                
+                socket = new WebSocket(wsUrl);
+                
+                socket.onopen = function() {
+                    statusEl.textContent = 'Bağlantı quruldu!';
+                    statusEl.style.color = 'green';
+                    connectBtn.textContent = 'Yenidən bağlan';
+                    sendBtn.disabled = false;
+                    
+                    appendMessage('WebSocket serveri ilə əlaqə quruldu', true);
+                };
+                
+                socket.onmessage = function(event) {
+                    console.log('Mesaj alındı:', event.data);
+                    appendMessage(event.data, true);
+                };
+                
+                socket.onclose = function() {
+                    statusEl.textContent = 'Bağlantı kəsildi';
+                    statusEl.style.color = 'red';
+                    connectBtn.textContent = 'Bağlantı qur';
+                    sendBtn.disabled = true;
+                    
+                    appendMessage('WebSocket bağlantısı bağlandı', true);
+                    socket = null;
+                };
+                
+                socket.onerror = function(error) {
+                    console.error('WebSocket xətası:', error);
+                    statusEl.textContent = 'Bağlantı xətası!';
+                    statusEl.style.color = 'red';
+                    
+                    appendMessage('WebSocket bağlantısında xəta baş verdi', true);
+                };
+            } catch (error) {
+                console.error('WebSocket qoşulması xətası:', error);
+                statusEl.textContent = 'Bağlantı xətası: ' + error.message;
+                statusEl.style.color = 'red';
+            }
+        }
+        
+        connectBtn.addEventListener('click', function() {
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                socket.close();
+            } else {
+                connect();
+            }
+        });
+        
+        sendBtn.addEventListener('click', function() {
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                const message = messageInput.value.trim();
+                if (message) {
+                    socket.send(message);
+                    appendMessage(message, false);
+                    messageInput.value = '';
+                }
+            } else {
+                statusEl.textContent = 'WebSocket bağlantısı yoxdur!';
+                statusEl.style.color = 'red';
+                sendBtn.disabled = true;
+            }
+        });
+        
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !sendBtn.disabled) {
+                sendBtn.click();
+            }
+        });
+        
+        // Səhifə yükləndikdən sonra avtomatik bağlantı
+        document.addEventListener('DOMContentLoaded', function() {
+            // Avtomatik bağlantı qurmaq istəyirsinizsə, bu sətri aktivləşdirin
+            // connect();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+client:536 WebSocket connection to 'wss://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/?token=aYgmRDdNDEIt' failed: 
+setupWebSocket @ client:536Understand this errorAI
+client:536 Uncaught (in promise) SyntaxError: Failed to construct 'WebSocket': The URL 'wss://localhost:undefined/?token=aYgmRDdNDEIt' is invalid.
+    at setupWebSocket (client:536:19)
+    at fallback (client:509:16)
+    at WebSocket.<anonymous> (client:555:7)Understand this errorAI
+chunk-WERSD76P.js?v=98623329:21551 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+i18next.js?v=70b32239:209 i18next: initialized Object
+i18n.ts:108 i18next initialized successfully
+i18n.ts:108 i18next initialized successfully
+i18next.js?v=70b32239:209 i18next::backendConnector: loaded namespace translation for language az Object
+2i18next.js?v=70b32239:209 i18next: languageChanged az
+i18next.js?v=70b32239:209 i18next: init: i18next is already initialized. You should call init just once!
+output @ i18next.js?v=70b32239:209Understand this warningAI
+i18next.js?v=70b32239:209 i18next: initialized Object
+i18n.ts:108 i18next initialized successfully
+i18n.ts:108 i18next initialized successfully
+framer-motion.js?v=0ecb98f2:313 You have defined a target options but the provided ref is not yet hydrated, probably because it's defined higher up the tree. Try calling useScroll() in the same component as the ref, or setting its `layoutEffect: false` option.
+warning @ framer-motion.js?v=0ecb98f2:313Understand this warningAI
+queryClient.ts:52 GET Query: /api/items/2
+AuthContext.tsx:21 AuthContext: Fetching current user data
+i18next.js?v=70b32239:209 i18next::backendConnector: loaded namespace translation for language az Object
+i18next.js?v=70b32239:209 i18next: languageChanged az
+/api/auth/me:1 
+            
+            
+           Failed to load resource: the server responded with a status of 401 (Unauthorized)Understand this errorAI
+AuthContext.tsx:35 AuthContext: /api/auth/me response Object
+AuthContext.tsx:45 AuthContext: User not authenticated (401)
+queryClient.ts:63 Query Response: 200 OK Object
+queryClient.ts:75 Query Data: Object
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation item.views baxış
+i18n.ts:84 i18next missingKey: az:translation:item.views - fallback: baxış
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.barterProgress items.barterProgress
+i18n.ts:84 i18next missingKey: az:translation:items.barterProgress - fallback: items.barterProgress
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.barterStatus.pending items.barterStatus.pending
+i18n.ts:84 i18next missingKey: az:translation:items.barterStatus.pending - fallback: items.barterStatus.pending
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.barterSteps.sent items.barterSteps.sent
+i18n.ts:84 i18next missingKey: az:translation:items.barterSteps.sent - fallback: items.barterSteps.sent
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.barterSteps.accepted items.barterSteps.accepted
+i18n.ts:84 i18next missingKey: az:translation:items.barterSteps.accepted - fallback: items.barterSteps.accepted
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.barterSteps.inProgress items.barterSteps.inProgress
+i18n.ts:84 i18next missingKey: az:translation:items.barterSteps.inProgress - fallback: items.barterSteps.inProgress
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.barterSteps.completed items.barterSteps.completed
+i18n.ts:84 i18next missingKey: az:translation:items.barterSteps.completed - fallback: items.barterSteps.completed
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation map.googleMaps Google Maps
+i18n.ts:84 i18next missingKey: az:translation:map.googleMaps - fallback: Google Maps
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation map.openInGoogleMaps Google Maps-da aç
+i18n.ts:84 i18next missingKey: az:translation:map.openInGoogleMaps - fallback: Google Maps-da aç
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.userOtherItems Digər elanlar
+i18n.ts:84 i18next missingKey: az:translation:items.userOtherItems - fallback: Digər elanlar
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.relatedItems items.relatedItems
+i18n.ts:84 i18next missingKey: az:translation:items.relatedItems - fallback: items.relatedItems
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.sameCategory items.sameCategory
+i18n.ts:84 i18next missingKey: az:translation:items.sameCategory - fallback: items.sameCategory
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.sameCity items.sameCity
+i18n.ts:84 i18next missingKey: az:translation:items.sameCity - fallback: items.sameCity
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+queryClient.ts:52 GET Query: /api/users/5/rating
+queryClient.ts:52 GET Query: /api/reviews/user/5
+queryClient.ts:52 GET Query: /api/items
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation item.views baxış
+i18n.ts:84 i18next missingKey: az:translation:item.views - fallback: baxış
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+queryClient.ts:63 Query Response: 200 OK Object
+queryClient.ts:75 Query Data: Object
+queryClient.ts:63 Query Response: 200 OK Object
+queryClient.ts:63 Query Response: 200 OK Object
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.relatedItems items.relatedItems
+i18n.ts:84 i18next missingKey: az:translation:items.relatedItems - fallback: items.relatedItems
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.sameCategory items.sameCategory
+i18n.ts:84 i18next missingKey: az:translation:items.sameCategory - fallback: items.sameCategory
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.sameCity items.sameCity
+i18n.ts:84 i18next missingKey: az:translation:items.sameCity - fallback: items.sameCity
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.noItems items.noItems
+i18n.ts:84 i18next missingKey: az:translation:items.noItems - fallback: items.noItems
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+queryClient.ts:75 Query Data: Array(2)
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.userOtherItems undefined tərəfindən digər elanlar
+i18n.ts:84 i18next missingKey: az:translation:items.userOtherItems - fallback: undefined tərəfindən digər elanlar
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+chunk-WERSD76P.js?v=98623329:521 Warning: validateDOMNesting(...): <a> cannot appear as a descendant of <a>.
+    at a
+    at a
+    at https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=5b7526d7:337:18
+    at div
+    at div
+    at UserItems (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/components/items/UserItems.tsx:25:37)
+    at div
+    at MotionComponent (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/framer-motion.js?v=0ecb98f2:945:40)
+    at div
+    at ItemDetailContent (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/pages/ItemDetail.tsx?t=1743256471179:79:30)
+    at ItemDetailWrapper (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/pages/ItemDetail.tsx?t=1743256471179:62:22)
+    at Route (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=5b7526d7:323:16)
+    at Switch (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=5b7526d7:379:17)
+    at main
+    at div
+    at Router (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/App.tsx?t=1743256471179&v=VRh0o3RCllsk77W_mQvPV:62:22)
+    at AdminProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/context/AdminContext.tsx:32:33)
+    at AuthProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/context/AuthContext.tsx:21:32)
+    at QueryClientProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=50962a13:2805:3)
+    at I18nextProvider (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/react-i18next.js?v=d22ed336:781:3)
+    at App (https://c056e967-b65a-4297-9ccb-49677d92c73d-00-on60u9modgpd.worf.replit.dev/src/App.tsx?t=1743256471179&v=VRh0o3RCllsk77W_mQvPV:301:3)
+printWarning @ chunk-WERSD76P.js?v=98623329:521Understand this errorAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.userOtherItems undefined tərəfindən digər elanlar
+i18n.ts:84 i18next missingKey: az:translation:items.userOtherItems - fallback: undefined tərəfindən digər elanlar
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.relatedItems items.relatedItems
+i18n.ts:84 i18next missingKey: az:translation:items.relatedItems - fallback: items.relatedItems
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.sameCategory items.sameCategory
+i18n.ts:84 i18next missingKey: az:translation:items.sameCategory - fallback: items.sameCategory
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.sameCity items.sameCity
+i18n.ts:84 i18next missingKey: az:translation:items.sameCity - fallback: items.sameCity
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.noItems items.noItems
+i18n.ts:84 i18next missingKey: az:translation:items.noItems - fallback: items.noItems
+missingKeyHandler @ i18n.ts:84Understand this warningAI
+i18next.js?v=70b32239:209 i18next::translator: missingKey az translation items.noItems items.noItems
+i18n.ts:84 i18next missingKey: az:translation:items.noItems - fallback: items.noItems

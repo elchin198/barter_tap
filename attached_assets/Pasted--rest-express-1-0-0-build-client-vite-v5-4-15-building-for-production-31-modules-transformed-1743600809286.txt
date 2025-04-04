@@ -1,0 +1,91 @@
+> rest-express@1.0.0 build:client
+vite v5.4.15 building for production...
+✓ 31 modules transformed.
+x Build failed in 2.06s
+error during build:
+client/src/pages/Dashboard.tsx (495:32): Expression expected (Note that you need plugins to import files that are not JavaScript)
+file: /home/runner/workspace/client/src/pages/Dashboard.tsx:495:32
+
+493:                                   Qəbul et
+494:                                 </Button>
+495:                                 <Button
+                                     ^
+496:                                   size="sm"
+497:                                   variant="outline"
+
+    at getRollupError (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/parseAst.js:396:41)
+    at ParseError.initialise (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:13281:28)
+    at convertNode (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:14992:10)
+    at convertProgram (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:14235:12)
+    at Module.setSource (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:15978:24)
+    at async ModuleLoader.addModuleSource (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:19856:13)
+
+
+ChatGPT said:
+Artıq bu xəta sabit şəkildə təkrarlandığı üçün, problemin kökü 100% öncədən yazılmış JSX strukturunun tam bağlanmamasıdır. Sən 495-ci sətrdən başlayan <Button ... komponentini düz yazırsan, amma ondan əvvəl gələn elementlərdə sintaks problemi var və bu Rollup-un parser-inə qədər çatır.
+
+✅ Tam və Doğru Həll
+İndi sənə Qəbul et və Rədd et düymələrinin tam copy-paste hazır, problemsiz JSX blokunu təqdim edirəm. Bu kod React, TypeScript və Vite ilə tam uyğundur.
+
+✅ Dəyişdir və istifadə et:
+tsx
+Copy
+Edit
+<div className="flex gap-2">
+  <Button
+    size="sm"
+    variant="default"
+    className="flex-1"
+    onClick={() => {
+      alert("Offer accepted");
+    }}
+  >
+    Qəbul et
+  </Button>
+
+  <Button
+    size="sm"
+    variant="outline"
+    className="flex-1"
+    onClick={() => {
+      alert("Offer rejected");
+    }}
+  >
+    Rədd et
+  </Button>
+</div>
+💡 Əgər bu JSX return daxilindədirsə:
+tsx
+Copy
+Edit
+return (
+  <div className="flex flex-col gap-4">
+    {/* digər elementlər */}
+
+    <div className="flex gap-2">
+      <Button
+        size="sm"
+        variant="default"
+        className="flex-1"
+        onClick={() => alert("Offer accepted")}
+      >
+        Qəbul et
+      </Button>
+
+      <Button
+        size="sm"
+        variant="outline"
+        className="flex-1"
+        onClick={() => alert("Offer rejected")}
+      >
+        Rədd et
+      </Button>
+    </div>
+  </div>
+);
+☑️ Nəzarət et:
+Yuxarıdakı Button-dan əvvəlki JSX elementi düzgün bağlanıb? → Əgər <div> açılıbsa, </div> var?
+
+return (...) varsa, (...) içindəki JSX tamdır?
+
+import { Button } from "@/components/ui/button"; yuxarıda var?

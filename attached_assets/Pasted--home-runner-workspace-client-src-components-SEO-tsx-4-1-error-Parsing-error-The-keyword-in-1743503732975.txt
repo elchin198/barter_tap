@@ -1,0 +1,98 @@
+
+/home/runner/workspace/client/src/components/SEO.tsx
+  4:1  error  Parsing error: The keyword 'interface' is reserved
+
+/home/runner/workspace/client/src/components/UploadImage.tsx
+  6:36  error  Parsing error: Unexpected token :
+
+/home/runner/workspace/client/src/context/AdminContext.tsx
+  7:8  error  Parsing error: Unexpected token interface
+
+/home/runner/workspace/client/src/context/AuthContext.tsx
+  5:1  error  Parsing error: The keyword 'interface' is reserved
+
+/home/runner/workspace/client/src/lib/RouteAdapters.tsx
+  6:38  error  Parsing error: Unexpected token :
+
+/home/runner/workspace/client/src/lib/guest-route.tsx
+  5:1  error  Parsing error: The keyword 'interface' is reserved
+
+/home/runner/workspace/client/src/lib/protected-route.tsx
+  8:1  error  Parsing error: The keyword 'interface' is reserved
+
+/home/runner/workspace/client/src/pages/BarterTapHome.tsx
+  23:1  error  Parsing error: The keyword 'interface' is reserved
+
+/home/runner/workspace/client/src/pages/Categories.tsx
+  19:1  error  Parsing error: The keyword 'interface' is reserved
+
+/home/runner/workspace/client/src/pages/CreateItem.tsx
+  60:6  error  Parsing error: Unexpected token ItemFormValues
+
+/home/runner/workspace/client/src/pages/Dashboard.tsx
+  103:7  error  Parsing error: Unexpected token <
+
+/home/runner/workspace/client/src/pages/HowItWorks.tsx
+  27:5  error  Parsing error: Unexpected token <
+
+/home/runner/workspace/client/src/pages/ItemDetail.tsx
+  31:31  error  Parsing error: Unexpected token BarterStatus
+
+/home/runner/workspace/client/src/pages/ItemListing.tsx
+  48:6  error  Parsing error: Unexpected token ItemFormValues
+
+/home/runner/workspace/client/src/pages/ItemsList.tsx
+  35:1  error  Parsing error: The keyword 'interface' is reserved
+
+/home/runner/workspace/client/src/pages/Login.tsx
+  22:6  error  Parsing error: Unexpected token LoginFormValues
+
+/home/runner/workspace/client/src/pages/Map.tsx
+  18:1  error  Parsing error: The keyword 'interface' is reserved
+
+/home/runner/workspace/client/src/pages/Messages.tsx
+  46:39  error  Parsing error: Unexpected token :
+
+/home/runner/workspace/client/src/pages/NewOffer.tsx
+  38:1  error  Parsing error: The keyword 'interface' is reserved
+
+/home/runner/workspace/client/src/pages/NextBarterHome.tsx
+  23:1  error  Parsing error: The keyword 'interface' is reserved
+
+/home/runner/workspace/client/src/pages/Notifications.tsx
+  20:73  error  Parsing error: Unexpected token ]
+
+/home/runner/workspace/client/src/pages/Offers.tsx
+  22:1  error  Parsing error: The keyword 'interface' is reserved
+
+/home/runner/workspace/client/src/pages/Profile.tsx
+  29:6  error  Parsing error: Unexpected token ProfileFormValues
+
+/home/runner/workspace/client/src/pages/Register.tsx
+  24:6  error  Parsing error: Unexpected token RegisterFormValues
+
+/home/runner/workspace/client/src/pages/contact.tsx
+  23:26  error  Parsing error: Unexpected token :
+
+/home/runner/workspace/client/src/pages/faq.tsx
+  20:13  error  Parsing error: Unexpected token <
+
+/home/runner/workspace/client/src/pages/help.tsx
+  26:13  error  Parsing error: Unexpected token <
+
+/home/runner/workspace/client/src/pages/not-found.tsx
+  8:1  error  Parsing error: The keyword 'interface' is reserved
+
+/home/runner/workspace/client/src/pages/privacy-policy.tsx
+  23:5  error  Parsing error: Unexpected token <
+
+/home/runner/workspace/client/src/pages/terms.tsx
+  24:5  error  Parsing error: Unexpected token <
+
+/home/runner/workspace/client/src/pages/unauthorized.tsx
+  13:5  error  Parsing error: Unexpected token <
+
+/home/runner/workspace/server/routes/advertisements.ts
+  8:27  error  Parsing error: Unexpected token :
+
+✖ 32 problems (32 errors, 0 warnings)

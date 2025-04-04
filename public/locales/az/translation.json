@@ -1,0 +1,96 @@
+{
+  "common": {
+    "home": "Ana Səhifə",
+    "allItems": "Bütün Əşyalar",
+    "categories": "Kateqoriyalar",
+    "howItWorks": "Necə İşləyir",
+    "login": "Daxil ol",
+    "register": "Qeydiyyat",
+    "myProfile": "Mənim Profilim",
+    "myItems": "Mənim Əşyalarım",
+    "offers": "Təkliflər",
+    "logout": "Çıxış",
+    "favorites": "Seçilmişlər",
+    "messages": "Mesajlar",
+    "notifications": "Bildirişlər",
+    "addItem": "Əşya Əlavə Et",
+    "language": "Dil"
+  },
+  "seo": {
+    "defaultTitle": "BarterTap.az - Pulsuz Əşya Mübadiləsi Platforması",
+    "defaultDescription": "BarterTap.az ilə lazımsız əşyalarınızı pulsuz dəyişdirin. Pulunuzu xərcləmədən yeni əşyalar əldə edin.",
+    "defaultKeywords": "əşya mübadiləsi, barter, pulsuz mübadilə, second hand, istifadə olunmuş əşyalar, dəyişmək, azərbaycan"
+  },
+  "categories": {
+    "all": "Hamısı",
+    "services": "Xidmətlər",
+    "books": "Kitablar",
+    "electronics": "Elektronika",
+    "vehicles": "Nəqliyyat",
+    "clothing": "Geyim",
+    "realEstate": "Daşınmaz əmlak",
+    "garden": "Bağ və bağça",
+    "games": "Oyunlar",
+    "furniture": "Mebel",
+    "sports": "İdman"
+  },
+  "footer": {
+    "description": "BarterTap.az, Azərbaycanda ən böyük pulsuz əşya mübadiləsi platformasıdır.",
+    "quickLinks": "Sürətli Keçidlər",
+    "account": "Hesab",
+    "helpSupport": "Kömək və Dəstək",
+    "faq": "Tez-tez verilən suallar",
+    "contact": "Bizimlə əlaqə",
+    "terms": "İstifadə şərtləri",
+    "privacy": "Gizlilik siyasəti",
+    "helpCenter": "Kömək mərkəzi",
+    "copyright": "Bütün hüquqlar qorunur."
+  },
+  "features": {
+    "secure": "Təhlükəsiz alış-veriş",
+    "easy": "Asan istifadə",
+    "free": "Tamamilə pulsuz",
+    "local": "Yerli icma üçün"
+  }
+}
+{
+  "search": {
+    "placeholder": "Dəyişmək üçün bir şey axtarın"
+  },
+  "common": {
+    "signup": "Qeydiyyatdan keç",
+    "viewAll": "Hamısına bax"
+  },
+  "allOffers": {
+    "title": "Bütün təkliflər"
+  },
+  "recentItems": {
+    "title": "Son əlavə edilənlər"
+  },
+  "howItWorks": {
+    "title": "Necə işləyir",
+    "step1": {
+      "title": "Əşyalarınızı əlavə edin",
+      "description": "Artıq ehtiyacınız olmayan əşyaların şəkillərini və təsvirini əlavə edin."
+    },
+    "step2": {
+      "title": "Təkliflər verin",
+      "description": "İstədiyiniz əşyaları tapın və öz əşyalarınızı mübadiləyə təklif edin."
+    },
+    "step3": {
+      "title": "Mübadilə edin və qiymətləndirin",
+      "description": "Görüşün, mübadiləni həyata keçirin və təcrübənizi qiymətləndirin."
+    },
+    "learnMore": "Mübadilə haqqında daha çox öyrənin"
+  },
+  "cta": {
+    "title": "İndi qoşulun və mübadilə etməyə başlayın",
+    "subtitle": "Minlərlə istifadəçi artıq pul xərcləmədən ehtiyacları olan əşyaları əldə edib. Mübadilə hərəkatına qoşulun!"
+  },
+  "auth": {
+    "register": "Pulsuz qeydiyyatdan keç"
+  },
+  "seo": {
+    "itemKeywords": "barter, mübadilə, Azərbaycan, alqı-satqısız, ikinci əl"
+  }
+}

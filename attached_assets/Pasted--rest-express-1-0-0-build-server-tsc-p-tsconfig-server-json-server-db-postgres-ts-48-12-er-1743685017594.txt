@@ -1,0 +1,56 @@
+> rest-express@1.0.0 build:server
+> tsc -p tsconfig.server.json
+
+server/db_postgres.ts:48:12 - error TS2304: Cannot find name 'getDb'.
+
+48     return getDb();
+              ~~~~~
+
+server/db_postgres.ts:51:3 - error TS7023: 'getDb' implicitly has return type 'any' because it does not have a return type annotation and is referenced directly or indirectly in one of its return expressions.
+
+51   getDb() {
+     ~~~~~
+
+server/db_postgres.ts:52:17 - error TS2339: Property 'dbClient' does not exist on type '{ readonly db: any; getDb(): any; getUser(userId: number): Promise<any>; getUserByUsername(username: string): Promise<any>; getUserByEmail(email: string): Promise<...>; ... 46 more ...; getActiveAdvertisement(position: string): Promise<...>; }'.
+
+52     return this.dbClient;
+                   ~~~~~~~~
+
+server/routes.ts:1266:25 - error TS2551: Property 'createConversationParticipant' does not exist on type '{ readonly db: any; getDb(): any; getUser(userId: number): Promise<any>; getUserByUsername(username: string): Promise<any>; getUserByEmail(email: string): Promise<...>; ... 46 more ...; getActiveAdvertisement(position: string): Promise<...>; }'. Did you mean 'getConversationByParticipants'?
+
+1266         await dbStorage.createConversationParticipant({
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  server/db_postgres.ts:217:9
+    217   async getConversationByParticipants(userId1: number, userId2: number, itemId?: number) {
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    'getConversationByParticipants' is declared here.
+
+server/routes.ts:1271:25 - error TS2551: Property 'createConversationParticipant' does not exist on type '{ readonly db: any; getDb(): any; getUser(userId: number): Promise<any>; getUserByUsername(username: string): Promise<any>; getUserByEmail(email: string): Promise<...>; ... 46 more ...; getActiveAdvertisement(position: string): Promise<...>; }'. Did you mean 'getConversationByParticipants'?
+
+1271         await dbStorage.createConversationParticipant({
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  server/db_postgres.ts:217:9
+    217   async getConversationByParticipants(userId1: number, userId2: number, itemId?: number) {
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    'getConversationByParticipants' is declared here.
+
+server/routes.ts:1479:11 - error TS2554: Expected 1 arguments, but got 2.
+
+1479           {
+               ~
+1480             participants: [
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ... 
+1483             ]
+     ~~~~~~~~~~~~~
+1484           }
+     ~~~~~~~~~~~
+
+
+Found 6 errors in 2 files.
+
+Errors  Files
+     3  server/db_postgres.ts:48
+     3  server/routes.ts:1266

@@ -1,0 +1,97 @@
+// Yeni metodların sadə implementasiyası MemStorage sinfinə əlavə olunacaq:
+
+// Əlavə olunmalı tiplər:
+import {
+  Notification, InsertNotification,
+  Offer, Review, InsertReview
+} from "@shared/schema";
+
+// Notifikasiya metodları
+async createNotification(notification: InsertNotification): Promise<Notification> {
+  const id = this.notificationIdCounter++;
+  const createdAt = new Date();
+  const fullNotification = { ...notification, id, createdAt, read: false };
+  this.notifications.set(id, fullNotification);
+  return fullNotification;
+}
+
+async getNotificationsByUser(userId: number): Promise<Notification[]> {
+  return Array.from(this.notifications.values()).filter(n => n.userId === userId);
+}
+
+async getUnreadNotificationsCount(userId: number): Promise<number> {
+  return (await this.getNotificationsByUser(userId)).filter(n => !n.read).length;
+}
+
+async markNotificationAsRead(id: number): Promise<boolean> {
+  const n = this.notifications.get(id);
+  if (!n) return false;
+  this.notifications.set(id, { ...n, read: true });
+  return true;
+}
+
+async markAllNotificationsAsRead(userId: number): Promise<boolean> {
+  const userNotifications = await this.getNotificationsByUser(userId);
+  userNotifications.forEach(n => this.notifications.set(n.id, { ...n, read: true }));
+  return true;
+}
+
+// Offers
+async getOffer(offerId: number): Promise<Offer | undefined> {
+  return Array.from(this.offers.values()).find(o => o.id === offerId);
+}
+
+async updateOfferStatus(offerId: number, status: string): Promise<Offer> {
+  const offer = await this.getOffer(offerId);
+  if (!offer) throw new Error("Offer not found");
+  const updated = { ...offer, status };
+  this.offers.set(offerId, updated);
+  return updated;
+}
+
+// Reviews
+async getReviewsByUser(userId: number): Promise<Review[]> {
+  return Array.from(this.reviews.values()).filter(r => r.userId === userId);
+}
+
+async getUserRating(userId: number): Promise<number> {
+  const reviews = await this.getReviewsByUser(userId);
+  if (reviews.length === 0) return 0;
+  return Math.round(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length);
+}
+
+async canReviewOffer(offerId: number, userId: number): Promise<boolean> {
+  const offer = await this.getOffer(offerId);
+  if (!offer) return false;
+  return offer.fromUserId === userId || offer.toUserId === userId;
+}
+
+async createReview(insert: InsertReview): Promise<Review> {
+  const id = this.reviewIdCounter++;
+  const createdAt = new Date();
+  const review = { ...insert, id, createdAt };
+  this.reviews.set(id, review);
+  return review;
+}
+
+// Conversations - update last message placeholder
+async updateConversationLastMessage(conversationId: number): Promise<void> {
+  const conv = this.conversations.get(conversationId);
+  if (conv) {
+    this.conversations.set(conversationId, { ...conv, updatedAt: new Date() });
+  }
+}
+
+// Ads
+async getActiveAdvertisementByPosition(position: string): Promise<Advertisement | undefined> {
+  return Array.from(this.advertisements.values()).find(a => a.placement === position && a.active);
+}
+
+// Push subscriptions - dummy for now
+async createOrUpdatePushSubscription(data: any): Promise<any> {
+  return data;
+}
+
+async deletePushSubscription(userId: number): Promise<boolean> {
+  return true;
+}

@@ -1,0 +1,78 @@
+"> rest-express@1.0.0 build:client
+failed to load config from /home/runner/workspace/vite.config.ts
+error during build:
+file:///home/runner/workspace/vite.config.ts.timestamp-1743597094283-9825c14c17ba9.mjs:6
+import cartographerPlugin from "file:///home/runner/workspace/node_modules/@replit/vite-plugin-cartographer/dist/index.mjs";
+       ^^^^^^^^^^^^^^^^^^
+SyntaxError: The requested module 'file:///home/runner/workspace/node_modules/@replit/vite-plugin-cartographer/dist/index.mjs' does not provide an export named 'default'
+    at ModuleJob._instantiate (node:internal/modules/esm/module_job:123:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:189:5)
+    at async Promise.all (index 0)
+    at async ESMLoader.import (node:internal/modules/esm/loader:530:24)
+    at async loadConfigFromBundledFile (file:///home/runner/workspace/node_modules/vite/dist/node/chunks/dep-CevzF2vT.js:66876:15)
+    at async loadConfigFromFile (file:///home/runner/workspace/node_modules/vite/dist/node/chunks/dep-CevzF2vT.js:66717:24)
+    at async resolveConfig (file:///home/runner/workspace/node_modules/vite/dist/node/chunks/dep-CevzF2vT.js:66317:24)
+    at async build (file:///home/runner/workspace/node_modules/vite/dist/node/chunks/dep-CevzF2vT.js:65405:18)
+    at async CAC.<anonymous> (file:///home/runner/workspace/node_modules/vite/dist/node/cli.js:829:5)"   Yeni xəta:
+@replit/vite-plugin-cartographer default export təqdim etmir, amma sən onu bu cür yükləməyə çalışırsan:
+
+ts
+Copy
+Edit
+import cartographerPlugin from "@replit/vite-plugin-cartographer"
+❌ Xəta səbəbi: ES6 modul sistemində default export yoxdur, amma sən onu default kimi çağırırsan
+
+✅ HƏLL
+🔧 1. Named export istifadə et
+Əgər plugin bu cür export edilibsə:
+
+ts
+Copy
+Edit
+export const cartographerPlugin = ...
+O zaman düzgün import belə olmalıdır:
+
+ts
+Copy
+Edit
+import { cartographerPlugin } from "@replit/vite-plugin-cartographer"
+🧪 2. Əgər sən əminsənsə ki, @replit/vite-plugin-cartographer birbaşa callable funksiya export edir:
+vite.config.ts faylında dəyiş:
+
+ts
+Copy
+Edit
+// ƏVVƏL
+import cartographerPlugin from "@replit/vite-plugin-cartographer"
+
+// DÜZGÜN VERSİYA
+import { cartographerPlugin } from "@replit/vite-plugin-cartographer"
+📦 3. Plugin hələ də düzgün export etmirsə və sən onu istəmirsənsə:
+Pluginsiz versiyaya keç:
+
+ts
+Copy
+Edit
+// plugins array-dən bu xətti sil
+cartographerPlugin()
+✅ BONUS: Bütün vite.config.ts Faylının DÜZGÜN nümunəsi
+ts
+Copy
+Edit
+import { defineConfig } from "vite"
+import react from "@vitejs/plugin-react"
+import { cartographerPlugin } from "@replit/vite-plugin-cartographer"
+import removeConsole from "vite-plugin-remove-console"
+
+export default defineConfig({
+  plugins: [
+    react(),
+    cartographerPlugin(),
+    removeConsole()
+  ]
+})
+💥 Nəticə
+Problem	Həll
+default export yoxdur	import { cartographerPlugin } istifadə et
+Əgər lazım deyilsə	Plugin sil və build et
+ 

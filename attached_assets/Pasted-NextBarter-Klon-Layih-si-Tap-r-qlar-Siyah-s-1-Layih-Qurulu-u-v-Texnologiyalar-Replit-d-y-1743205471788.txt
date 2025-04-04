@@ -1,0 +1,72 @@
+NextBarter Klon Layihəsi – Tapşırıqlar Siyahısı
+1. 📁 Layihə Quruluşu və Texnologiyalar
+ Replit-də yeni Full Stack (Flask + HTML/CSS/JS) layihəsi aç
+
+ templates/, static/, routes/, models/, utils/ qovluqları yaradın
+
+ .env faylı və config.py ilə konfiqurasiya sistemi qur
+
+ Verilənlər bazası üçün SQLite və ya PostgreSQL (SQLAlchemy ilə)
+
+2. 👤 İstifadəçi Qeydiyyatı və Giriş Sistemi
+ Qeydiyyat formu (ad, email, şifrə)
+
+ Şifrəni bcrypt ilə hash-lə və təhlükəsiz saxla
+
+ Giriş/Çıxış funksiyaları
+
+ Sessiya idarəsi (Flask-Login və ya JWT)
+
+3. 📦 Əşya (Item) Yaratma və İdarəetmə
+ İstifadəçi əşya əlavə edə bilsin (ad, təsvir, şəkil, kateqoriya)
+
+ Əşya redaktəsi və silinməsi mümkün olsun
+
+ Şəkil yükləmə funksiyası (Flask-Uploads və ya cloudinary)
+
+4. 🗂️ Kateqoriyalar və Axtarış Sistemi
+ Əşyaları kateqoriyaya görə sıralama funksiyası
+
+ Axtarış (ad və ya təsvirə görə filtr)
+
+ Əraziyə (şəhər/ölkə) görə filtr imkanı
+
+5. 💬 Daxili Mesajlaşma Sistemi
+ İstifadəçilər arasında barter üçün mesaj yazmaq imkanı
+
+ Mesajlar verilənlər bazasında saxlanılsın
+
+ Mesaj üçün bildiriş sistemi (çox sadə şəkildə)
+
+6. 🌟 Qiymətləndirmə və Rəylər Sistemi
+ Mübadilədən sonra istifadəçilər bir-birinə qiymət (1–5 ulduz) və rəy verə bilsin
+
+ İstifadəçinin profilində orta reytinq görünsün
+
+7. 📸 Ana Səhifə və UI Dizayn
+ Ana səhifədə ən son əşyalar göstərilsin
+
+ Mobil cihazlara uyğun responsive dizayn (Bootstrap istifadə et)
+
+ Kateqoriyalara sürətli keçidlər
+
+8. 🔐 Təhlükəsizlik və Admin Panel
+ Admin üçün ayrıca giriş (email ilə təsdiq)
+
+ Admin əşyaları silə və istifadəçiləri blok edə bilsin
+
+ CSRF qorunması, input validation, session timeout
+
+9. 📊 Əlavə Funksiyalar
+ İstifadəçi profili (görünən əşyaları, reytinqi, barterləri)
+
+ “Mən barter etmək istəyirəm” düyməsi – barter təklifi funksiyası
+
+ Bildirişlər paneli (yeni mesaj, barter təklifi, təsdiq və s.)
+
+10. 🚀 Deploy və Son Yoxlamalar
+ Bütün səhifələrdə test: qeydiyyat, giriş, əşya əlavə, mesaj, rəy
+
+ requirements.txt və .env.example faylları ilə deployment üçün hazırla
+
+ Replit-də deploy və link paylaşımı

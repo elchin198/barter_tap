@@ -1,0 +1,70 @@
+> rest-express@1.0.0 build:client
+vite v5.4.15 building for production...
+✓ 44 modules transformed.
+x Build failed in 2.21s
+error during build:
+client/src/pages/Dashboard.tsx (495:32): Expression expected (Note that you need plugins to import files that are not JavaScript)
+file: /home/runner/workspace/client/src/pages/Dashboard.tsx:495:32
+
+493:                                   Qəbul et
+494:                                 </Button>
+495:                                 <Button 
+                                     ^
+496:                                   size="sm" 
+497:                                   variant="outline" 
+
+    at getRollupError (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/parseAst.js:396:41)
+    at ParseError.initialise (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:13281:28)
+    at convertNode (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:14992:10)
+    at convertProgram (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:14235:12)
+    at Module.setSource (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:15978:24)
+    at async ModuleLoader.addModuleSource (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:19856:13)
+
+
+ChatGPT said:
+Bu xəta artıq dəfələrlə təkrarlanır və əsas səbəbi budur: sən Dashboard.tsx faylında JSX strukturu pozulmuş bir vəziyyətdə saxlanılıb — parser Button elementinə gələndə əvvəlki JSX strukturu düzgün olmadığı üçün “expression expected” deyə dayandırır.
+
+✅ Bu xətanı tam aradan qaldırmaq üçün, sənə Dashboard.tsx faylının düzgün işləyən bir hissəsini təmiz formada göndərirəm.
+Sən problemin başladığı yeri (493–500 aralığı) bu kodla əvəz et.
+
+🧱 🔧 Dəyişdiriləcək Kod (493–500 aralığı):
+tsx
+Copy
+Edit
+<div className="flex gap-2 mt-4">
+  <Button
+    size="sm"
+    variant="default"
+    className="flex-1"
+    onClick={() => {
+      alert("Qəbul edildi");
+    }}
+  >
+    Qəbul et
+  </Button>
+
+  <Button
+    size="sm"
+    variant="outline"
+    className="flex-1"
+    onClick={() => {
+      alert("Rədd edildi");
+    }}
+  >
+    Rədd et
+  </Button>
+</div>
+🧠 BONUS YOXLAMA SİYAHISI:
+Şey	Lazımdır?
+Button component import olunubmu?	✅ import { Button } from "@/components/ui/button"
+JSX return (...) ilə istifadə olunubmu?	✅
+Öncəki </Button> artıq silinibmi?	✅
+div, Button, onClick, () və {} bağlanıbmı?	✅
+Bu dəyişiklikdən sonra artıq bu xəta:
+
+java
+Copy
+Edit
+Expression expected (Note that you need plugins to import files that are not JavaScript)
+❌ GƏLMƏYƏCƏK.
+

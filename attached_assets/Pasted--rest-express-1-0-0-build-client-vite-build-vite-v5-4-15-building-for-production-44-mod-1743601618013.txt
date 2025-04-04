@@ -1,0 +1,82 @@
+> rest-express@1.0.0 build:client
+> vite build
+
+vite v5.4.15 building for production...
+✓ 44 modules transformed.
+x Build failed in 2.64s
+error during build:
+client/src/pages/Dashboard.tsx (495:32): Expression expected (Note that you need plugins to import files that are not JavaScript)
+file: /home/runner/workspace/client/src/pages/Dashboard.tsx:495:32
+
+493:                                   Qəbul et
+494:                                 </Button>
+495:                                 <Button
+                                     ^
+496:                                   size="sm"
+497:                                   variant="outline" 
+
+    at getRollupError (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/parseAst.js:396:41)
+    at ParseError.initialise (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:13281:28)
+    at convertNode (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:14992:10)
+    at convertProgram (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:14235:12)
+    at Module.setSource (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:15978:24)
+    at async ModuleLoader.addModuleSource (file:///home/runner/workspace/node_modules/rollup/dist/es/shared/node-entry.js:19856:13)
+
+
+ChatGPT said:
+Bu artıq dəfələrlə eyni xəta və eyni sətirdə baş verir: Dashboard.tsx, sətr 495, parser gözləyir ki, expression gələcək, amma ya orada bir sintaks pozuntusu var, ya da öncəki komponentlərdə bağlanmamış bir JSX elementi.
+
+Bu nöqtədə əminliklə deyə bilərik ki, bu problem Button elementi ilə deyil, onun qarşısındakı kodla bağlıdır.
+
+✅ 100% Təhlükəsiz Həll Planı
+Gəlin aşağıdakı 2 addımla bu problemi qalıcı şəkildə aradan qaldıraq:
+
+✅ Addım 1: Problemli hissəni tap və sil
+Faylında bu hissə var:
+
+tsx
+Copy
+Edit
+493: Qəbul et
+494: </Button>
+495: <Button
+Bu, böyük ehtimalla başlanğıcı olmayan </Button> bağlanışıdır. Bu Rollup üçün ölümcül sintaks səhvidir.
+
+🔧 Dərhal sil:
+
+tsx
+Copy
+Edit
+494: </Button>
+✅ Addım 2: Təmiz, bağlanmış Button komponenti əlavə et
+tsx
+Copy
+Edit
+<Button
+  size="sm"
+  variant="default"
+  className="flex-1"
+  onClick={() => {
+    alert("Qəbul edildi");
+  }}
+>
+  Qəbul et
+</Button>
+
+<Button
+  size="sm"
+  variant="outline"
+  className="flex-1"
+  onClick={() => {
+    alert("Rədd edildi");
+  }}
+>
+  Rədd et
+</Button>
+📌 Nəticə:
+Build-in dayanmasının səbəbi:
+
+JSX-in əvvəlki </Button>-i təkdir, ona uyğun <Button> yoxdur.
+
+JSX parser bunu “code not JS” kimi başa düşür → "Expression expected" verir.
+

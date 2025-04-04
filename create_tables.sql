@@ -1,0 +1,231 @@
+
+-- Users table
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  fullName VARCHAR(255),
+  avatar VARCHAR(255),
+  bio TEXT,
+  phone VARCHAR(255),
+  role VARCHAR(50) NOT NULL DEFAULT 'user',
+  active BOOLEAN NOT NULL DEFAULT TRUE,
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Items table
+CREATE TABLE IF NOT EXISTS items (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  description TEXT NOT NULL,
+  category VARCHAR(255) NOT NULL,
+  condition VARCHAR(50) NOT NULL,
+  city VARCHAR(255),
+  location VARCHAR(255),
+  coordinates TEXT,
+  userId INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  status VARCHAR(50) NOT NULL DEFAULT 'active',
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Images table
+CREATE TABLE IF NOT EXISTS images (
+  id SERIAL PRIMARY KEY,
+  itemId INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
+  filePath VARCHAR(255) NOT NULL,
+  isMain BOOLEAN NOT NULL DEFAULT FALSE,
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Conversations table
+CREATE TABLE IF NOT EXISTS conversations (
+  id SERIAL PRIMARY KEY,
+  itemId INTEGER REFERENCES items(id) ON DELETE SET NULL,
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  lastMessageAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Conversation Participants table
+CREATE TABLE IF NOT EXISTS conversation_participants (
+  id SERIAL PRIMARY KEY,
+  conversationId INTEGER NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
+  userId INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Messages table
+CREATE TABLE IF NOT EXISTS messages (
+  id SERIAL PRIMARY KEY,
+  conversationId INTEGER NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
+  senderId INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  content TEXT NOT NULL,
+  isRead BOOLEAN NOT NULL DEFAULT FALSE,
+  status VARCHAR(50) DEFAULT 'sent',
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Offers table
+CREATE TABLE IF NOT EXISTS offers (
+  id SERIAL PRIMARY KEY,
+  conversationId INTEGER NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
+  fromUserId INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  toUserId INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  fromItemId INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
+  toItemId INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
+  status VARCHAR(50) NOT NULL DEFAULT 'pending',
+  message TEXT,
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Notifications table
+CREATE TABLE IF NOT EXISTS notifications (
+  id SERIAL PRIMARY KEY,
+  userId INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  type VARCHAR(50) NOT NULL,
+  content TEXT NOT NULL,
+  isRead BOOLEAN NOT NULL DEFAULT FALSE,
+  referenceId INTEGER,
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Favorites table
+CREATE TABLE IF NOT EXISTS favorites (
+  id SERIAL PRIMARY KEY,
+  userId INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  itemId INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE (userId, itemId)
+);
+
+-- Reviews table
+CREATE TABLE IF NOT EXISTS reviews (
+  id SERIAL PRIMARY KEY,
+  fromUserId INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  toUserId INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  offerId INTEGER NOT NULL REFERENCES offers(id) ON DELETE CASCADE,
+  rating INTEGER NOT NULL,
+  comment TEXT,
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE (fromUserId, offerId)
+);
+
+-- Sessions table
+CREATE TABLE IF NOT EXISTS sessions (
+  sid VARCHAR(36) NOT NULL PRIMARY KEY,
+  expires TIMESTAMP NOT NULL,
+  data TEXT NOT NULL,
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+-- Users table
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  avatar_url TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  last_login TIMESTAMP,
+  role VARCHAR(20) DEFAULT 'user'
+);
+
+-- Items table
+CREATE TABLE IF NOT EXISTS items (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(100) NOT NULL,
+  description TEXT,
+  category VARCHAR(50),
+  condition VARCHAR(50),
+  image_url TEXT,
+  location TEXT,
+  latitude NUMERIC(10, 8),
+  longitude NUMERIC(11, 8),
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  status VARCHAR(20) DEFAULT 'active'
+);
+
+-- Item images table
+CREATE TABLE IF NOT EXISTS item_images (
+  id SERIAL PRIMARY KEY,
+  item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
+  image_url TEXT NOT NULL,
+  is_main BOOLEAN DEFAULT false,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Barter offers table
+CREATE TABLE IF NOT EXISTS offers (
+  id SERIAL PRIMARY KEY,
+  from_user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  to_user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  offered_item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
+  requested_item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
+  status VARCHAR(30) DEFAULT 'pending',
+  message TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- User ratings table
+CREATE TABLE IF NOT EXISTS ratings (
+  id SERIAL PRIMARY KEY,
+  from_user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  to_user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  rating INTEGER NOT NULL CHECK (rating BETWEEN 1 AND 5),
+  comment TEXT,
+  offer_id INTEGER REFERENCES offers(id) ON DELETE SET NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Conversations table
+CREATE TABLE IF NOT EXISTS conversations (
+  id SERIAL PRIMARY KEY,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Conversation participants
+CREATE TABLE IF NOT EXISTS conversation_participants (
+  id SERIAL PRIMARY KEY,
+  conversation_id INTEGER REFERENCES conversations(id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(conversation_id, user_id)
+);
+
+-- Messages table
+CREATE TABLE IF NOT EXISTS messages (
+  id SERIAL PRIMARY KEY,
+  conversation_id INTEGER REFERENCES conversations(id) ON DELETE CASCADE,
+  sender_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  message TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  is_read BOOLEAN DEFAULT false
+);
+
+-- Advertisements table
+CREATE TABLE IF NOT EXISTS advertisements (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(100) NOT NULL,
+  description TEXT,
+  image_url TEXT,
+  link_url TEXT,
+  start_date TIMESTAMP,
+  end_date TIMESTAMP,
+  active BOOLEAN DEFAULT true,
+  position VARCHAR(50) DEFAULT 'sidebar',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create indexes for faster queries
+CREATE INDEX IF NOT EXISTS idx_items_user_id ON items(user_id);
+CREATE INDEX IF NOT EXISTS idx_items_category ON items(category);
+CREATE INDEX IF NOT EXISTS idx_offers_from_user_id ON offers(from_user_id);
+CREATE INDEX IF NOT EXISTS idx_offers_to_user_id ON offers(to_user_id);
+CREATE INDEX IF NOT EXISTS idx_messages_conversation_id ON messages(conversation_id);

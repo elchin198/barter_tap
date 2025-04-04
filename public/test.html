@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        #messages {
+            height: 300px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 10px;
+            overflow-y: auto;
+            background: #f9f9f9;
+        }
+        #status {
+            margin-bottom: 10px;
+            padding: 5px;
+            text-align: center;
+        }
+        .connected {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .disconnected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .connecting {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        input, button {
+            padding: 8px;
+            margin: 5px 0;
+        }
+        input {
+            width: 70%;
+        }
+        button {
+            width: 25%;
+            cursor: pointer;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <h1>WebSocket Test Səhifəsi</h1>
+
+    <div id="status" class="disconnected">Qoşulma gözlənilir...</div>
+
+    <div id="messages"></div>
+
+    <div>
+        <input type="text" id="messageInput" placeholder="Mesaj daxil edin..." />
+        <button id="sendButton">Göndər</button>
+    </div>
+
+    <div>
+        <button id="connectButton">Yenidən qoşul</button>
+        <button id="disconnectButton">Bağlantını kəs</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const status = document.getElementById('status');
+            const messages = document.getElementById('messages');
+            const messageInput = document.getElementById('messageInput');
+            const sendButton = document.getElementById('sendButton');
+            const connectButton = document.getElementById('connectButton');
+            const disconnectButton = document.getElementById('disconnectButton');
+
+            let socket;
+
+            function connect() {
+                // WebSocket URL-ni yaratma
+                const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+                const wsUrl = `${protocol}//${window.location.host}/ws`;
+                console.log("WebSocket bağlantı URL-i:", wsUrl);
+
+                status.textContent = 'Qoşulur...';
+                status.className = 'connecting';
+
+                // WebSocket bağlantısını yaratma
+                socket = new WebSocket(wsUrl);
+
+                // Bağlantı açıldıqda
+                socket.onopen = function() {
+                    status.textContent = 'Bağlantı açıq';
+                    status.className = 'connected';
+                    addMessage('Sistem', 'WebSocket serverinə bağlantı quruldu');
+                };
+
+                // Mesaj qəbul ediləndə
+                socket.onmessage = function(event) {
+                    try {
+                        const data = JSON.parse(event.data);
+                        addMessage('Server', JSON.stringify(data, null, 2));
+                    } catch (e) {
+                        addMessage('Server (mətn)', event.data);
+                    }
+                };
+
+                // Xəta baş verdikdə
+                socket.onerror = function(error) {
+                    status.textContent = 'Xəta baş verdi';
+                    status.className = 'disconnected';
+                    addMessage('Xəta', 'WebSocket xətası baş verdi.');
+                    console.error('WebSocket xətası:', error);
+                };
+
+                // Bağlantı bağlandıqda
+                socket.onclose = function() {
+                    status.textContent = 'Bağlantı bağlı';
+                    status.className = 'disconnected';
+                    addMessage('Sistem', 'WebSocket bağlantısı bağlandı.');
+                };
+            }
+
+            // Mesaj göndərmə
+            function sendMessage() {
+                if (!socket || socket.readyState !== WebSocket.OPEN) {
+                    addMessage('Xəta', 'Bağlantı bağlıdır. İlk öncə yenidən qoşulun.');
+                    return;
+                }
+
+                const message = messageInput.value.trim();
+                if (!message) return;
+
+                try {
+                    // JSON dəyişdirilməsi
+                    const jsonMessage = JSON.stringify({
+                        type: 'message',
+                        text: message,
+                        timestamp: new Date().toISOString()
+                    });
+
+                    socket.send(jsonMessage);
+                    addMessage('Siz', message);
+                    messageInput.value = '';
+                } catch (e) {
+                    addMessage('Xəta', 'Mesaj göndərilə bilmədi: ' + e.message);
+                }
+            }
+
+            // Mesaj gündəliyinə əlavə etmə
+            function addMessage(from, text) {
+                const messageElement = document.createElement('div');
+                messageElement.innerHTML = `<strong>${from}:</strong> <pre>${text}</pre>`;
+                messages.appendChild(messageElement);
+                messages.scrollTop = messages.scrollHeight;
+            }
+
+            // Hadisələri dinləmə
+            sendButton.addEventListener('click', sendMessage);
+
+            messageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            connectButton.addEventListener('click', function() {
+                if (socket) {
+                    socket.close();
+                }
+                connect();
+            });
+
+            disconnectButton.addEventListener('click', function() {
+                if (socket) {
+                    socket.close();
+                    status.textContent = 'Bağlantı qəsdən kəsildi';
+                    status.className = 'disconnected';
+                    addMessage('Sistem', 'Bağlantı sizin tərəfinizdən kəsildi.');
+                }
+            });
+
+            // İlkin bağlantını yaratma
+            connect();
+        });
+    </script>
+</body>
+</html>

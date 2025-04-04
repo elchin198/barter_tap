@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Bağlantı Testi</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        #logContainer { border: 1px solid #ccc; padding: 10px; height: 300px; overflow: auto; margin-bottom: 20px; }
+        button { padding: 8px 16px; margin-right: 10px; }
+        input { padding: 8px; width: 300px; }
+        .success { color: green; }
+        .error { color: red; }
+        .info { color: blue; }
+    </style>
+</head>
+<body>
+    <h1>WebSocket Test Vasitəsi</h1>
+    <p>Bu səhifə WebSocket bağlantısını sınaqdan keçirmək üçündür.</p>
+    
+    <div id="logContainer"></div>
+    
+    <div>
+        <label for="userId">İstifadəçi ID:</label>
+        <input type="text" id="userId" value="1">
+        <button id="connectBtn">Bağlantı Qur</button>
+        <button id="disconnectBtn" disabled>Bağlantını Kəs</button>
+    </div>
+    
+    <div style="margin-top: 20px;">
+        <label for="messageContent">Mesaj:</label>
+        <input type="text" id="messageContent" placeholder="Mesaj mətni...">
+        <button id="sendBtn" disabled>Göndər</button>
+    </div>
+    
+    <script>
+        const logContainer = document.getElementById('logContainer');
+        const connectBtn = document.getElementById('connectBtn');
+        const disconnectBtn = document.getElementById('disconnectBtn');
+        const sendBtn = document.getElementById('sendBtn');
+        const userIdInput = document.getElementById('userId');
+        const messageInput = document.getElementById('messageContent');
+        
+        let ws = null;
+        
+        function log(message, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = type;
+            entry.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+            logContainer.appendChild(entry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+        
+        function connect() {
+            const userId = userIdInput.value;
+            if (!userId) {
+                log('İstifadəçi ID-si lazımdır', 'error');
+                return;
+            }
+            
+            try {
+                // Doğru WebSocket URL-ni yaradırıq
+                const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+                const host = window.location.host;
+                const wsToken = `test_socket_${Date.now()}`;
+                let wsUrl = `${protocol}//${host}/api/ws?userId=${userId}&appToken=${wsToken}`;
+                
+                // Replit xüsusi URL yoxlama
+                if (host.includes('.repl.co')) {
+                    console.log('Replit mühitində işləyir, WebSocket URL düzəltmələri tətbiq edilir');
+                    wsUrl = `${protocol}//${host}/api/ws?userId=${userId}&appToken=${wsToken}`;
+                }
+                console.log('WebSocket URL:', wsUrl);
+                
+                log(`WebSocket bağlantısı yaradılır: ${wsUrl}`);
+                
+                ws = new WebSocket(wsUrl);
+                
+                ws.onopen = function() {
+                    log('WebSocket bağlantısı quruldu', 'success');
+                    connectBtn.disabled = true;
+                    disconnectBtn.disabled = false;
+                    sendBtn.disabled = false;
+                };
+                
+                ws.onmessage = function(event) {
+                    try {
+                        const data = JSON.parse(event.data);
+                        log(`Serverdən mesaj alındı: ${JSON.stringify(data)}`, 'success');
+                    } catch (e) {
+                        log(`Serverdən mesaj alındı (format xətası): ${event.data}`, 'error');
+                    }
+                };
+                
+                ws.onerror = function(error) {
+                    log(`WebSocket xətası: ${error}`, 'error');
+                };
+                
+                ws.onclose = function() {
+                    log('WebSocket bağlantısı bağlandı', 'info');
+                    connectBtn.disabled = false;
+                    disconnectBtn.disabled = true;
+                    sendBtn.disabled = true;
+                    ws = null;
+                };
+            } catch (error) {
+                log(`WebSocket bağlantısı xətası: ${error.message}`, 'error');
+            }
+        }
+        
+        function disconnect() {
+            if (ws) {
+                ws.close();
+                log('WebSocket bağlantısı kəsildi', 'info');
+                connectBtn.disabled = false;
+                disconnectBtn.disabled = true;
+                sendBtn.disabled = true;
+            }
+        }
+        
+        function sendMessage() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                const content = messageInput.value;
+                if (!content) {
+                    log('Göndərmək üçün mesaj daxil edin', 'error');
+                    return;
+                }
+                
+                const message = {
+                    type: 'chat',
+                    content: content,
+                    from: parseInt(userIdInput.value),
+                    timestamp: new Date().toISOString()
+                };
+                
+                ws.send(JSON.stringify(message));
+                log(`Mesaj göndərildi: ${JSON.stringify(message)}`, 'info');
+                messageInput.value = '';
+            } else {
+                log('WebSocket bağlantısı aktiv deyil', 'error');
+            }
+        }
+        
+        connectBtn.addEventListener('click', connect);
+        disconnectBtn.addEventListener('click', disconnect);
+        sendBtn.addEventListener('click', sendMessage);
+        
+        // URL-də test parametri varsa və ya Replit mühitindədirsə avtomatik olaraq qoşulur
+        const isReplit = window.location.hostname.includes('repl.co');
+        const autoconnect = new URLSearchParams(window.location.search).get('autoconnect') === 'true';
+        
+        if (autoconnect || isReplit) {
+            setTimeout(() => {
+                console.log("Avtomatik bağlantı yaradılır...");
+                connect();
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+server/routes-simplified.ts:920:9 - error TS2322: Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is not assignable to type 'ConversationWithParticipants'.
+  Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is missing the following properties from type '{ participants: { id: number; username: string; password: string; fullName: string | null; email: string; avatar: string | null; bio: string | null; phone: string | null; city: string | null; ... 4 more ...; createdAt: Date; }[]; ... 5 more ...; message?: string | undefined; }': participants, otherParticipant, unreadCount
+
+920         conversation = await storage.createConversation({
+            ~~~~~~~~~~~~
+
+server/routes-simplified.ts:920:38 - error TS2554: Expected 2 arguments, but got 1.
+
+920         conversation = await storage.createConversation({
+                                         ~~~~~~~~~~~~~~~~~~
+
+  server/storage.ts:603:68
+    603   async createConversation(insertConversation: InsertConversation, participants: InsertConversationParticipant[]): Promise<Conversation> {
+                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    An argument for 'participants' was not provided.
+
+server/routes-simplified.ts:928:25 - error TS18048: 'conversation' is possibly 'undefined'.
+
+928         conversationId: conversation.id,
+                            ~~~~~~~~~~~~
+
+server/routes.ts:1095:11 - error TS2353: Object literal may only specify known properties, and 'id' does not exist in type '{ username: string; password: string; email: string; fullName?: string | null | undefined; avatar?: string | null | undefined; bio?: string | null | undefined; phone?: string | null | undefined; ... 4 more ...; active?: boolean | undefined; }'.
+
+1095           id: userId,
+               ~~
+
+server/routes.ts:1430:13 - error TS2353: Object literal may only specify known properties, and 'lastMessageAt' does not exist in type '{ itemId?: number | null | undefined; }'.
+
+1430             lastMessageAt: new Date() // Add required field to match schema
+                 ~~~~~~~~~~~~~
+
+server/routes.ts:1660:9 - error TS2322: Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is not assignable to type 'ConversationWithParticipants'.
+  Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is missing the following properties from type '{ participants: { id: number; username: string; password: string; fullName: string | null; email: string; avatar: string | null; bio: string | null; phone: string | null; city: string | null; ... 4 more ...; createdAt: Date; }[]; ... 5 more ...; message?: string | undefined; }': participants, otherParticipant, unreadCount
+
+1660         conversation = await dbStorage.createConversation(
+             ~~~~~~~~~~~~
+
+server/routes.ts:1671:25 - error TS18048: 'conversation' is possibly 'undefined'.
+
+1671         conversationId: conversation.id,
+                             ~~~~~~~~~~~~
+
+server/storage.ts:686:11 - error TS2741: Property 'isRead' is missing in type '{ id: number; conversationId: number; senderId: number; content: string; status: string; createdAt: Date; }' but required in type '{ id: number; createdAt: Date; status: string; conversationId: number; senderId: number; content: string; isRead: boolean; }'.
+
+686     const message: Message = {
+              ~~~~~~~
+
+server/storage.ts:743:11 - error TS2741: Property 'message' is missing in type '{ id: number; conversationId: number; fromUserId: number; toUserId: number; fromItemId: number; toItemId: number; status: string; createdAt: Date; updatedAt: Date; }' but required in type '{ id: number; createdAt: Date; status: string; updatedAt: Date; message: string | null; conversationId: number; fromUserId: number; toUserId: number; fromItemId: number; toItemId: number; }'.
+
+743     const offer: Offer = {
+              ~~~~~
+
+
+Found 9 errors in 3 files.
+
+Errors  Files
+     3  server/routes-simplified.ts:920
+     4  server/routes.ts:1095
+     2  server/storage.ts:686

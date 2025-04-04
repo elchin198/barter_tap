@@ -1,0 +1,1 @@
+{ /* Header logo removed to prevent duplication */ }

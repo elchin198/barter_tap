@@ -1,0 +1,119 @@
+server/db.ts:37:38 - error TS2307: Cannot find module 'drizzle-orm/pg-pool' or its corresponding type declarations.
+
+37     const { drizzle } = await import('drizzle-orm/pg-pool');
+                                        ~~~~~~~~~~~~~~~~~~~~~
+
+server/index.ts:58:44 - error TS2554: Expected 0 arguments, but got 1.
+
+ 58 const sessionMiddleware = configureSession({
+                                               ~
+ 59   cookie: {
+    ~~~~~~~~~~~
+... 
+ 64   }
+    ~~~
+ 65 });
+    ~
+
+server/index.ts:118:25 - error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type 'string' is not assignable to parameter of type 'number'.
+
+118     server.listen(port, "0.0.0.0", () => {
+                            ~~~~~~~~~
+
+  node_modules/@types/node/net.d.ts:605:9
+    605         listen(handle: any, backlog?: number, listeningListener?: () => void): this;
+                ~~~~~~
+    The last overload is declared here.
+
+server/routes-simplified.ts:6:8 - error TS2300: Duplicate identifier 'fs'.
+
+6 import fs from 'fs';
+         ~~
+
+server/routes-simplified.ts:7:8 - error TS2300: Duplicate identifier 'path'.
+
+7 import path from 'path';
+         ~~~~
+
+server/routes-simplified.ts:39:8 - error TS2300: Duplicate identifier 'path'.
+
+39 import path from 'path';
+          ~~~~
+
+server/routes-simplified.ts:40:8 - error TS2300: Duplicate identifier 'fs'.
+
+40 import fs from 'fs';
+          ~~
+
+server/routes-simplified.ts:698:13 - error TS2353: Object literal may only specify known properties, and 'lastMessageAt' does not exist in type '{ itemId?: number | null | undefined; }'.
+
+698             lastMessageAt: new Date()
+                ~~~~~~~~~~~~~
+
+server/routes-simplified.ts:736:9 - error TS2353: Object literal may only specify known properties, and 'isRead' does not exist in type '{ type: string; userId: number; content: string; referenceId?: number | null | undefined; }'.
+
+736         isRead: false
+            ~~~~~~
+
+server/routes-simplified.ts:805:9 - error TS2353: Object literal may only specify known properties, and 'isRead' does not exist in type '{ type: string; userId: number; content: string; referenceId?: number | null | undefined; }'.
+
+805         isRead: false
+            ~~~~~~
+
+server/routes-simplified.ts:908:9 - error TS2353: Object literal may only specify known properties, and 'message' does not exist in type '{ conversationId: number; fromUserId: number; toUserId: number; fromItemId: number; toItemId: number; status?: string | undefined; }'.
+
+908         message: message || null
+            ~~~~~~~
+
+server/routes-simplified.ts:917:9 - error TS2353: Object literal may only specify known properties, and 'isRead' does not exist in type '{ type: string; userId: number; content: string; referenceId?: number | null | undefined; }'.
+
+917         isRead: false
+            ~~~~~~
+
+server/routes-simplified.ts:927:13 - error TS2353: Object literal may only specify known properties, and 'lastMessageAt' does not exist in type '{ itemId?: number | null | undefined; }'.
+
+927             lastMessageAt: new Date()
+                ~~~~~~~~~~~~~
+
+server/routes-simplified.ts:1045:11 - error TS2353: Object literal may only specify known properties, and 'isRead' does not exist in type '{ type: string; userId: number; content: string; referenceId?: number | null | undefined; }'.
+
+1045           isRead: false
+               ~~~~~~
+
+server/routes-simplified.ts:1176:9 - error TS2353: Object literal may only specify known properties, and 'isRead' does not exist in type '{ type: string; userId: number; content: string; referenceId?: number | null | undefined; }'.
+
+1176         isRead: false
+             ~~~~~~
+
+server/routes.ts:1094:11 - error TS2353: Object literal may only specify known properties, and 'id' does not exist in type '{ username: string; password: string; email: string; fullName?: string | null | undefined; avatar?: string | null | undefined; bio?: string | null | undefined; phone?: string | null | undefined; ... 4 more ...; active?: boolean | undefined; }'.
+
+1094           id: userId,
+               ~~
+
+server/routes.ts:1656:9 - error TS2322: Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is not assignable to type 'ConversationWithParticipants'.
+  Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is missing the following properties from type '{ participants: { id: number; username: string; password: string; fullName: string | null; email: string; avatar: string | null; bio: string | null; phone: string | null; city: string | null; ... 4 more ...; createdAt: Date; }[]; ... 5 more ...; message?: string | undefined; }': participants, otherParticipant, unreadCount
+
+1656         conversation = await dbStorage.createConversation(
+             ~~~~~~~~~~~~
+
+server/routes.ts:1667:25 - error TS18048: 'conversation' is possibly 'undefined'.
+
+1667         conversationId: conversation.id,
+                             ~~~~~~~~~~~~
+
+server/storage.ts:668:11 - error TS2741: Property 'isRead' is missing in type '{ id: number; conversationId: number; senderId: number; content: string; status: string; createdAt: Date; }' but required in type '{ id: number; createdAt: Date; status: string; conversationId: number; senderId: number; content: string; isRead: boolean; }'.
+
+668     const message: Message = {
+              ~~~~~~~
+
+
+Found 19 errors in 5 files.
+
+Errors  Files
+     1  server/db.ts:37
+     2  server/index.ts:58
+    12  server/routes-simplified.ts:6
+     3  server/routes.ts:1094
+     1  server/storage.ts:668

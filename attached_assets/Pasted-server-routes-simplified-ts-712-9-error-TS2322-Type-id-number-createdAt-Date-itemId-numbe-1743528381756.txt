@@ -1,0 +1,43 @@
+server/routes-simplified.ts:712:9 - error TS2322: Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is not assignable to type 'ConversationWithParticipants'.
+  Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is missing the following properties from type '{ participants: { id: number; username: string; password: string; fullName: string | null; email: string; avatar: string | null; bio: string | null; phone: string | null; city: string | null; ... 4 more ...; createdAt: Date; }[]; ... 5 more ...; message?: string | undefined; }': participants, otherParticipant, unreadCount
+
+712         conversation = await storage.createConversation({
+            ~~~~~~~~~~~~
+
+server/routes-simplified.ts:714:11 - error TS2353: Object literal may only specify known properties, and 'lastMessageAt' does not exist in type '{ itemId?: number | null | undefined; }'.
+
+714           lastMessageAt: new Date()
+              ~~~~~~~~~~~~~
+
+server/routes-simplified.ts:910:9 - error TS2322: Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is not assignable to type 'ConversationWithParticipants'.
+  Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is missing the following properties from type '{ participants: { id: number; username: string; password: string; fullName: string | null; email: string; avatar: string | null; bio: string | null; phone: string | null; city: string | null; ... 4 more ...; createdAt: Date; }[]; ... 5 more ...; message?: string | undefined; }': participants, otherParticipant, unreadCount
+
+910         conversation = await storage.createConversation(
+            ~~~~~~~~~~~~
+
+server/routes-simplified.ts:913:13 - error TS2353: Object literal may only specify known properties, and 'lastMessageAt' does not exist in type '{ itemId?: number | null | undefined; }'.
+
+913             lastMessageAt: new Date()
+                ~~~~~~~~~~~~~
+
+server/routes-simplified.ts:923:25 - error TS18048: 'conversation' is possibly 'undefined'.
+
+923         conversationId: conversation.id,
+                            ~~~~~~~~~~~~
+
+server/routes.ts:1094:11 - error TS2353: Object literal may only specify known properties, and 'id' does not exist in type '{ username: string; password: string; email: string; fullName?: string | null | undefined; avatar?: string | null | undefined; bio?: string | null | undefined; phone?: string | null | undefined; ... 4 more ...; active?: boolean | undefined; }'.
+
+1094           id: userId,
+               ~~
+
+server/routes.ts:1429:13 - error TS2353: Object literal may only specify known properties, and 'lastMessageAt' does not exist in type '{ itemId?: number | null | undefined; }'.
+
+1429             lastMessageAt: new Date()
+                 ~~~~~~~~~~~~~
+
+
+Found 7 errors in 2 files.
+
+Errors  Files
+     5  server/routes-simplified.ts:712
+     2  server/routes.ts:1094

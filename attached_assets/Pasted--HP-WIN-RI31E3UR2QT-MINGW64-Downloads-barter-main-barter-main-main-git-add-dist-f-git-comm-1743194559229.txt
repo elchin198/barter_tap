@@ -1,0 +1,52 @@
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter-main/barter-main (main)
+$ git add dist -f
+git commit -m "Build olunmuş backend əlavə olundu"
+git push
+warning: in the working copy of 'dist/index.js', LF will be replaced by CRLF the
+ next time Git touches it
+warning: in the working copy of 'dist/public/assets/browser-ponyfill-CIUVfrlN.js
+', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'dist/public/assets/index-2P9saQJt.js', LF will
+be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'dist/public/assets/index-CAUDZf6P.css', LF will
+ be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'dist/public/barter-summary.php', LF will be rep
+laced by CRLF the next time Git touches it
+warning: in the working copy of 'dist/public/client/public/images/barter-summary
+.php', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'dist/public/images/barter-summary.php', LF will
+ be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'dist/public/index.html', LF will be replaced by
+ CRLF the next time Git touches it
+warning: in the working copy of 'dist/public/logo.svg', LF will be replaced by C
+RLF the next time Git touches it
+[main 26b61f6] Build olunmuş backend əlavə olundu
+ 16 files changed, 6659 insertions(+)
+ create mode 100644 dist/index.js
+ create mode 100644 dist/public/assets/browser-ponyfill-CIUVfrlN.js
+ create mode 100644 dist/public/assets/index-2P9saQJt.js
+ create mode 100644 dist/public/assets/index-CAUDZf6P.css
+ create mode 100644 dist/public/barter logo (1).png
+ create mode 100644 dist/public/barter-logos.ico
+ create mode 100644 dist/public/barter-summary.php
+ create mode 100644 dist/public/client/public/images/barter logo (1).png
+ create mode 100644 dist/public/client/public/images/barter-logos.ico
+ create mode 100644 dist/public/client/public/images/barter-summary.php
+ create mode 100644 dist/public/favicon.ico
+ create mode 100644 dist/public/images/barter logo (1).png
+ create mode 100644 dist/public/images/barter-logos.ico
+ create mode 100644 dist/public/images/barter-summary.php
+ create mode 100644 dist/public/index.html
+ create mode 100644 dist/public/logo.svg
+To https://github.com/elchin198/bartertap
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://github.com/elchin198/bartertap'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+HP@WIN-RI31E3UR2QT MINGW64 ~/Downloads/barter-main/barter-main (main)
+$

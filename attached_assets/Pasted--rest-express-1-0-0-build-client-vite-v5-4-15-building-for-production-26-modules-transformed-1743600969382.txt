@@ -1,0 +1,84 @@
+> rest-express@1.0.0 build:client
+vite v5.4.15 building for production...
+✓ 26 modules transformed.
+x Build failed in 1.82s
+error during build:
+[vite:esbuild] Transform failed with 2 errors:
+/home/runner/workspace/client/src/pages/Dashboard.tsx:503:34: ERROR: Unexpected closing "Button" tag does not match opening "div" tag
+/home/runner/workspace/client/src/pages/Dashboard.tsx:504:36: ERROR: Unterminated regular expression
+file: /home/runner/workspace/client/src/pages/Dashboard.tsx:503:34
+
+Unexpected closing "Button" tag does not match opening "div" tag
+501|                                    Rədd et
+502|                                  </Button>
+503|                                  </Button>
+   |                                    ^
+504|                                </div>
+505|                              )}
+
+Unterminated regular expression
+502|                                  </Button>
+503|                                  </Button>
+504|                                </div>
+   |                                      ^
+505|                              )}
+506|                            </div>
+
+    at failureErrorWithLog (/home/runner/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:1472:15)
+    at /home/runner/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:755:50
+    at responseCallbacks.<computed> (/home/runner/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:622:9)
+    at handleIncomingPacket (/home/runner/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:677:12)
+    at Socket.readFromStdout (/home/runner/workspace/node_modules/vite/node_modules/esbuild/lib/main.js:600:7)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:324:12)
+    at readableAddChunk (node:internal/streams/readable:297:9)
+    at Readable.push (node:internal/streams/readable:234:10)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:190:23)
+
+
+ChatGPT said:
+Bu xəta artıq tam aydın göstərir ki, Dashboard.tsx faylında JSX strukturu pozulub və konkret olaraq:
+
+❌ 1. "Unexpected closing </Button> tag"
+Bu o deməkdir ki, sən </Button> bağlayırsan, amma açıq Button yox, əslində div açıqdır. Bu çox zaman copy-paste və ya əl ilə düzəliş zamanı olur.
+
+❌ 2. "Unterminated regular expression"
+Bu isə o deməkdir ki, sən kodda " və ya ' ilə yazdığın stringi bağlamamısan və parser onu regular expression zənn edir. Bu da əksər hallarda JSX sintaks probleminin nəticəsidir.
+
+✅ TƏMİZ, PROBLEMSİZ HAZIR KOD BLOKU
+İndi sənə bu hissəni problemsiz işləyəcək formada tam copy-paste hazır təqdim edirəm. Əvəz et, build alınacaq.
+
+🔧 JSX Butonlar – Təmiz Versiya (Dashboard.tsx daxilində istifadə et):
+tsx
+Copy
+Edit
+<div className="flex gap-2 mt-4">
+  <Button
+    size="sm"
+    variant="default"
+    className="flex-1"
+    onClick={() => {
+      alert("Qəbul edildi");
+    }}
+  >
+    Qəbul et
+  </Button>
+
+  <Button
+    size="sm"
+    variant="outline"
+    className="flex-1"
+    onClick={() => {
+      alert("Rədd edildi");
+    }}
+  >
+    Rədd et
+  </Button>
+</div>
+🧠 Əmin ol ki:
+Heç bir </Button> artıq yazılmayıb.
+
+div, Button və digər bütün JSX elementlər düzgün açılıb və bağlanıb.
+
+Bu blok return (...) içindədirsə, return və (...) da düzəldilməlidir.
+

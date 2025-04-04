@@ -1,0 +1,453 @@
+~~
+150     },
+    ~~~~~
+
+client/src/pages/BarterTapHome.tsx:151:5 - error TS2740: Type '{ id: number; title: string; description: string; price: number; category: string; city: string; mainImage: string; ownerName: string; ownerAvatar: string; }' is missing the following properties from type 'ItemWithImage': status, createdAt, userId, subcategory, and 5 more.
+
+151     {
+        ~
+152       id: 8,
+    ~~~~~~~~~~~~
+... 
+160       ownerAvatar: "https://randomuser.me/api/portraits/men/8.jpg"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+161     }
+    ~~~~~
+
+client/src/pages/BarterTapHome.tsx:166:5 - error TS2740: Type '{ id: number; title: string; description: string; price: number; category: string; city: string; mainImage: string; ownerName: string; ownerAvatar: string; }' is missing the following properties from type 'ItemWithImage': status, createdAt, userId, subcategory, and 5 more.
+
+166     {
+        ~
+167       id: 9,
+    ~~~~~~~~~~~~
+... 
+175       ownerAvatar: "https://randomuser.me/api/portraits/women/9.jpg"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+176     },
+    ~~~~~
+
+client/src/pages/BarterTapHome.tsx:177:5 - error TS2740: Type '{ id: number; title: string; description: string; price: number; category: string; city: string; mainImage: string; ownerName: string; ownerAvatar: string; }' is missing the following properties from type 'ItemWithImage': status, createdAt, userId, subcategory, and 5 more.
+
+177     {
+        ~
+178       id: 10,
+    ~~~~~~~~~~~~~
+... 
+186       ownerAvatar: "https://randomuser.me/api/portraits/men/10.jpg"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+187     },
+    ~~~~~
+
+client/src/pages/BarterTapHome.tsx:188:5 - error TS2740: Type '{ id: number; title: string; description: string; price: number; category: string; city: string; mainImage: string; ownerName: string; ownerAvatar: string; }' is missing the following properties from type 'ItemWithImage': status, createdAt, userId, subcategory, and 5 more.
+
+188     {
+        ~
+189       id: 11,
+    ~~~~~~~~~~~~~
+... 
+197       ownerAvatar: "https://randomuser.me/api/portraits/women/11.jpg"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+198     },
+    ~~~~~
+
+client/src/pages/BarterTapHome.tsx:199:5 - error TS2740: Type '{ id: number; title: string; description: string; price: number; category: string; city: string; mainImage: string; ownerName: string; ownerAvatar: string; }' is missing the following properties from type 'ItemWithImage': status, createdAt, userId, subcategory, and 5 more.
+
+199     {
+        ~
+200       id: 12,
+    ~~~~~~~~~~~~~
+... 
+208       ownerAvatar: "https://randomuser.me/api/portraits/men/12.jpg"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+209     }
+    ~~~~~
+
+client/src/pages/Categories.tsx:15:17 - error TS2307: Cannot find module '@/components/shared/seo' or its corresponding type declarations.
+
+15 import SEO from '@/components/shared/seo';
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+client/src/pages/Dashboard.tsx:305:34 - error TS7006: Parameter 'item' implicitly has an 'any' type.
+
+305                   {userItems.map(item => (
+                                     ~~~~
+
+client/src/pages/Dashboard.tsx:340:34 - error TS7006: Parameter 'favorite' implicitly has an 'any' type.
+
+340                   {favorites.map(favorite => (
+                                     ~~~~~~~~
+
+client/src/pages/Dashboard.tsx:375:39 - error TS7006: Parameter 'conversation' implicitly has an 'any' type.
+
+375                   {conversations.map((conversation) => (
+                                          ~~~~~~~~~~~~
+
+client/src/pages/Dashboard.tsx:434:32 - error TS7006: Parameter 'offer' implicitly has an 'any' type.
+
+434                   {offers.map((offer) => (
+                                   ~~~~~
+
+client/src/pages/NewOffer.tsx:184:35 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string | URL'.
+
+184           onClick={() => navigate(-1)}
+                                      ~~
+
+client/src/pages/NewOffer.tsx:357:45 - error TS2345: Argument of type 'number' is not assignable to parameter of type 'string | URL'.
+
+357                     onClick={() => navigate(-1)}
+                                                ~~
+
+client/src/pages/NextBarterHome.tsx:79:7 - error TS2322: Type 'string' is not assignable to type 'Date'.
+
+79       createdAt: new Date().toISOString(),
+         ~~~~~~~~~
+
+  client/src/pages/NextBarterHome.tsx:28:11
+    28 interface ItemWithImage extends Item {
+                 ~~~~~~~~~~~~~
+    The expected type comes from property 'createdAt' which is declared here on type 'ItemWithImage'
+
+client/src/pages/NextBarterHome.tsx:80:7 - error TS2322: Type 'string' is not assignable to type 'Date'.
+
+80       updatedAt: new Date().toISOString(),
+         ~~~~~~~~~
+
+  client/src/pages/NextBarterHome.tsx:28:11
+    28 interface ItemWithImage extends Item {
+                 ~~~~~~~~~~~~~
+    The expected type comes from property 'updatedAt' which is declared here on type 'ItemWithImage'
+
+client/src/pages/NextBarterHome.tsx:85:5 - error TS2740: Type '{ id: number; title: string; description: string; price: number; category: string; city: string; mainImage: string; ownerName: string; ownerAvatar: string; }' is missing the following properties from type 'ItemWithImage': status, createdAt, userId, subcategory, and 5 more.
+
+ 85     {
+        ~
+ 86       id: 2,
+    ~~~~~~~~~~~~
+... 
+ 94       ownerAvatar: "https://randomuser.me/api/portraits/women/2.jpg"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 95     },
+    ~~~~~
+
+client/src/pages/NextBarterHome.tsx:96:5 - error TS2740: Type '{ id: number; title: string; description: string; price: number; category: string; city: string; mainImage: string; ownerName: string; ownerAvatar: string; }' is missing the following properties from type 'ItemWithImage': status, createdAt, userId, subcategory, and 5 more.
+
+ 96     {
+        ~
+ 97       id: 3,
+    ~~~~~~~~~~~~
+... 
+105       ownerAvatar: "https://randomuser.me/api/portraits/men/3.jpg"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+106     },
+    ~~~~~
+
+client/src/pages/NextBarterHome.tsx:107:5 - error TS2740: Type '{ id: number; title: string; description: string; price: number; category: string; city: string; mainImage: string; ownerName: string; ownerAvatar: string; }' is missing the following properties from type 'ItemWithImage': status, createdAt, userId, subcategory, and 5 more.
+
+107     {
+        ~
+108       id: 4,
+    ~~~~~~~~~~~~
+... 
+116       ownerAvatar: "https://randomuser.me/api/portraits/men/4.jpg"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+117     },
+    ~~~~~
+
+client/src/pages/NextBarterHome.tsx:118:5 - error TS2740: Type '{ id: number; title: string; description: string; price: number; category: string; city: string; mainImage: string; ownerName: string; ownerAvatar: string; }' is missing the following properties from type 'ItemWithImage': status, createdAt, userId, subcategory, and 5 more.
+
+118     {
+        ~
+119       id: 5,
+    ~~~~~~~~~~~~
+... 
+127       ownerAvatar: "https://randomuser.me/api/portraits/women/5.jpg"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+128     },
+    ~~~~~
+
+client/src/pages/NextBarterHome.tsx:129:5 - error TS2740: Type '{ id: number; title: string; description: string; price: number; category: string; city: string; mainImage: string; ownerName: string; ownerAvatar: string; }' is missing the following properties from type 'ItemWithImage': status, createdAt, userId, subcategory, and 5 more.
+
+129     {
+        ~
+130       id: 6,
+    ~~~~~~~~~~~~
+... 
+138       ownerAvatar: "https://randomuser.me/api/portraits/women/6.jpg"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+139     },
+    ~~~~~
+
+client/src/pages/NextBarterHome.tsx:140:5 - error TS2740: Type '{ id: number; title: string; description: string; price: number; category: string; city: string; mainImage: string; ownerName: string; ownerAvatar: string; }' is missing the following properties from type 'ItemWithImage': status, createdAt, userId, subcategory, and 5 more.
+
+140     {
+        ~
+141       id: 7,
+    ~~~~~~~~~~~~
+... 
+149       ownerAvatar: "https://randomuser.me/api/portraits/men/7.jpg"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+150     },
+    ~~~~~
+
+client/src/pages/NextBarterHome.tsx:151:5 - error TS2740: Type '{ id: number; title: string; description: string; price: number; category: string; city: string; mainImage: string; ownerName: string; ownerAvatar: string; }' is missing the following properties from type 'ItemWithImage': status, createdAt, userId, subcategory, and 5 more.
+
+151     {
+        ~
+152       id: 8,
+    ~~~~~~~~~~~~
+... 
+160       ownerAvatar: "https://randomuser.me/api/portraits/men/8.jpg"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+161     }
+    ~~~~~
+
+client/src/pages/NextBarterHome.tsx:166:5 - error TS2740: Type '{ id: number; title: string; description: string; price: number; category: string; city: string; mainImage: string; ownerName: string; ownerAvatar: string; }' is missing the following properties from type 'ItemWithImage': status, createdAt, userId, subcategory, and 5 more.
+
+166     {
+        ~
+167       id: 9,
+    ~~~~~~~~~~~~
+... 
+175       ownerAvatar: "https://randomuser.me/api/portraits/women/9.jpg"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+176     },
+    ~~~~~
+
+client/src/pages/NextBarterHome.tsx:177:5 - error TS2740: Type '{ id: number; title: string; description: string; price: number; category: string; city: string; mainImage: string; ownerName: string; ownerAvatar: string; }' is missing the following properties from type 'ItemWithImage': status, createdAt, userId, subcategory, and 5 more.
+
+177     {
+        ~
+178       id: 10,
+    ~~~~~~~~~~~~~
+... 
+186       ownerAvatar: "https://randomuser.me/api/portraits/men/10.jpg"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+187     },
+    ~~~~~
+
+client/src/pages/NextBarterHome.tsx:188:5 - error TS2740: Type '{ id: number; title: string; description: string; price: number; category: string; city: string; mainImage: string; ownerName: string; ownerAvatar: string; }' is missing the following properties from type 'ItemWithImage': status, createdAt, userId, subcategory, and 5 more.
+
+188     {
+        ~
+189       id: 11,
+    ~~~~~~~~~~~~~
+... 
+197       ownerAvatar: "https://randomuser.me/api/portraits/women/11.jpg"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+198     },
+    ~~~~~
+
+client/src/pages/NextBarterHome.tsx:199:5 - error TS2740: Type '{ id: number; title: string; description: string; price: number; category: string; city: string; mainImage: string; ownerName: string; ownerAvatar: string; }' is missing the following properties from type 'ItemWithImage': status, createdAt, userId, subcategory, and 5 more.
+
+199     {
+        ~
+200       id: 12,
+    ~~~~~~~~~~~~~
+... 
+208       ownerAvatar: "https://randomuser.me/api/portraits/men/12.jpg"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+209     }
+    ~~~~~
+
+client/src/pages/admin/Advertisements.tsx:36:23 - error TS2307: Cannot find module '@/components/ui/use-toast' or its corresponding type declarations.
+
+36 import { toast } from '@/components/ui/use-toast';
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+client/src/pages/admin/Listings.tsx:58:11 - error TS2430: Interface 'ItemWithDetails' incorrectly extends interface '{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }'.
+  Types of property 'viewCount' are incompatible.
+    Type 'number | undefined' is not assignable to type 'number | null'.
+      Type 'undefined' is not assignable to type 'number | null'.
+
+58 interface ItemWithDetails extends Item {
+             ~~~~~~~~~~~~~~~
+
+client/src/pages/admin/Listings.tsx:85:5 - error TS2769: No overload matches this call.
+  Overload 1 of 3, '(options: DefinedInitialDataOptions<ItemWithDetails[], Error, ItemWithDetails[], QueryKey>, queryClient?: QueryClient | undefined): DefinedUseQueryResult<...>', gave the following error.
+    Type '() => Promise<{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }[]>' is not assignable to type 'unique symbol | QueryFunction<ItemWithDetails[], QueryKey, never> | undefined'.
+      Type '() => Promise<{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }[]>' is not assignable to type 'QueryFunction<ItemWithDetails[], QueryKey, never>'.
+        Type 'Promise<{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }[]>' is not assignable to type 'ItemWithDetails[] | Promise<ItemWithDetails[]>'.
+          Type 'Promise<{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }[]>' is not assignable to type 'Promise<ItemWithDetails[]>'.
+            Type '{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }[]' is not assignable to type 'ItemWithDetails[]'.
+              Type '{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }' is not assignable to type 'ItemWithDetails'.
+                Types of property 'viewCount' are incompatible.
+                  Type 'number | null' is not assignable to type 'number | undefined'.
+                    Type 'null' is not assignable to type 'number | undefined'.
+  Overload 2 of 3, '(options: UndefinedInitialDataOptions<ItemWithDetails[], Error, ItemWithDetails[], QueryKey>, queryClient?: QueryClient | undefined): UseQueryResult<...>', gave the following error.
+    Type '() => Promise<{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }[]>' is not assignable to type 'unique symbol | QueryFunction<ItemWithDetails[], QueryKey, never> | undefined'.
+      Type '() => Promise<{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }[]>' is not assignable to type 'QueryFunction<ItemWithDetails[], QueryKey, never>'.
+        Type 'Promise<{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }[]>' is not assignable to type 'ItemWithDetails[] | Promise<ItemWithDetails[]>'.
+          Type 'Promise<{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }[]>' is not assignable to type 'Promise<ItemWithDetails[]>'.
+            Type '{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }[]' is not assignable to type 'ItemWithDetails[]'.
+              Type '{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }' is not assignable to type 'ItemWithDetails'.
+                Types of property 'viewCount' are incompatible.
+                  Type 'number | null' is not assignable to type 'number | undefined'.
+                    Type 'null' is not assignable to type 'number | undefined'.
+  Overload 3 of 3, '(options: UseQueryOptions<ItemWithDetails[], Error, ItemWithDetails[], QueryKey>, queryClient?: QueryClient | undefined): UseQueryResult<...>', gave the following error.
+    Type '() => Promise<{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }[]>' is not assignable to type 'unique symbol | QueryFunction<ItemWithDetails[], QueryKey, never> | undefined'.
+      Type '() => Promise<{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }[]>' is not assignable to type 'QueryFunction<ItemWithDetails[], QueryKey, never>'.
+        Type 'Promise<{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }[]>' is not assignable to type 'ItemWithDetails[] | Promise<ItemWithDetails[]>'.
+          Type 'Promise<{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }[]>' is not assignable to type 'Promise<ItemWithDetails[]>'.
+            Type '{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }[]' is not assignable to type 'ItemWithDetails[]'.
+              Type '{ title: string; id: number; status: string; description: string; city: string | null; createdAt: Date; userId: number; category: string; subcategory: string | null; condition: string; ... 4 more ...; updatedAt: Date; }' is not assignable to type 'ItemWithDetails'.
+                Types of property 'viewCount' are incompatible.
+                  Type 'number | null' is not assignable to type 'number | undefined'.
+                    Type 'null' is not assignable to type 'number | undefined'.
+
+85     queryFn: () => AdminAPI.getItems({
+       ~~~~~~~
+
+  node_modules/@tanstack/query-core/build/modern/hydration-mKPlgzt9.d.ts:579:5
+    579     queryFn?: QueryFunction<TQueryFnData, TQueryKey, TPageParam> | SkipToken;
+            ~~~~~~~
+    The expected type comes from property 'queryFn' which is declared here on type 'DefinedInitialDataOptions<ItemWithDetails[], Error, ItemWithDetails[], QueryKey>'
+  node_modules/@tanstack/query-core/build/modern/hydration-mKPlgzt9.d.ts:579:5
+    579     queryFn?: QueryFunction<TQueryFnData, TQueryKey, TPageParam> | SkipToken;
+            ~~~~~~~
+    The expected type comes from property 'queryFn' which is declared here on type 'UndefinedInitialDataOptions<ItemWithDetails[], Error, ItemWithDetails[], QueryKey>'
+  node_modules/@tanstack/query-core/build/modern/hydration-mKPlgzt9.d.ts:579:5
+    579     queryFn?: QueryFunction<TQueryFnData, TQueryKey, TPageParam> | SkipToken;
+            ~~~~~~~
+    The expected type comes from property 'queryFn' which is declared here on type 'UseQueryOptions<ItemWithDetails[], Error, ItemWithDetails[], QueryKey>'
+
+client/src/pages/admin/Listings.tsx:157:47 - error TS2339: Property 'map' does not exist on type 'never[] | TQueryFnData'.
+  Property 'map' does not exist on type 'TQueryFnData'.
+
+157   const categories = Array.from(new Set(items.map(item => item.category).filter(Boolean) as string[]));
+                                                  ~~~
+
+client/src/pages/admin/Listings.tsx:157:51 - error TS7006: Parameter 'item' implicitly has an 'any' type.
+
+157   const categories = Array.from(new Set(items.map(item => item.category).filter(Boolean) as string[]));
+                                                      ~~~~
+
+client/src/pages/admin/Listings.tsx:189:85 - error TS2339: Property 'length' does not exist on type 'never[] | TQueryFnData'.
+  Property 'length' does not exist on type 'TQueryFnData'.
+
+189                   {isLoading ? <Loader2 className="h-6 w-6 animate-spin" /> : items.length}
+                                                                                        ~~~~~~
+
+client/src/pages/admin/Listings.tsx:203:27 - error TS2339: Property 'filter' does not exist on type 'never[] | TQueryFnData'.
+  Property 'filter' does not exist on type 'TQueryFnData'.
+
+203                     items.filter(item => item.status === 'active').length}
+                              ~~~~~~
+
+client/src/pages/admin/Listings.tsx:203:34 - error TS7006: Parameter 'item' implicitly has an 'any' type.
+
+203                     items.filter(item => item.status === 'active').length}
+                                     ~~~~
+
+client/src/pages/admin/Listings.tsx:217:27 - error TS2339: Property 'filter' does not exist on type 'never[] | TQueryFnData'.
+  Property 'filter' does not exist on type 'TQueryFnData'.
+
+217                     items.filter(item => item.status === 'pending').length}
+                              ~~~~~~
+
+client/src/pages/admin/Listings.tsx:217:34 - error TS7006: Parameter 'item' implicitly has an 'any' type.
+
+217                     items.filter(item => item.status === 'pending').length}
+                                     ~~~~
+
+client/src/pages/admin/Listings.tsx:231:27 - error TS2339: Property 'filter' does not exist on type 'never[] | TQueryFnData'.
+  Property 'filter' does not exist on type 'TQueryFnData'.
+
+231                     items.filter(item => item.status === 'suspended').length}
+                              ~~~~~~
+
+client/src/pages/admin/Listings.tsx:231:34 - error TS7006: Parameter 'item' implicitly has an 'any' type.
+
+231                     items.filter(item => item.status === 'suspended').length}
+                                     ~~~~
+
+client/src/pages/admin/Listings.tsx:283:25 - error TS2339: Property 'length' does not exist on type 'never[] | TQueryFnData'.
+  Property 'length' does not exist on type 'TQueryFnData'.
+
+283               ) : items.length === 0 ? (
+                            ~~~~~~
+
+client/src/pages/admin/Listings.tsx:305:28 - error TS2339: Property 'map' does not exist on type 'never[] | TQueryFnData'.
+  Property 'map' does not exist on type 'TQueryFnData'.
+
+305                     {items.map((item) => (
+                               ~~~
+
+client/src/pages/admin/Listings.tsx:305:33 - error TS7006: Parameter 'item' implicitly has an 'any' type.
+
+305                     {items.map((item) => (
+                                    ~~~~
+
+server/routes-simplified.ts:696:13 - error TS2353: Object literal may only specify known properties, and 'lastMessageAt' does not exist in type '{ itemId?: number | null | undefined; }'.
+
+696             lastMessageAt: new Date()
+                ~~~~~~~~~~~~~
+
+server/routes-simplified.ts:900:47 - error TS2345: Argument of type '{ fromUserId: number; toUserId: number; fromItemId: number; toItemId: number; status: string; message: any; }' is not assignable to parameter of type '{ conversationId: number; fromUserId: number; toUserId: number; fromItemId: number; toItemId: number; status?: string | undefined; message?: string | null | undefined; }'.
+  Property 'conversationId' is missing in type '{ fromUserId: number; toUserId: number; fromItemId: number; toItemId: number; status: string; message: any; }' but required in type '{ conversationId: number; fromUserId: number; toUserId: number; fromItemId: number; toItemId: number; status?: string | undefined; message?: string | null | undefined; }'.
+
+900       const offer = await storage.createOffer({
+                                                  ~
+901         fromUserId: userId,
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+906         message: message || null
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+907       });
+    ~~~~~~~
+
+  shared/schema.ts:99:3
+    99   conversationId: integer("conversation_id").notNull().references(() => conversations.id),
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    'conversationId' is declared here.
+
+server/routes-simplified.ts:925:13 - error TS2353: Object literal may only specify known properties, and 'lastMessageAt' does not exist in type '{ itemId?: number | null | undefined; }'.
+
+925             lastMessageAt: new Date()
+                ~~~~~~~~~~~~~
+
+server/routes.ts:1095:11 - error TS2353: Object literal may only specify known properties, and 'id' does not exist in type '{ email: string; password: string; username: string; role?: string | undefined; fullName?: string | null | undefined; avatar?: string | null | undefined; bio?: string | null | undefined; ... 4 more ...; active?: boolean | undefined; }'.
+
+1095           id: userId,
+               ~~
+
+server/routes.ts:1657:9 - error TS2322: Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is not assignable to type 'ConversationWithParticipants'.
+  Type '{ id: number; createdAt: Date; itemId: number | null; lastMessageAt: Date; }' is missing the following properties from type '{ participants: { id: number; role: string; email: string; password: string; username: string; fullName: string | null; avatar: string | null; bio: string | null; phone: string | null; city: string | null; rating: number | null; ratingCount: number | null; active: boolean; createdAt: Date; }[]; ... 5 more ...; messa...': participants, otherParticipant, unreadCount
+
+1657         conversation = await dbStorage.createConversation(
+             ~~~~~~~~~~~~
+
+server/routes.ts:1668:25 - error TS18048: 'conversation' is possibly 'undefined'.
+
+1668         conversationId: conversation.id,
+                             ~~~~~~~~~~~~
+
+server/storage.ts:680:11 - error TS2741: Property 'isRead' is missing in type '{ id: number; conversationId: number; senderId: number; content: string; status: string; createdAt: Date; }' but required in type '{ id: number; content: string; status: string; createdAt: Date; conversationId: number; senderId: number; isRead: boolean; }'.
+
+680     const message: Message = {
+              ~~~~~~~
+
+server/storage.ts:737:11 - error TS2741: Property 'message' is missing in type '{ id: number; conversationId: number; fromUserId: number; toUserId: number; fromItemId: number; toItemId: number; status: string; createdAt: Date; updatedAt: Date; }' but required in type '{ id: number; status: string; message: string | null; createdAt: Date; updatedAt: Date; conversationId: number; fromUserId: number; toUserId: number; fromItemId: number; toItemId: number; }'.
+
+737     const offer: Offer = {
+              ~~~~~
+
+
+Found 81 errors in 16 files.
+
+Errors  Files
+     7  client/src/components/ads/AdvertisementBanner.tsx:20
+    13  client/src/components/auth/AuthContext.tsx:1
+     1  client/src/components/home/CategoriesGrid.tsx:6
+     1  client/src/components/home/how-it-works-section.tsx:4
+     2  client/src/components/reviews/UserRating.tsx:50
+     1  client/src/components/ui/empty-state.tsx:141
+    13  client/src/pages/BarterTapHome.tsx:79
+     1  client/src/pages/Categories.tsx:15
+     4  client/src/pages/Dashboard.tsx:305
+     2  client/src/pages/NewOffer.tsx:184
+    13  client/src/pages/NextBarterHome.tsx:79
+     1  client/src/pages/admin/Advertisements.tsx:36
+    14  client/src/pages/admin/Listings.tsx:58
+     3  server/routes-simplified.ts:696
+     3  server/routes.ts:1095
+     2  server/storage.ts:680
